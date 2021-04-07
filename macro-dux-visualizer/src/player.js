@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import Remember from './Remember.mp3'
-import P5OscBubble from './p5_osc_bubble'
+import P5Visualizer from './p5_visualizer'
 
 export default class Player extends Component {
 
@@ -32,7 +32,7 @@ export default class Player extends Component {
       audioDataTime: this.timeDataArray,
       audioDataFreq: this.freqDataArray
     })
-    console.log(this.state.audioDataTime)
+    //console.log(this.state.audioDataTime)
     if (this.state.playing === true){
       this.rafId = requestAnimationFrame(this.tick)
     }
@@ -40,7 +40,7 @@ export default class Player extends Component {
   }
   handleOnClick = event => {
     event.preventDefault()
-    console.log(this.audioContext.state)
+    //console.log(this.audioContext.state)
     if (this.audioContext.state === 'suspended'){
       this.audioContext.resume()
     }
@@ -63,7 +63,7 @@ export default class Player extends Component {
     return (
       <div>
         <button onClick={this.handleOnClick}>Play/Pause</button>
-        <P5OscBubble audioData={this.state.audioDataTime}/>
+        <P5Visualizer audioData={this.state.audioDataTime}/>
       </div>
     )
   }

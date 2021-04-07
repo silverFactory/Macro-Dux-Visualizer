@@ -25,42 +25,42 @@ export default class P5Visualizer extends Component {
       p.rotateX(35)
       p.noFill()
       p.strokeWeight(3)
-
+      drawOrb(p, this.props.audioData)
       // j variable used to create circle within a circle
-      for (let j = 3; j <= 9; j += 3){
-        // t variable used to make a second pass and draw mirrored half of circle
-        for (let t = -1; t <= 1; t += 2){
-          p.beginShape()
-          // the value that i is incremented by increases the drawn waveform complexity
-          for (let i = 0; i <= 180; i += 0.5){
-            let index = Math.floor(p.map(i, 0, 180, 0, this.props.audioData.length - 1))
+      // for (let j = 3; j <= 9; j += 3){
+      //   // t variable used to make a second pass and draw mirrored half of circle
+      //   for (let t = -1; t <= 1; t += 2){
+      //     p.beginShape()
+      //     // the value that i is incremented by increases the drawn waveform complexity
+      //     for (let i = 0; i <= 180; i += 0.5){
+      //       let index = Math.floor(p.map(i, 0, 180, 0, this.props.audioData.length - 1))
+      //
+      //       //map radius of circle to waveform ->last two params affect the circle size
+      //       let r = p.map(this.props.audioData[index], 0, 255, j * 7, j * 17.5)
+      //
+      //       let x = r * p.sin(i) * t
+      //       let y = r * p.cos(i)
+      //       let z = p.sin(p.frameCount + j ) * 50
+      //       p.vertex(x, y, z)
+      //     }
+      //     p.endShape()
+      //   }
+      // }
 
-            //map radius of circle to waveform ->last two params affect the circle size
-            let r = p.map(this.props.audioData[index], 0, 255, j * 7, j * 17.5)
-
-            let x = r * p.sin(i) * t
-            let y = r * p.cos(i)
-            let z = p.sin(p.frameCount + j ) * 50
-            p.vertex(x, y, z)
-          }
-          p.endShape()
-        }
-      }
-
-      let particle = new Particle()
-      this.particles.push(particle)
-
-      //go through particles array backwards to eliminate flicker when splice occurs
-      for (let i = this.particles.length - 1; i >= 0; i--){
-        //if the particle is not off the canvas
-        if (!this.particles[i].edges()){
-          this.particles[i].update()
-          this.particles[i].show()
-        } else {
-          this.particles.splice(i, 1)
-        }
-
-      }
+      // let particle = new Particle()
+      // this.particles.push(particle)
+      //
+      // //go through particles array backwards to eliminate flicker when splice occurs
+      // for (let i = this.particles.length - 1; i >= 0; i--){
+      //   //if the particle is not off the canvas
+      //   if (!this.particles[i].edges()){
+      //     this.particles[i].update()
+      //     this.particles[i].show()
+      //   } else {
+      //     this.particles.splice(i, 1)
+      //   }
+      //
+      // }
       //console.log(this.particles[0])
     }
 
@@ -110,5 +110,28 @@ export default class P5Visualizer extends Component {
     return(
       <div ref={this.canvasRef}></div>
     )
+  }
+}
+
+const drawOrb = (p, audioData) => {
+  // j variable used to create circle within a circle
+  for (let j = 3; j <= 9; j += 3){
+    // t variable used to make a second pass and draw mirrored half of circle
+    for (let t = -1; t <= 1; t += 2){
+      p.beginShape()
+      // the value that i is incremented by increases the drawn waveform complexity
+      for (let i = 0; i <= 180; i += 0.5){
+        let index = Math.floor(p.map(i, 0, 180, 0, audioData.length - 1))
+
+        //map radius of circle to waveform ->last two params affect the circle size
+        let r = p.map(audioData[index], 0, 255, j * 7, j * 17.5)
+
+        let x = r * p.sin(i) * t
+        let y = r * p.cos(i)
+        let z = p.sin(p.frameCount + j ) * 50
+        p.vertex(x, y, z)
+      }
+      p.endShape()
+    }
   }
 }
