@@ -8,26 +8,13 @@ import {
 import Home from './home'
 import Demo from './demo'
 import User from './user'
+import NavBar from './navbar'
 
 export default function App() {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/demo">Demo</Link>
-            </li>
-            <li>
-              <Link to="/user">User</Link>
-            </li>
-          </ul>
-        </nav>
-
-        <Switch>          
+        <NavBar />
+        <Switch>
           <Route path="/demo">
             <Demo />
           </Route>
@@ -38,7 +25,6 @@ export default function App() {
             <Home />
           </Route>
         </Switch>
-      </div>
     </Router>
   )
 }
