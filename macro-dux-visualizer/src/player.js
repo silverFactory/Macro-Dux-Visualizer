@@ -63,7 +63,7 @@ export default class Player extends Component {
   render(){
     return (
       <div class="container">
-        <div class="row">
+        <div class="row align-items-center">
           <div class="col-lg">
             <button onClick={this.handleOnClick}>Play/Pause</button>
             <P5Visualizer audioData={this.state.audioDataTime}/>

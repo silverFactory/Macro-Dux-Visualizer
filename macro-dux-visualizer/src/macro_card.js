@@ -3,7 +3,7 @@ import React from 'react'
 export default function MacroCard(props){
 
   return(
-    <div class="card">
+    <div class="card mb-4">
       <div class="card-body">
         <h5 class="card-title">{props.voiceName} Macros</h5>
         <label for="macro1" class="form-label">Macro 1</label>
