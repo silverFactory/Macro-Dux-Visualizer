@@ -13,8 +13,8 @@ export default class P5Visualizer extends Component {
   Canvas = (p) => {
 
     p.setup = () => {
-      this.width = 600
-      this.height = 600
+      this.width = 800
+      this.height = 800
       p.createCanvas(this.width, this.height, p.WEBGL)
       p.angleMode(p.DEGREES)
     }
@@ -25,7 +25,20 @@ export default class P5Visualizer extends Component {
       p.rotateX(35)
       p.noFill()
       p.strokeWeight(3)
-      drawOrb(p, this.props.audioData)
+      p.scale(0.5)
+      p.push()
+      p.translate(0, -700)
+      DrawOrb(p, this.props.audioData)
+      p.pop()
+      p.push()
+      p.translate(0, -100)
+      DrawOrb(p, this.props.audioData)
+      p.pop()
+      p.push()
+      p.translate(0, 400)
+      DrawOrb(p, this.props.audioData)
+      p.pop()
+
       // j variable used to create circle within a circle
       // for (let j = 3; j <= 9; j += 3){
       //   // t variable used to make a second pass and draw mirrored half of circle
@@ -47,8 +60,10 @@ export default class P5Visualizer extends Component {
       //   }
       // }
 
-      // let particle = new Particle()
-      // this.particles.push(particle)
+      let particle = new Particle()
+      this.particles.push(particle)
+      DrawParticles(this.particles)
+
       //
       // //go through particles array backwards to eliminate flicker when splice occurs
       // for (let i = this.particles.length - 1; i >= 0; i--){
@@ -113,7 +128,7 @@ export default class P5Visualizer extends Component {
   }
 }
 
-const drawOrb = (p, audioData) => {
+const DrawOrb = (p, audioData) => {
   // j variable used to create circle within a circle
   for (let j = 3; j <= 9; j += 3){
     // t variable used to make a second pass and draw mirrored half of circle
@@ -133,5 +148,22 @@ const drawOrb = (p, audioData) => {
       }
       p.endShape()
     }
+  }
+}
+
+const DrawParticles = (particles) => {
+  // let particle = new Particle()
+  // this.particles.push(particle)
+
+  //go through particles array backwards to eliminate flicker when splice occurs
+  for (let i = particles.length - 1; i >= 0; i--){
+    //if the particle is not off the canvas
+    if (!particles[i].edges()){
+      particles[i].update()
+      particles[i].show()
+    } else {
+      particles.splice(i, 1)
+    }
+
   }
 }
