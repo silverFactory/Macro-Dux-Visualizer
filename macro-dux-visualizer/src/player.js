@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import Remember from './Remember.mp3'
 import P5Visualizer from './p5_visualizer'
+import MacroCard from './macro_card'
 
 export default class Player extends Component {
 
@@ -61,9 +62,18 @@ export default class Player extends Component {
 
   render(){
     return (
-      <div>
-        <button onClick={this.handleOnClick}>Play/Pause</button>
-        <P5Visualizer audioData={this.state.audioDataTime}/>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg">
+            <button onClick={this.handleOnClick}>Play/Pause</button>
+            <P5Visualizer audioData={this.state.audioDataTime}/>
+          </div>
+          <div class="col-md">
+            <MacroCard voiceName="Melody"/>
+            <MacroCard voiceName="Harmony"/>
+            <MacroCard voiceName="Bass"/>
+          </div>
+        </div>
       </div>
     )
   }
