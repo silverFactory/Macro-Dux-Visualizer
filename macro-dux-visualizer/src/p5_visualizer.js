@@ -34,18 +34,28 @@ export default class P5Visualizer extends Component {
       p.translate(0, -700)
       // p.stroke(`rgb(${this.props.color}%, 0%, 0%)`)
       DrawOrb(p, this.props.audioData)
-      let redVal = 100 - this.props.macros.macro1
-      p.fill(`rgb(${redVal}%, 100%, 100%)`)
+      let melodyRed = 100
+      let melodyGreen = 100 - this.props.macros.macro1
+      let melodyBlue = 100 - this.props.macros.macro1
+      p.fill(`rgb(${melodyRed}%, ${melodyGreen}%, ${melodyBlue}%)`)
       DrawParticles(this.particles)
       p.pop()
       p.push()
       p.translate(0, -100)
       DrawOrb(p, this.props.audioData)
+      let harmonyRed = 100
+      let harmonyGreen = 100 - this.props.macros.macro4
+      let harmonyBlue = 100 - this.props.macros.macro4
+      p.fill(`rgb(${harmonyRed}%, ${harmonyGreen}%, ${harmonyBlue}%)`)
       DrawParticles(this.particles)
       p.pop()
       p.push()
       p.translate(0, 400)
       DrawOrb(p, this.props.audioData)
+      let bassRed = 100
+      let bassGreen = 100 - this.props.macros.macro7
+      let bassBlue = 100 - this.props.macros.macro7
+      p.fill(`rgb(${bassRed}%, ${bassGreen}%, ${bassBlue}%)`)
       DrawParticles(this.particles)
       p.pop()
     }
