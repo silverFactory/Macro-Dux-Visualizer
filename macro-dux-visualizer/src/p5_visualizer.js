@@ -7,7 +7,9 @@ export default class P5Visualizer extends Component {
   constructor(props){
     super(props)
     this.canvasRef = React.createRef()
-    this.particles = []
+    this.melodyParticles = []
+    this.harmonyParticles = []
+    this.bassParticles = []
   }
 
   Canvas = (p) => {
@@ -27,36 +29,49 @@ export default class P5Visualizer extends Component {
       p.strokeWeight(3)
       p.scale(0.5)
 
-      let particle = new Particle()
-      this.particles.push(particle)
+
 
       p.push()
       p.translate(0, -700)
       // p.stroke(`rgb(${this.props.color}%, 0%, 0%)`)
       DrawOrb(p, this.props.audioData)
+      let melodyParticle = new Particle()
+      melodyParticle.acc = melodyParticle.pos.copy().mult(
+        p.map(this.props.macros.macro2, 0, 100, 0.00001, 0.001))
+      this.melodyParticles.push(melodyParticle)
       let melodyRed = 100
       let melodyGreen = 100 - this.props.macros.macro1
       let melodyBlue = 100 - this.props.macros.macro1
       p.fill(`rgb(${melodyRed}%, ${melodyGreen}%, ${melodyBlue}%)`)
-      DrawParticles(this.particles)
+      DrawParticles(this.melodyParticles)
       p.pop()
+
       p.push()
       p.translate(0, -100)
       DrawOrb(p, this.props.audioData)
+      let harmonyParticle = new Particle()
+      harmonyParticle.acc = harmonyParticle.pos.copy().mult(
+        p.map(this.props.macros.macro2, 0, 100, 0.00001, 0.001))
+      this.harmonyParticles.push(harmonyParticle)
       let harmonyRed = 100
       let harmonyGreen = 100 - this.props.macros.macro4
       let harmonyBlue = 100 - this.props.macros.macro4
       p.fill(`rgb(${harmonyRed}%, ${harmonyGreen}%, ${harmonyBlue}%)`)
-      DrawParticles(this.particles)
+      DrawParticles(this.harmonyParticles)
       p.pop()
+
       p.push()
       p.translate(0, 400)
       DrawOrb(p, this.props.audioData)
+      let bassParticle = new Particle()
+      bassParticle.acc = bassParticle.pos.copy().mult(
+        p.map(this.props.macros.macro2, 0, 100, 0.00001, 0.001))
+      this.bassParticles.push(bassParticle)
       let bassRed = 100
       let bassGreen = 100 - this.props.macros.macro7
       let bassBlue = 100 - this.props.macros.macro7
       p.fill(`rgb(${bassRed}%, ${bassGreen}%, ${bassBlue}%)`)
-      DrawParticles(this.particles)
+      DrawParticles(this.bassParticles)
       p.pop()
     }
 
@@ -69,12 +84,14 @@ export default class P5Visualizer extends Component {
         this.vel = p5.Vector.random2D()
         this.vel.set(0,0)
         // same direction as pos vector, scaled down to move slow
-        this.acc = this.pos.copy().mult(p.random(0.00015, 0.001))
+        // this.acc = this.pos.copy().mult(p.random(0.00015, 0.001))
+        //this.acc = this.pos.copy().mult(p.map(acc, 0, 100, 0.000015, 0.00001))
+        // let mac = acc / 1000
+        // this.acc = this.pos.copy().mult(mac)
+        this.acc = this.pos.copy().mult(0.0001)
         //radmonize particle width
         this.w = p.random(1, 5)
 
-        //ADD A COLOR PROPERTY TO BE CONTROLLED BY MACRO
-        //this.color = (`rgb(${}, 0, 0)`)
       }
       //MACRO CONTROLLED
       //TO INCREASE SPEED, JUST ADD VEL TO POS A FEW MORE TIMES
