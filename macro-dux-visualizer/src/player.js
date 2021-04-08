@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import Remember from './Remember.mp3'
 import P5Visualizer from './p5_visualizer'
-import MacroCard from './macro_card'
+import MacroCardContainer from './macro_card_container'
+
 
 export default class Player extends Component {
 
@@ -69,9 +70,7 @@ export default class Player extends Component {
             <P5Visualizer audioData={this.state.audioDataTime}/>
           </div>
           <div class="col-md">
-            <MacroCard voiceName="Melody"/>
-            <MacroCard voiceName="Harmony"/>
-            <MacroCard voiceName="Bass"/>
+            <MacroCardContainer />
           </div>
         </div>
       </div>
