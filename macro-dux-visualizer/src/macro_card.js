@@ -15,7 +15,7 @@ export default function MacroCard(props){
               class="form-range"
               id={key}
               key={key}
-              value={props.macros.key}
+              value={props.macros[key]}
               onChange={e => props.handleOnChange(e, props.updateMacro)}/>
           </div>
         })}
