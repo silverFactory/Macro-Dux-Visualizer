@@ -13,7 +13,7 @@ export default function macroReducer(
   action){
   switch (action.type){
     case "UPDATE_MACRO":
-      return Object.assign({}, state, action.macroNum)
+      return Object.assign({}, state, action.macro)
     default:
       return state
   }

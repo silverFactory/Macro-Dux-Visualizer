@@ -54,7 +54,7 @@ const mapDispatchToProps = dispatch => {
     updateMacro: (macroNum, macroVal) => {
       dispatch({
         type: 'UPDATE_MACRO',
-        macroNum: macroVal
+        macro: {[macroNum]: macroVal}
       })
     }
   }
