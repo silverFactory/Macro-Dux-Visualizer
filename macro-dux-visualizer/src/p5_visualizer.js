@@ -29,16 +29,17 @@ export default class P5Visualizer extends Component {
       p.strokeWeight(3)
       p.scale(0.5)
 
-
-
+      //MELODY ORB AND PARTICLES
       p.push()
       p.translate(0, -700)
-      // p.stroke(`rgb(${this.props.color}%, 0%, 0%)`)
       DrawOrb(p, this.props.audioData)
-      let melodyParticle = new Particle()
-      melodyParticle.acc = melodyParticle.pos.copy().mult(
-        p.map(this.props.macros.macro2, 0, 100, 0.00001, 0.001))
-      this.melodyParticles.push(melodyParticle)
+      let melodyDensity = Math.floor(p.map(this.props.macros.macro2, 0, 100, 10, 1))
+      if (p.frameCount % melodyDensity === 0) {
+        let melodyParticle = new Particle()
+        melodyParticle.acc = melodyParticle.pos.copy().mult(
+          p.map(this.props.macros.macro2, 0, 100, 0.00001, 0.001))
+          this.melodyParticles.push(melodyParticle)
+        }
       let melodyRed = 100
       let melodyGreen = 100 - this.props.macros.macro1
       let melodyBlue = 100 - this.props.macros.macro1
@@ -46,13 +47,17 @@ export default class P5Visualizer extends Component {
       DrawParticles(this.melodyParticles)
       p.pop()
 
+      //HARMONY ORB AND PARTICLES
       p.push()
       p.translate(0, -100)
       DrawOrb(p, this.props.audioData)
-      let harmonyParticle = new Particle()
-      harmonyParticle.acc = harmonyParticle.pos.copy().mult(
-        p.map(this.props.macros.macro2, 0, 100, 0.00001, 0.001))
-      this.harmonyParticles.push(harmonyParticle)
+      let harmonyDensity = Math.floor(p.map(this.props.macros.macro5, 0, 100, 10, 1))
+      if (p.frameCount % harmonyDensity === 0){
+        let harmonyParticle = new Particle()
+        harmonyParticle.acc = harmonyParticle.pos.copy().mult(
+          p.map(this.props.macros.macro5, 0, 100, 0.00001, 0.001))
+        this.harmonyParticles.push(harmonyParticle)
+      }
       let harmonyRed = 100
       let harmonyGreen = 100 - this.props.macros.macro4
       let harmonyBlue = 100 - this.props.macros.macro4
@@ -60,13 +65,17 @@ export default class P5Visualizer extends Component {
       DrawParticles(this.harmonyParticles)
       p.pop()
 
+      //BASS ORB AND PARTICLES
       p.push()
       p.translate(0, 400)
       DrawOrb(p, this.props.audioData)
-      let bassParticle = new Particle()
-      bassParticle.acc = bassParticle.pos.copy().mult(
-        p.map(this.props.macros.macro2, 0, 100, 0.00001, 0.001))
-      this.bassParticles.push(bassParticle)
+      let bassDensity = Math.floor(p.map(this.props.macros.macro8, 0, 100, 10, 1))
+      if (p.frameCount % bassDensity === 0){
+        let bassParticle = new Particle()
+        bassParticle.acc = bassParticle.pos.copy().mult(
+          p.map(this.props.macros.macro8, 0, 100, 0.00001, 0.001))
+        this.bassParticles.push(bassParticle)
+      }
       let bassRed = 100
       let bassGreen = 100 - this.props.macros.macro7
       let bassBlue = 100 - this.props.macros.macro7
