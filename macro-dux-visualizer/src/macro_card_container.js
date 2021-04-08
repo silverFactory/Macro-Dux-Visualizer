@@ -6,7 +6,7 @@ class MacroCardContainer extends Component {
 
   handleOnChange(event, updateMacro){
     updateMacro(event.target.id, event.target.value)
-    console.log(event)
+    console.log(event.target.id, event.target.value)
   }
 
   render(){
