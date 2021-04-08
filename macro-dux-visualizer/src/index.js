@@ -8,7 +8,7 @@ import App from './App';
 // import melodyReducer from './reducers/melody_reducer'
 // import harmonyReducer from './reducers/harmony_reducer'
 // import bassReducer from './reducers/bass_reducer'
-import macroReducer from './macro_reducer'
+import macroReducer from './reducers/macro_reducer'
 // const rootReducer = combineReducers({
 //   melody: melodyReducer,
 //   harmony: harmonyReducer,
