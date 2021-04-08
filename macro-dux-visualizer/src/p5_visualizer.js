@@ -32,8 +32,9 @@ export default class P5Visualizer extends Component {
 
       p.push()
       p.translate(0, -700)
-      p.stroke(`rgb(${this.props.color}%, 0%, 0%)`)
+      // p.stroke(`rgb(${this.props.color}%, 0%, 0%)`)
       DrawOrb(p, this.props.audioData)
+      p.fill(`rgb(${this.props.macros.macro1}%, 0%, 0%)`)
       DrawParticles(this.particles)
       p.pop()
       p.push()
@@ -62,7 +63,7 @@ export default class P5Visualizer extends Component {
         this.w = p.random(1, 5)
 
         //ADD A COLOR PROPERTY TO BE CONTROLLED BY MACRO
-        //this.color = ....
+        //this.color = (`rgb(${}, 0, 0)`)
       }
       //MACRO CONTROLLED
       //TO INCREASE SPEED, JUST ADD VEL TO POS A FEW MORE TIMES
@@ -72,7 +73,7 @@ export default class P5Visualizer extends Component {
       }
       show(){
         p.noStroke()
-        p.fill(255)
+      //  p.fill(`rgb(0,255,0)`)
         p.ellipse(this.pos.x, this.pos.y, this.w)
       }
       edges(){

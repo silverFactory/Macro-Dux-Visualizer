@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux'
 import Remember from './Remember.mp3'
 import P5Visualizer from './p5_visualizer'
 import MacroCardContainer from './macro_card_container'
 
 
-export default class Player extends Component {
+class Player extends Component {
 
   state = {
     playing: false,
@@ -67,7 +68,9 @@ export default class Player extends Component {
         <div class="row align-items-center">
           <div class="col-lg">
             <button onClick={this.handleOnClick}>Play/Pause</button>
-            <P5Visualizer audioData={this.state.audioDataTime}/>
+            <P5Visualizer
+              audioData={this.state.audioDataTime}
+              macros={this.props.macros}/>
           </div>
           <div class="col-md">
             <MacroCardContainer />
@@ -77,3 +80,11 @@ export default class Player extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    macros: state
+  }
+}
+
+export default connect(mapStateToProps)(Player)
