@@ -34,7 +34,8 @@ export default class P5Visualizer extends Component {
       p.translate(0, -700)
       // p.stroke(`rgb(${this.props.color}%, 0%, 0%)`)
       DrawOrb(p, this.props.audioData)
-      p.fill(`rgb(${this.props.macros.macro1}%, 0%, 0%)`)
+      let redVal = 100 - this.props.macros.macro1
+      p.fill(`rgb(${redVal}%, 100%, 100%)`)
       DrawParticles(this.particles)
       p.pop()
       p.push()
