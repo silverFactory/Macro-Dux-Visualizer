@@ -40,14 +40,14 @@ export default class P5Visualizer extends Component {
         //divide up FreqArray into 8 slices, average the amplitude, and map to rect height
         let barStepX = -400
         for (let i = 0; i < 8; i ++){
-          let sliceSize = this.props.audioDataFreq.length / 8
+          let sliceSize = this.props.audioDataFreq.length / 32
           let sliceStart = i * sliceSize
           let sliceEnd = (i + 1) * sliceSize
           let slice = this.props.audioDataFreq.slice(sliceStart, sliceEnd)
 
           //average the amplitude values in the array slice
           let averageAmplitude = slice.reduce((a, b) => (a + b)) / slice.length
-          let barHeight = p.map(averageAmplitude, 0, 255, 0, this.height)
+          let barHeight = p.map(averageAmplitude, 0, 255, 0, this.height + 200)
 
           //draw rect
           p.rect(barStepX, this.height - barHeight, this.width / 8, barHeight)
