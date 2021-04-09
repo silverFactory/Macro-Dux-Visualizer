@@ -27,26 +27,7 @@ export default class P5Visualizer extends Component {
       p.fill('rgb(69%, 9%, 5%)')
       //p.filter(p.BLUR, 3)
       //p.blendMode(p.MULITPLY)
-
-      // if (this.props.audioDataFreq.length > 0){
-      //   //divide up FreqArray into 8 slices, average the amplitude, and map to rect height
-      //   let barStepX = -400
-      //   for (let i = 0; i < 8; i ++){
-      //     let sliceSize = this.props.audioDataFreq.length / 32
-      //     let sliceStart = i * sliceSize
-      //     let sliceEnd = (i + 1) * sliceSize
-      //     let slice = this.props.audioDataFreq.slice(sliceStart, sliceEnd)
-      //
-      //     //average the amplitude values in the array slice
-      //     let averageAmplitude = slice.reduce((a, b) => (a + b)) / slice.length
-      //     let barHeight = p.map(averageAmplitude, 0, 255, 0, this.height + 200)
-      //
-      //     //draw rect
-      //     p.rect(barStepX, this.height - barHeight, this.width / 8, barHeight)
-      //
-      //     barStepX += 100
-      //   }
-      // }
+      DrawBarVisualizer(p, this.props.audioDataFreq, this.width, this.height)
 
       p.stroke(255)
       p.rotateX(35)
@@ -55,40 +36,48 @@ export default class P5Visualizer extends Component {
       p.scale(0.5)
       //
       //MELODY ORB AND PARTICLES
-      // p.push()
-      // p.translate(0, -700)
-      // DrawOrb(p, this.props.audioDataTime)
-      // let melodyDensity = Math.floor(p.map(this.props.macros.macro2, 0, 100, 10, 1))
-      // if (p.frameCount % melodyDensity === 0) {
-      //   let melodyParticle = new Particle()
-      //   melodyParticle.acc = melodyParticle.pos.copy().mult(
-      //     p.map(this.props.macros.macro2, 0, 100, 0.00001, 0.001))
-      //     this.melodyParticles.push(melodyParticle)
-      //   }
-      // let melodyRed = 100
-      // let melodyGreen = 100 - this.props.macros.macro1
-      // let melodyBlue = 100 - this.props.macros.macro1
-      // p.fill(`rgb(${melodyRed}%, ${melodyGreen}%, ${melodyBlue}%)`)
-      // DrawParticles(this.melodyParticles)
-      // p.pop()
-      //
-      // //HARMONY ORB AND PARTICLES
-      // p.push()
-      // p.translate(0, -100)
-      // DrawOrb(p, this.props.audioDataTime)
-      // let harmonyDensity = Math.floor(p.map(this.props.macros.macro5, 0, 100, 10, 1))
-      // if (p.frameCount % harmonyDensity === 0){
-      //   let harmonyParticle = new Particle()
-      //   harmonyParticle.acc = harmonyParticle.pos.copy().mult(
-      //     p.map(this.props.macros.macro5, 0, 100, 0.00001, 0.001))
-      //   this.harmonyParticles.push(harmonyParticle)
-      // }
-      // let harmonyRed = 100
-      // let harmonyGreen = 100 - this.props.macros.macro4
-      // let harmonyBlue = 100 - this.props.macros.macro4
-      // p.fill(`rgb(${harmonyRed}%, ${harmonyGreen}%, ${harmonyBlue}%)`)
-      // DrawParticles(this.harmonyParticles)
-      // p.pop()
+      p.push()
+      p.translate(0, -700)
+      DrawOrb(p, this.props.audioDataTime)
+      let melodyDensity = Math.floor(p.map(this.props.macros.macro2, 0, 100, 10, 1))
+      if (p.frameCount % melodyDensity === 0) {
+        let melodyParticle = new Particle()
+        melodyParticle.acc = melodyParticle.pos.copy().mult(
+          p.map(this.props.macros.macro2, 0, 100, 0.00001, 0.001))
+          this.melodyParticles.push(melodyParticle)
+        }
+
+      p.strokeWeight(0.5)
+      DrawAllLightning(p, this.props.audioDataTime, this.width)
+
+      let melodyRed = 100
+      let melodyGreen = 100 - this.props.macros.macro1
+      let melodyBlue = 100 - this.props.macros.macro1
+      p.fill(`rgb(${melodyRed}%, ${melodyGreen}%, ${melodyBlue}%)`)
+      DrawParticles(this.melodyParticles)
+      p.pop()
+
+      //HARMONY ORB AND PARTICLES
+      p.push()
+      p.translate(0, -100)
+      DrawOrb(p, this.props.audioDataTime)
+      let harmonyDensity = Math.floor(p.map(this.props.macros.macro5, 0, 100, 10, 1))
+      if (p.frameCount % harmonyDensity === 0){
+        let harmonyParticle = new Particle()
+        harmonyParticle.acc = harmonyParticle.pos.copy().mult(
+          p.map(this.props.macros.macro5, 0, 100, 0.00001, 0.001))
+        this.harmonyParticles.push(harmonyParticle)
+      }
+
+      p.strokeWeight(0.5)
+      DrawAllLightning(p, this.props.audioDataTime, this.width)
+
+      let harmonyRed = 100
+      let harmonyGreen = 100 - this.props.macros.macro4
+      let harmonyBlue = 100 - this.props.macros.macro4
+      p.fill(`rgb(${harmonyRed}%, ${harmonyGreen}%, ${harmonyBlue}%)`)
+      DrawParticles(this.harmonyParticles)
+      p.pop()
 
       //BASS ORB AND PARTICLES
       p.push()
@@ -236,4 +225,26 @@ const DrawAllLightning = (p, audioDataTime, canvasWidth) => {
   p.rotateY(190)
   DrawLightning(p, audioDataTime, canvasWidth, -150, -100)
   p.pop()
+}
+
+const DrawBarVisualizer = (p, audioDataFreq, canvasWidth, canvasHeight) => {
+  if (audioDataFreq.length > 0){
+    //divide up FreqArray into 8 slices, average the amplitude, and map to rect height
+    let barStepX = -400
+    for (let i = 0; i < 8; i ++){
+      let sliceSize = audioDataFreq.length / 32
+      let sliceStart = i * sliceSize
+      let sliceEnd = (i + 1) * sliceSize
+      let slice = audioDataFreq.slice(sliceStart, sliceEnd)
+
+      //average the amplitude values in the array slice
+      let averageAmplitude = slice.reduce((a, b) => (a + b)) / slice.length
+      let barHeight = p.map(averageAmplitude, 0, 255, 0, canvasHeight + 200)
+
+      //draw rect
+      p.rect(barStepX, canvasHeight - barHeight, canvasWidth / 8, barHeight)
+
+      barStepX += 100
+    }
+  }
 }
