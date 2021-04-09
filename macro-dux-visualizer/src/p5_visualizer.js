@@ -103,37 +103,7 @@ export default class P5Visualizer extends Component {
       }
 
       p.strokeWeight(0.5)
-      p.push()
-      p.rotateY(30)
-      DrawLightning(p, this.props.audioDataTime, this.width, -150, -150)
-      p.pop()
-
-      p.push()
-      //p.rotateY(-35)
-      p.rotateZ(-10)
-      DrawLightning(p, this.props.audioDataTime, this.width, -150, -100)
-      p.pop()
-
-      p.push()
-      p.rotateY(150)
-      DrawLightning(p, this.props.audioDataTime, this.width, -150, -150)
-      p.pop()
-
-      p.push()
-      //p.rotateY(-35)
-      p.rotateZ(10)
-      p.rotateY(190)
-      DrawLightning(p, this.props.audioDataTime, this.width, -150, -100)
-      p.pop()
-      // p.beginShape()
-      // for (let i = 0; i < this.width / 2; i++){
-      //   let index = Math.floor(p.map(i, 0, this.width / 2, 0, this.props.audioDataTime.length - 1))
-      //
-      //   let x = (i - this.width / 2) - 150
-      //   let y = this.props.audioDataTime[index] - 150
-      //   p.vertex(x, y)
-      // }
-      // p.endShape()
+      DrawAllLightning(p, this.props.audioDataTime, this.width)
 
       let bassRed = 100
       let bassGreen = 100 - this.props.macros.macro7
@@ -243,4 +213,27 @@ const DrawLightning = (p, audioDataTime, canvasWidth, xVar, yVar) => {
     p.vertex(x, y)
   }
   p.endShape()
+}
+
+const DrawAllLightning = (p, audioDataTime, canvasWidth) => {
+  p.push()
+  p.rotateY(30)
+  DrawLightning(p, audioDataTime, canvasWidth, -150, -150)
+  p.pop()
+
+  p.push()
+  p.rotateZ(-10)
+  DrawLightning(p, audioDataTime, canvasWidth, -150, -100)
+  p.pop()
+
+  p.push()
+  p.rotateY(150)
+  DrawLightning(p, audioDataTime, canvasWidth, -150, -150)
+  p.pop()
+
+  p.push()
+  p.rotateZ(10)
+  p.rotateY(190)
+  DrawLightning(p, audioDataTime, canvasWidth, -150, -100)
+  p.pop()
 }
