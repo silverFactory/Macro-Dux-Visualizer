@@ -23,58 +23,38 @@ export default class P5Visualizer extends Component {
 
     p.draw = () => {
       p.background(0)
-    //  p.fill(255, 204, 0)
       p.stroke(50)
-      p.fill('rgb(89%, 9%, 5%)')
-      // p.rect(-400, 200, 100, 100)
-      // p.rect(-300, 200, 100, 100)
-      // p.rect(-200, 200, 100, 100)
-      // p.rect(-100, 200, 100, 100)
-      // p.rect(0, 200, 100, 100)
-      // p.rect(100, 200, 100, 100)
-      // p.rect(200, 200, 100, 100)
-      // p.rect(300, 200, 100, 100)
-      // p.rect(400, 200, 100, 100)
+      p.fill('rgb(69%, 9%, 5%)')
+      //p.filter(p.BLUR, 3)
+      //p.blendMode(p.MULITPLY)
 
-      if (this.props.audioDataFreq.length > 0){
-        //divide up FreqArray into 8 slices, average the amplitude, and map to rect height
-        let barStepX = -400
-        for (let i = 0; i < 8; i ++){
-          let sliceSize = this.props.audioDataFreq.length / 32
-          let sliceStart = i * sliceSize
-          let sliceEnd = (i + 1) * sliceSize
-          let slice = this.props.audioDataFreq.slice(sliceStart, sliceEnd)
+      // if (this.props.audioDataFreq.length > 0){
+      //   //divide up FreqArray into 8 slices, average the amplitude, and map to rect height
+      //   let barStepX = -400
+      //   for (let i = 0; i < 8; i ++){
+      //     let sliceSize = this.props.audioDataFreq.length / 32
+      //     let sliceStart = i * sliceSize
+      //     let sliceEnd = (i + 1) * sliceSize
+      //     let slice = this.props.audioDataFreq.slice(sliceStart, sliceEnd)
+      //
+      //     //average the amplitude values in the array slice
+      //     let averageAmplitude = slice.reduce((a, b) => (a + b)) / slice.length
+      //     let barHeight = p.map(averageAmplitude, 0, 255, 0, this.height + 200)
+      //
+      //     //draw rect
+      //     p.rect(barStepX, this.height - barHeight, this.width / 8, barHeight)
+      //
+      //     barStepX += 100
+      //   }
+      // }
 
-          //average the amplitude values in the array slice
-          let averageAmplitude = slice.reduce((a, b) => (a + b)) / slice.length
-          let barHeight = p.map(averageAmplitude, 0, 255, 0, this.height + 200)
-
-          //draw rect
-          p.rect(barStepX, this.height - barHeight, this.width / 8, barHeight)
-
-          barStepX += 100
-        }
-      }
-
-
-      this.barWidth = (this.width / this.props.audioDataFreq.length) * 2.5
-      this.barHeight = null
-      this.x = 0
-      for(let i = 0; i < this.props.audioDataFreq.length; i++) {
-        this.barHeight = this.props.audioDataFreq[i]/2;
-        p.fill('rgb(' + (this.barHeight+100) + ',50,50)')
-        p.rect(this.x, this.height - this.barHeight / 2, this.barWidth, this.barHeight)
-        this.x += this.barWidth + 1;
-      }
-
-
-      // p.stroke(255)
-      // p.rotateX(35)
-      // p.noFill()
-      // p.strokeWeight(3)
-      // p.scale(0.5)
-      // //
-      // //MELODY ORB AND PARTICLES
+      p.stroke(255)
+      p.rotateX(35)
+      p.noFill()
+      p.strokeWeight(3)
+      p.scale(0.5)
+      //
+      //MELODY ORB AND PARTICLES
       // p.push()
       // p.translate(0, -700)
       // DrawOrb(p, this.props.audioDataTime)
@@ -109,24 +89,58 @@ export default class P5Visualizer extends Component {
       // p.fill(`rgb(${harmonyRed}%, ${harmonyGreen}%, ${harmonyBlue}%)`)
       // DrawParticles(this.harmonyParticles)
       // p.pop()
+
+      //BASS ORB AND PARTICLES
+      p.push()
+      p.translate(0, 400)
+      DrawOrb(p, this.props.audioDataTime)
+      let bassDensity = Math.floor(p.map(this.props.macros.macro8, 0, 100, 10, 1))
+      if (p.frameCount % bassDensity === 0){
+        let bassParticle = new Particle()
+        bassParticle.acc = bassParticle.pos.copy().mult(
+          p.map(this.props.macros.macro8, 0, 100, 0.00001, 0.001))
+        this.bassParticles.push(bassParticle)
+      }
+
+      p.strokeWeight(0.5)
+      p.push()
+      p.rotateY(30)
+      DrawLightning(p, this.props.audioDataTime, this.width, -150, -150)
+      p.pop()
+
+      p.push()
+      //p.rotateY(-35)
+      p.rotateZ(-10)
+      DrawLightning(p, this.props.audioDataTime, this.width, -150, -100)
+      p.pop()
+
+      p.push()
+      p.rotateY(150)
+      DrawLightning(p, this.props.audioDataTime, this.width, -150, -150)
+      p.pop()
+
+      p.push()
+      //p.rotateY(-35)
+      p.rotateZ(10)
+      p.rotateY(190)
+      DrawLightning(p, this.props.audioDataTime, this.width, -150, -100)
+      p.pop()
+      // p.beginShape()
+      // for (let i = 0; i < this.width / 2; i++){
+      //   let index = Math.floor(p.map(i, 0, this.width / 2, 0, this.props.audioDataTime.length - 1))
       //
-      // //BASS ORB AND PARTICLES
-      // p.push()
-      // p.translate(0, 400)
-      // DrawOrb(p, this.props.audioDataTime)
-      // let bassDensity = Math.floor(p.map(this.props.macros.macro8, 0, 100, 10, 1))
-      // if (p.frameCount % bassDensity === 0){
-      //   let bassParticle = new Particle()
-      //   bassParticle.acc = bassParticle.pos.copy().mult(
-      //     p.map(this.props.macros.macro8, 0, 100, 0.00001, 0.001))
-      //   this.bassParticles.push(bassParticle)
+      //   let x = (i - this.width / 2) - 150
+      //   let y = this.props.audioDataTime[index] - 150
+      //   p.vertex(x, y)
       // }
-      // let bassRed = 100
-      // let bassGreen = 100 - this.props.macros.macro7
-      // let bassBlue = 100 - this.props.macros.macro7
-      // p.fill(`rgb(${bassRed}%, ${bassGreen}%, ${bassBlue}%)`)
-      // DrawParticles(this.bassParticles)
-      // p.pop()
+      // p.endShape()
+
+      let bassRed = 100
+      let bassGreen = 100 - this.props.macros.macro7
+      let bassBlue = 100 - this.props.macros.macro7
+      p.fill(`rgb(${bassRed}%, ${bassGreen}%, ${bassBlue}%)`)
+      DrawParticles(this.bassParticles)
+      p.pop()
     }
 
     class Particle {
@@ -218,4 +232,15 @@ const DrawParticles = (particles) => {
     }
 
   }
+}
+
+const DrawLightning = (p, audioDataTime, canvasWidth, xVar, yVar) => {
+  p.beginShape()
+  for (let i = 0; i < canvasWidth / 2; i++){
+    let index = Math.floor(p.map(i, 0, canvasWidth / 2, 0, audioDataTime.length - 1))
+    let x = (i - canvasWidth / 2) + xVar
+    let y = audioDataTime[index] + yVar
+    p.vertex(x, y)
+  }
+  p.endShape()
 }
