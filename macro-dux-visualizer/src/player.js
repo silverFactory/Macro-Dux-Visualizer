@@ -71,6 +71,7 @@ class Player extends Component {
             <P5Visualizer
               audioDataTime={this.state.audioDataTime}
               audioDataFreq={this.state.audioDataFreq}
+              playing={this.state.playing}
               macros={this.props.macros}/>
           </div>
           <div class="col-md">
