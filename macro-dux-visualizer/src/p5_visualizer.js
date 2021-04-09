@@ -41,9 +41,9 @@ export default class P5Visualizer extends Component {
       DrawOrb(p, this.props.audioDataTime)
 
       //only generate particles if song is playing
-      if (this.props.playing){
-        let melodyDensity = Math.floor(p.map(this.props.macros.macro2, 0, 100, 10, 1))
-        if (p.frameCount % melodyDensity === 0) {
+      if (this.props.playing && this.props.macros.macro2 !== 0){
+        let melodyDensity = Math.floor(p.map(this.props.macros.macro2, 0, 100, 20, 1))
+        if (p.frameCount % melodyDensity === 0 && melodyDensity != 1) {
           let melodyParticle = new Particle()
           melodyParticle.acc = melodyParticle.pos.copy().mult(
             p.map(this.props.macros.macro2, 0, 100, 0.00001, 0.001))
@@ -69,8 +69,8 @@ export default class P5Visualizer extends Component {
       DrawOrb(p, this.props.audioDataTime)
 
       //only generate particles if song is playing
-      if (this.props.playing){
-        let harmonyDensity = Math.floor(p.map(this.props.macros.macro5, 0, 100, 10, 1))
+      if (this.props.playing && this.props.macros.macro5 !== 0){
+        let harmonyDensity = Math.floor(p.map(this.props.macros.macro5, 0, 100, 20, 1))
         if (p.frameCount % harmonyDensity === 0){
           let harmonyParticle = new Particle()
           harmonyParticle.acc = harmonyParticle.pos.copy().mult(
@@ -97,8 +97,8 @@ export default class P5Visualizer extends Component {
       DrawOrb(p, this.props.audioDataTime)
 
       //only generate particles if song is playing
-      if (this.props.playing){
-        let bassDensity = Math.floor(p.map(this.props.macros.macro8, 0, 100, 10, 1))
+      if (this.props.playing && this.props.macros.macro8 !== 0){
+        let bassDensity = Math.floor(p.map(this.props.macros.macro8, 0, 100, 20, 1))
         if (p.frameCount % bassDensity === 0){
           let bassParticle = new Particle()
           bassParticle.acc = bassParticle.pos.copy().mult(
@@ -106,7 +106,6 @@ export default class P5Visualizer extends Component {
           this.bassParticles.push(bassParticle)
         }
       }
-
 
       p.strokeWeight(0.5)
       p.stroke(p.map(this.props.macros.macro9, 0, 100, 0, 255))
