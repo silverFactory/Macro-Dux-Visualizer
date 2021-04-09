@@ -48,6 +48,7 @@ export default class P5Visualizer extends Component {
         }
 
       p.strokeWeight(0.5)
+      p.stroke(p.map(this.props.macros.macro3, 0, 100, 0, 255))
       DrawAllLightning(p, this.props.audioDataTime, this.width)
 
       let melodyRed = 100
@@ -70,6 +71,7 @@ export default class P5Visualizer extends Component {
       }
 
       p.strokeWeight(0.5)
+      p.stroke(p.map(this.props.macros.macro6, 0, 100, 0, 255))
       DrawAllLightning(p, this.props.audioDataTime, this.width)
 
       let harmonyRed = 100
@@ -92,6 +94,7 @@ export default class P5Visualizer extends Component {
       }
 
       p.strokeWeight(0.5)
+      p.stroke(p.map(this.props.macros.macro9, 0, 100, 0, 255))
       DrawAllLightning(p, this.props.audioDataTime, this.width)
 
       let bassRed = 100
