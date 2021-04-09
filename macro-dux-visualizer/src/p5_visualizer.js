@@ -23,65 +23,110 @@ export default class P5Visualizer extends Component {
 
     p.draw = () => {
       p.background(0)
-      p.stroke(255)
-      p.rotateX(35)
-      p.noFill()
-      p.strokeWeight(3)
-      p.scale(0.5)
+    //  p.fill(255, 204, 0)
+      p.stroke(50)
+      p.fill('rgb(89%, 9%, 5%)')
+      // p.rect(-400, 200, 100, 100)
+      // p.rect(-300, 200, 100, 100)
+      // p.rect(-200, 200, 100, 100)
+      // p.rect(-100, 200, 100, 100)
+      // p.rect(0, 200, 100, 100)
+      // p.rect(100, 200, 100, 100)
+      // p.rect(200, 200, 100, 100)
+      // p.rect(300, 200, 100, 100)
+      // p.rect(400, 200, 100, 100)
 
-      //MELODY ORB AND PARTICLES
-      p.push()
-      p.translate(0, -700)
-      DrawOrb(p, this.props.audioData)
-      let melodyDensity = Math.floor(p.map(this.props.macros.macro2, 0, 100, 10, 1))
-      if (p.frameCount % melodyDensity === 0) {
-        let melodyParticle = new Particle()
-        melodyParticle.acc = melodyParticle.pos.copy().mult(
-          p.map(this.props.macros.macro2, 0, 100, 0.00001, 0.001))
-          this.melodyParticles.push(melodyParticle)
+      if (this.props.audioDataFreq.length > 0){
+        //divide up FreqArray into 8 slices, average the amplitude, and map to rect height
+        let barStepX = -400
+        for (let i = 0; i < 8; i ++){
+          let sliceSize = this.props.audioDataFreq.length / 8
+          let sliceStart = i * sliceSize
+          let sliceEnd = (i + 1) * sliceSize
+          let slice = this.props.audioDataFreq.slice(sliceStart, sliceEnd)
+
+          //average the amplitude values in the array slice
+          let averageAmplitude = slice.reduce((a, b) => (a + b)) / slice.length
+          let barHeight = p.map(averageAmplitude, 0, 255, 0, this.height)
+
+          //draw rect
+          p.rect(barStepX, this.height - barHeight, this.width / 8, barHeight)
+
+          barStepX += 100
         }
-      let melodyRed = 100
-      let melodyGreen = 100 - this.props.macros.macro1
-      let melodyBlue = 100 - this.props.macros.macro1
-      p.fill(`rgb(${melodyRed}%, ${melodyGreen}%, ${melodyBlue}%)`)
-      DrawParticles(this.melodyParticles)
-      p.pop()
-
-      //HARMONY ORB AND PARTICLES
-      p.push()
-      p.translate(0, -100)
-      DrawOrb(p, this.props.audioData)
-      let harmonyDensity = Math.floor(p.map(this.props.macros.macro5, 0, 100, 10, 1))
-      if (p.frameCount % harmonyDensity === 0){
-        let harmonyParticle = new Particle()
-        harmonyParticle.acc = harmonyParticle.pos.copy().mult(
-          p.map(this.props.macros.macro5, 0, 100, 0.00001, 0.001))
-        this.harmonyParticles.push(harmonyParticle)
       }
-      let harmonyRed = 100
-      let harmonyGreen = 100 - this.props.macros.macro4
-      let harmonyBlue = 100 - this.props.macros.macro4
-      p.fill(`rgb(${harmonyRed}%, ${harmonyGreen}%, ${harmonyBlue}%)`)
-      DrawParticles(this.harmonyParticles)
-      p.pop()
 
-      //BASS ORB AND PARTICLES
-      p.push()
-      p.translate(0, 400)
-      DrawOrb(p, this.props.audioData)
-      let bassDensity = Math.floor(p.map(this.props.macros.macro8, 0, 100, 10, 1))
-      if (p.frameCount % bassDensity === 0){
-        let bassParticle = new Particle()
-        bassParticle.acc = bassParticle.pos.copy().mult(
-          p.map(this.props.macros.macro8, 0, 100, 0.00001, 0.001))
-        this.bassParticles.push(bassParticle)
+
+      this.barWidth = (this.width / this.props.audioDataFreq.length) * 2.5
+      this.barHeight = null
+      this.x = 0
+      for(let i = 0; i < this.props.audioDataFreq.length; i++) {
+        this.barHeight = this.props.audioDataFreq[i]/2;
+        p.fill('rgb(' + (this.barHeight+100) + ',50,50)')
+        p.rect(this.x, this.height - this.barHeight / 2, this.barWidth, this.barHeight)
+        this.x += this.barWidth + 1;
       }
-      let bassRed = 100
-      let bassGreen = 100 - this.props.macros.macro7
-      let bassBlue = 100 - this.props.macros.macro7
-      p.fill(`rgb(${bassRed}%, ${bassGreen}%, ${bassBlue}%)`)
-      DrawParticles(this.bassParticles)
-      p.pop()
+
+
+      // p.stroke(255)
+      // p.rotateX(35)
+      // p.noFill()
+      // p.strokeWeight(3)
+      // p.scale(0.5)
+      // //
+      // //MELODY ORB AND PARTICLES
+      // p.push()
+      // p.translate(0, -700)
+      // DrawOrb(p, this.props.audioDataTime)
+      // let melodyDensity = Math.floor(p.map(this.props.macros.macro2, 0, 100, 10, 1))
+      // if (p.frameCount % melodyDensity === 0) {
+      //   let melodyParticle = new Particle()
+      //   melodyParticle.acc = melodyParticle.pos.copy().mult(
+      //     p.map(this.props.macros.macro2, 0, 100, 0.00001, 0.001))
+      //     this.melodyParticles.push(melodyParticle)
+      //   }
+      // let melodyRed = 100
+      // let melodyGreen = 100 - this.props.macros.macro1
+      // let melodyBlue = 100 - this.props.macros.macro1
+      // p.fill(`rgb(${melodyRed}%, ${melodyGreen}%, ${melodyBlue}%)`)
+      // DrawParticles(this.melodyParticles)
+      // p.pop()
+      //
+      // //HARMONY ORB AND PARTICLES
+      // p.push()
+      // p.translate(0, -100)
+      // DrawOrb(p, this.props.audioDataTime)
+      // let harmonyDensity = Math.floor(p.map(this.props.macros.macro5, 0, 100, 10, 1))
+      // if (p.frameCount % harmonyDensity === 0){
+      //   let harmonyParticle = new Particle()
+      //   harmonyParticle.acc = harmonyParticle.pos.copy().mult(
+      //     p.map(this.props.macros.macro5, 0, 100, 0.00001, 0.001))
+      //   this.harmonyParticles.push(harmonyParticle)
+      // }
+      // let harmonyRed = 100
+      // let harmonyGreen = 100 - this.props.macros.macro4
+      // let harmonyBlue = 100 - this.props.macros.macro4
+      // p.fill(`rgb(${harmonyRed}%, ${harmonyGreen}%, ${harmonyBlue}%)`)
+      // DrawParticles(this.harmonyParticles)
+      // p.pop()
+      //
+      // //BASS ORB AND PARTICLES
+      // p.push()
+      // p.translate(0, 400)
+      // DrawOrb(p, this.props.audioDataTime)
+      // let bassDensity = Math.floor(p.map(this.props.macros.macro8, 0, 100, 10, 1))
+      // if (p.frameCount % bassDensity === 0){
+      //   let bassParticle = new Particle()
+      //   bassParticle.acc = bassParticle.pos.copy().mult(
+      //     p.map(this.props.macros.macro8, 0, 100, 0.00001, 0.001))
+      //   this.bassParticles.push(bassParticle)
+      // }
+      // let bassRed = 100
+      // let bassGreen = 100 - this.props.macros.macro7
+      // let bassBlue = 100 - this.props.macros.macro7
+      // p.fill(`rgb(${bassRed}%, ${bassGreen}%, ${bassBlue}%)`)
+      // DrawParticles(this.bassParticles)
+      // p.pop()
     }
 
     class Particle {
@@ -135,7 +180,7 @@ export default class P5Visualizer extends Component {
   }
 }
 
-const DrawOrb = (p, audioData) => {
+const DrawOrb = (p, audioDataTime) => {
   // j variable used to create circle within a circle
   for (let j = 3; j <= 9; j += 3){
     // t variable used to make a second pass and draw mirrored half of circle
@@ -143,10 +188,10 @@ const DrawOrb = (p, audioData) => {
       p.beginShape()
       // the value that i is incremented by increases the drawn waveform complexity
       for (let i = 0; i <= 180; i += 0.5){
-        let index = Math.floor(p.map(i, 0, 180, 0, audioData.length - 1))
+        let index = Math.floor(p.map(i, 0, 180, 0, audioDataTime.length - 1))
 
         //map radius of circle to waveform ->last two params affect the circle size
-        let r = p.map(audioData[index], 0, 255, j * 7, j * 17.5)
+        let r = p.map(audioDataTime[index], 0, 255, j * 7, j * 17.5)
 
         let x = r * p.sin(i) * t
         let y = r * p.cos(i)

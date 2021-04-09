@@ -69,7 +69,8 @@ class Player extends Component {
           <div class="col-lg">
             <button onClick={this.handleOnClick}>Play/Pause</button>
             <P5Visualizer
-              audioData={this.state.audioDataTime}
+              audioDataTime={this.state.audioDataTime}
+              audioDataFreq={this.state.audioDataFreq}
               macros={this.props.macros}/>
           </div>
           <div class="col-md">
