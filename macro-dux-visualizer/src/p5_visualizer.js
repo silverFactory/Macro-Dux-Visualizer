@@ -34,16 +34,26 @@ export default class P5Visualizer extends Component {
       p.noFill()
       p.strokeWeight(3)
       p.scale(0.5)
-      //
+
+
       //MELODY ORB AND PARTICLES
       p.push()
       p.translate(0, -700)
+      // DrawVoice(p,
+      //   this.props.audioDataTime,
+      //   this.melodyParticles,
+      //   this.width,
+      //   this.props.macros.macro1,
+      //   this.props.macros.macro2,
+      //   this.props.macros.macro3,
+      //   this.props.playing
+      // )
       DrawOrb(p, this.props.audioDataTime)
 
       //only generate particles if song is playing
       if (this.props.playing && this.props.macros.macro2 !== 0){
         let melodyDensity = Math.floor(p.map(this.props.macros.macro2, 0, 100, 20, 1))
-        if (p.frameCount % melodyDensity === 0 && melodyDensity != 1) {
+        if (p.frameCount % melodyDensity === 0) {
           let melodyParticle = new Particle()
           melodyParticle.acc = melodyParticle.pos.copy().mult(
             p.map(this.props.macros.macro2, 0, 100, 0.00001, 0.001))
@@ -265,3 +275,34 @@ const DrawBarVisualizer = (p, audioDataFreq, canvasWidth, canvasHeight) => {
     }
   }
 }
+
+// const DrawVoice = (p,
+//         audioDataTime,
+//         particleArray,
+//         canvasWidth,
+//         macro1,
+//         macro2,
+//         macro3,
+//         playing) => {
+//   DrawOrb(p, audioDataTime)
+//   //only generate particles if song is playing
+//   if (playing && macro2 !== 0){
+//     let particleDensity = Math.floor(p.map(macro2, 0, 100, 20, 1))
+//     if (p.frameCount % particleDensity === 0) {
+//       let melodyParticle = new Particle()
+//       melodyParticle.acc = melodyParticle.pos.copy().mult(
+//         p.map(macro2, 0, 100, 0.00001, 0.001))
+//         particleArray.push(melodyParticle)
+//       }
+//   }
+//
+//   p.strokeWeight(0.5)
+//   p.stroke(p.map(macro3, 0, 100, 0, 255))
+//   DrawAllLightning(p, audioDataTime, canvasWidth)
+//
+//   let melodyRed = 100
+//   let melodyGreen = 100 - macro1
+//   let melodyBlue = 100 - macro1
+//   p.fill(`rgb(${melodyRed}%, ${melodyGreen}%, ${melodyBlue}%)`)
+//   DrawParticles(particleArray)
+// }
