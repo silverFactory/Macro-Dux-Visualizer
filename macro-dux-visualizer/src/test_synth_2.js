@@ -7,7 +7,8 @@ export default class TestSynth extends Component{
   constructor(props){
     super(props)
     this.filter = new Tone.Filter(50, "lowpass").toDestination()
-    this.distortion = new Tone.Distortion(0.9).connect(this.filter)
+    //this.distortion = new Tone.Distortion(0.9).connect(this.filter)
+    this.bitCrush = new Tone.BitCrusher(6).connect(this.filter)
     this.synth = new Tone.PolySynth(Tone.Synth, {
       envelope: {
         attack: 0.02,
@@ -15,7 +16,7 @@ export default class TestSynth extends Component{
         sustain: 0.03,
         release: 1
       }
-    }).connect(this.distortion)
+    }).connect(this.bitCrush)
     this.playing = false
     this.loopA = new Tone.Loop(time => {
       this.synth.triggerAttackRelease("C2", "8n", time)
@@ -37,8 +38,9 @@ export default class TestSynth extends Component{
 
   componentDidUpdate = () => {
     this.filter.frequency.rampTo(scale(this.props.cutoff, 0, 100, 50, 1000), 1)
-    this.distortion.wet.rampTo(scale(this.props.cutoff, 0, 100, 0.01, 0.99))
-    //console.log(this.distortion)
+    //this.distortion.wet.rampTo(scale(this.props.cutoff, 0, 100, 0.01, 0.99))
+    this.bitCrush.bits.rampTo(scale(this.props.cutoff, 0, 100, 1, 6))
+    console.log(this.bitCrush)
   }
 
 
