@@ -6,7 +6,7 @@ export default class TestSynth extends Component{
 
   constructor(props){
     super(props)
-    this.filter = new Tone.Filter(200, "lowpass").toDestination()
+    this.filter = new Tone.Filter(50, "lowpass").toDestination()
     this.synth = new Tone.PolySynth(Tone.Synth, {
       envelope: {
         attack: 0.02,
@@ -35,10 +35,16 @@ export default class TestSynth extends Component{
   }
 
   componentDidUpdate = () => {
-    this.filter.frequency.rampTo((this.props.cutoff + 1) * 500, 1)
+    this.filter.frequency.rampTo(scale(this.props.cutoff, 0, 100, 50, 1000), 1)
   }
+
 
   render(){
     return <button onClick={this.handleOnClick}>Synth Trigger</button>
   }
 }
+
+  //maps a number in one range to another range
+const scale = (num, in_min, in_max, out_min, out_max) => {
+    return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+  }
