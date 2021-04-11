@@ -4,6 +4,7 @@ import Remember from './Remember.mp3'
 import P5Visualizer from './p5_visualizer'
 import MacroCardContainer from './macro_card_container'
 import TestSynth from './test_synth'
+import TestSynth2 from './test_synth_2'
 
 
 class Player extends Component {
@@ -68,7 +69,8 @@ class Player extends Component {
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg">
-            <TestSynth />
+            {/*}<TestSynth />*/}
+            <TestSynth2 cutoff={this.props.macros.macro1}/>
             <button onClick={this.handleOnClick}>Play/Pause</button>
             <P5Visualizer
               audioDataTime={this.state.audioDataTime}
