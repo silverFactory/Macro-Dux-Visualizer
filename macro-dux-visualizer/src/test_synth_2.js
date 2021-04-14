@@ -8,9 +8,9 @@ export default class TestSynth extends Component{
     super(props)
     this.filterGain = new Tone.Gain(1).toDestination()
     this.filter = new Tone.Filter(50, "lowpass").connect(this.filterGain)
-    this.effectsStackGain = new Tone.Gain(0).toDestination()
-    this.pingPong = new Tone.PingPongDelay("16n", 0.5).connect(this.effectsStackGain)
-    this.reverb = new Tone.Reverb(4).connect(this.effectsStackGain)
+    this.spaceEffectsGain = new Tone.Gain(0).toDestination()
+    this.pingPong = new Tone.PingPongDelay("16n", 0.5).connect(this.spaceEffectsGain)
+    this.reverb = new Tone.Reverb(4).connect(this.spaceEffectsGain)
 
     //this.distortion = new Tone.Distortion(0.9).connect(this.filter)
     this.bitCrushGain = new Tone.Gain(0).toDestination()
@@ -85,7 +85,7 @@ export default class TestSynth extends Component{
     //this.distortion.wet.rampTo(scale(this.props.macro1, 0, 100, 0.01, 0.99))
     this.bitCrushGain.gain.rampTo(scale(this.props.macro1, 0, 100, 0, 1), 1)
     this.filterGain.gain.rampTo(scale(this.props.macro1, 0, 100, 1, 0), 1)
-    this.effectsStackGain.gain.rampTo(scale(this.props.macro2, 0, 100, 0, 1), 1)
+    this.spaceEffectsGain.gain.rampTo(scale(this.props.macro2, 0, 100, 0, 1), 1)
     //console.log(this.bitCrush)
   }
 
