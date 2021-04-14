@@ -8,7 +8,8 @@ export default class TestSynth extends Component{
     super(props)
     this.filterGain = new Tone.Gain(1).toDestination()
     this.filter = new Tone.Filter(50, "lowpass").connect(this.filterGain)
-
+    this.pingPongGain = new Tone.Gain(0).toDestination()
+    this.pingPong = new Tone.PingPongDelay("4n", 0.2).connect(this.pingPongGain)
     //this.distortion = new Tone.Distortion(0.9).connect(this.filter)
     this.bitCrushGain = new Tone.Gain(0).toDestination()
     this.bitCrush = new Tone.BitCrusher(6).connect(this.bitCrushGain)
@@ -19,7 +20,7 @@ export default class TestSynth extends Component{
         sustain: 0.03,
         release: 1
       }
-    }).connect(this.bitCrush).connect(this.filter)
+    }).connect(this.bitCrush).connect(this.filter).connect(this.pingPong)
     this.playing = false
     this.loopA = new Tone.Loop(time => {
       this.synth.triggerAttackRelease("C2", "8n", time)
@@ -75,10 +76,11 @@ export default class TestSynth extends Component{
   }
 
   componentDidUpdate = () => {
-    this.filter.frequency.rampTo(scale(this.props.cutoff, 0, 100, 50, 1000), 1)
-    //this.distortion.wet.rampTo(scale(this.props.cutoff, 0, 100, 0.01, 0.99))
-    this.bitCrushGain.gain.rampTo(scale(this.props.cutoff, 0, 100, 0, 1), 1)
-    this.filterGain.gain.rampTo(scale(this.props.cutoff, 0, 100, 1, 0), 1)
+    this.filter.frequency.rampTo(scale(this.props.macro1, 0, 100, 50, 1000), 1)
+    //this.distortion.wet.rampTo(scale(this.props.macro1, 0, 100, 0.01, 0.99))
+    this.bitCrushGain.gain.rampTo(scale(this.props.macro1, 0, 100, 0, 1), 1)
+    this.filterGain.gain.rampTo(scale(this.props.macro1, 0, 100, 1, 0), 1)
+    this.pingPongGain.gain.rampTo(scale(this.props.macro2, 0, 100, 0, 1), 1)
     //console.log(this.bitCrush)
   }
 

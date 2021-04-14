@@ -70,7 +70,9 @@ class Player extends Component {
         <div class="row align-items-center">
           <div class="col-lg">
             {/*}<TestSynth />*/}
-            <TestSynth2 cutoff={this.props.macros.macro1}/>
+            <TestSynth2
+              macro1={this.props.macros.macro1}
+              macro2={this.props.macros.macro2}/>
             <button onClick={this.handleOnClick}>Play/Pause</button>
             <P5Visualizer
               audioDataTime={this.state.audioDataTime}
