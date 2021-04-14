@@ -11,7 +11,7 @@ export default class TestSynth extends Component{
 
     //this.distortion = new Tone.Distortion(0.9).connect(this.filter)
     this.bitCrushGain = new Tone.Gain(0).toDestination()
-    this.bitCrush = new Tone.BitCrusher(8).connect(this.bitCrushGain)
+    this.bitCrush = new Tone.BitCrusher(6).connect(this.bitCrushGain)
     this.synth = new Tone.PolySynth(Tone.Synth, {
       envelope: {
         attack: 0.02,
@@ -19,7 +19,7 @@ export default class TestSynth extends Component{
         sustain: 0.03,
         release: 1
       }
-    }).connect(this.filter)
+    }).connect(this.bitCrush).connect(this.filter)
     this.playing = false
     this.loopA = new Tone.Loop(time => {
       this.synth.triggerAttackRelease("C2", "8n", time)
