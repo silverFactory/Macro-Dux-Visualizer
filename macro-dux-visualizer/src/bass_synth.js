@@ -49,19 +49,29 @@ export default class TestSynth2 extends Component{
       this.playing = true
       this.now = Tone.now()
       Tone.Transport.bpm.value = 120
-      this.synth.triggerAttackRelease("C4", "1n", this.now)
-      this.synth.triggerAttackRelease("E4", "1n", this.now)
+      this.synth.triggerAttackRelease("A2", "8n", this.now)
+      this.synth.triggerAttackRelease("A2", "8n", this.now + 0.25)
+      this.synth.triggerAttackRelease("A2", "8n", this.now + 1)
+      this.synth.triggerAttackRelease("C3", "8n", this.now + 1.25)
+      this.synth.triggerAttackRelease("A2", "8n", this.now + 2)
+      this.synth.triggerAttackRelease("A2", "8n", this.now + 2.25)
+      this.synth.triggerAttackRelease("A2", "8n", this.now + 3)
+      this.synth.triggerAttackRelease("C3", "8n", this.now + 3.25)
+      this.synth.triggerAttackRelease("A2", "8n", this.now + 4)
+      this.synth.triggerAttackRelease("A2", "8n", this.now + 4.25)
+      this.synth.triggerAttackRelease("A2", "8n", this.now + 5)
+      this.synth.triggerAttackRelease("C3", "8n", this.now + 5.25)
     } else {
       this.playing = false
     }
   }
 
   componentDidUpdate = () => {
-    this.filter.frequency.rampTo(scale(this.props.macro1, 0, 100, 50, 1000), 1)
-    this.bitCrushGain.gain.rampTo(scale(this.props.macro1, 0, 100, 0, 1), 1)
-    this.filterGain.gain.rampTo(scale(this.props.macro1, 0, 100, 1, 0), 1)
-    this.spaceEffectsGain.gain.rampTo(scale(this.props.macro2, 0, 100, 0, 1), 1)
-    this.modulationEffectsGain.gain.rampTo(scale(this.props.macro3, 0, 100, 0, 1), 1)
+    this.filter.frequency.rampTo(scale(this.props.macro7, 0, 100, 50, 1000), 1)
+    this.bitCrushGain.gain.rampTo(scale(this.props.macro7, 0, 100, 0, 1), 1)
+    this.filterGain.gain.rampTo(scale(this.props.macro7, 0, 100, 1, 0), 1)
+    this.spaceEffectsGain.gain.rampTo(scale(this.props.macro8, 0, 100, 0, 1), 1)
+    this.modulationEffectsGain.gain.rampTo(scale(this.props.macro9, 0, 100, 0, 1), 1)
   }
 
 
