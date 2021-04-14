@@ -72,7 +72,8 @@ class Player extends Component {
             {/*}<TestSynth />*/}
             <TestSynth2
               macro1={this.props.macros.macro1}
-              macro2={this.props.macros.macro2}/>
+              macro2={this.props.macros.macro2}
+              macro3={this.props.macros.macro3}/>
             <button onClick={this.handleOnClick}>Play/Pause</button>
             <P5Visualizer
               audioDataTime={this.state.audioDataTime}
