@@ -5,6 +5,7 @@ import P5Visualizer from './p5_visualizer'
 import MacroCardContainer from './macro_card_container'
 import TestSynth from './test_synth'
 import TestSynth2 from './test_synth_2'
+import BassSynth from './bass_synth'
 
 
 class Player extends Component {
@@ -70,10 +71,10 @@ class Player extends Component {
         <div class="row align-items-center">
           <div class="col-lg">
             {/*}<TestSynth />*/}
-            <TestSynth2
+            {/*}<TestSynth2
               macro1={this.props.macros.macro1}
               macro2={this.props.macros.macro2}
-              macro3={this.props.macros.macro3}/>
+              macro3={this.props.macros.macro3}/>*/>}
             <button onClick={this.handleOnClick}>Play/Pause</button>
             <P5Visualizer
               audioDataTime={this.state.audioDataTime}
