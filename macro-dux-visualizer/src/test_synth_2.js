@@ -6,7 +6,9 @@ export default class TestSynth extends Component{
 
   constructor(props){
     super(props)
-    this.filter = new Tone.Filter(50, "lowpass").toDestination()
+    this.filterGain = new Tone.Gain(1).toDestination()
+    this.filter = new Tone.Filter(50, "lowpass").connect(this.filterGain)
+
     //this.distortion = new Tone.Distortion(0.9).connect(this.filter)
     this.bitCrushGain = new Tone.Gain(0).toDestination()
     this.bitCrush = new Tone.BitCrusher(8).connect(this.bitCrushGain)
@@ -17,7 +19,7 @@ export default class TestSynth extends Component{
         sustain: 0.03,
         release: 1
       }
-    }).connect(this.bitCrush).connect(this.filter)
+    }).connect(this.filter)
     this.playing = false
     this.loopA = new Tone.Loop(time => {
       this.synth.triggerAttackRelease("C2", "8n", time)
@@ -29,10 +31,45 @@ export default class TestSynth extends Component{
 
   handleOnClick = () => {
     if (!this.playing){
-      Tone.Transport.start()
+      //Tone.Transport.start()
       this.playing = true
+      this.now = Tone.now()
+
+      this.synth.triggerAttackRelease("C2", "8n", this.now)
+      this.synth.triggerAttackRelease("Eb2", "8n", this.now + 0.5)
+      this.synth.triggerAttackRelease("C2", "8n", this.now + 1)
+      this.synth.triggerAttackRelease("Eb2", "8n", this.now + 1.5)
+      this.synth.triggerAttackRelease("C2", "8n", this.now + 2)
+      this.synth.triggerAttackRelease("Eb2", "8n", this.now + 2.5)
+      this.synth.triggerAttackRelease("C2", "8n", this.now + 3)
+      this.synth.triggerAttackRelease("Eb2", "8n", this.now + 3.5)
+      this.synth.triggerAttackRelease("C2", "8n", this.now + 4)
+      this.synth.triggerAttackRelease("Eb2", "8n", this.now + 4.5)
+      this.synth.triggerAttackRelease("C2", "8n", this.now + 5)
+      this.synth.triggerAttackRelease("Eb2", "8n", this.now + 5.5)
+      this.synth.triggerAttackRelease("C2", "8n", this.now + 6)
+      this.synth.triggerAttackRelease("Eb2", "8n", this.now + 6.5)
+      this.synth.triggerAttackRelease("C2", "8n", this.now + 7)
+      this.synth.triggerAttackRelease("Eb2", "8n", this.now + 7.5)
+      this.synth.triggerAttackRelease("C2", "8n", this.now + 8)
+      this.synth.triggerAttackRelease("Eb2", "8n", this.now + 8.5)
+      this.synth.triggerAttackRelease("C2", "8n", this.now + 9)
+      this.synth.triggerAttackRelease("Eb2", "8n", this.now + 9.5)
+      this.synth.triggerAttackRelease("C2", "8n", this.now + 10)
+      this.synth.triggerAttackRelease("Eb2", "8n", this.now + 10.5)
+      this.synth.triggerAttackRelease("C2", "8n", this.now + 11)
+      this.synth.triggerAttackRelease("Eb2", "8n", this.now + 11.5)
+      this.synth.triggerAttackRelease("C2", "8n", this.now + 12)
+      this.synth.triggerAttackRelease("Eb2", "8n", this.now + 12.5)
+      this.synth.triggerAttackRelease("C2", "8n", this.now + 13)
+      this.synth.triggerAttackRelease("Eb2", "8n", this.now + 13.5)
+      this.synth.triggerAttackRelease("C2", "8n", this.now + 14)
+      this.synth.triggerAttackRelease("Eb2", "8n", this.now + 14.5)
+      this.synth.triggerAttackRelease("C2", "8n", this.now + 15)
+      this.synth.triggerAttackRelease("Eb2", "8n", this.now + 15.5)
+
     } else {
-      Tone.Transport.stop()
+      //Tone.Transport.stop()
       this.playing = false
     }
   }
@@ -41,6 +78,7 @@ export default class TestSynth extends Component{
     this.filter.frequency.rampTo(scale(this.props.cutoff, 0, 100, 50, 1000), 1)
     //this.distortion.wet.rampTo(scale(this.props.cutoff, 0, 100, 0.01, 0.99))
     this.bitCrushGain.gain.rampTo(scale(this.props.cutoff, 0, 100, 0, 1), 1)
+    this.filterGain.gain.rampTo(scale(this.props.cutoff, 0, 100, 1, 0), 1)
     //console.log(this.bitCrush)
   }
 
