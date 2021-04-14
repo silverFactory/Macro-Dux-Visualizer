@@ -14,8 +14,8 @@ export default class TestSynth2 extends Component{
     this.reverb = new Tone.Reverb(4).connect(this.spaceEffectsGain)
 
     this.modulationEffectsGain = new Tone.Gain(0).toDestination()
-    //this.shift1 = new Tone.FrequencyShifter(7).connect(this.modulationEffectsGain)
-    //this.shift2 = new Tone.FrequencyShifter(5).connect(this.modulationEffectsGain)
+    this.shift1 = new Tone.FrequencyShifter(7).connect(this.modulationEffectsGain)
+    this.shift2 = new Tone.FrequencyShifter(5).connect(this.modulationEffectsGain)
     this.phaser = new Tone.Phaser({
                   	frequency: 20,
                   	octaves: 5,
@@ -40,8 +40,8 @@ export default class TestSynth2 extends Component{
     .connect(this.pingPong)
     .connect(this.reverb)
     .connect(this.phaser)
-    //.connect(this.shift1)
-    //.connect(this.shift2)
+    .connect(this.shift1)
+    .connect(this.shift2)
 
 
     this.playing = false
@@ -62,9 +62,15 @@ export default class TestSynth2 extends Component{
       this.synth.triggerAttackRelease("C4", "1n", this.now)
       this.synth.triggerAttackRelease("E4", "1n", this.now)
       this.synth.triggerAttackRelease("G4", "1n", this.now)
-      this.synth.triggerAttackRelease("C4", "1n", this.now + 4)
-      this.synth.triggerAttackRelease("E4", "1n", this.now + 4)
-      this.synth.triggerAttackRelease("G4", "1n", this.now + 4)
+      this.synth.triggerAttackRelease("C4", "1n", this.now + 3)
+      this.synth.triggerAttackRelease("E4", "1n", this.now + 3)
+      this.synth.triggerAttackRelease("G4", "1n", this.now + 3)
+      this.synth.triggerAttackRelease("C4", "1n", this.now + 6)
+      this.synth.triggerAttackRelease("E4", "1n", this.now + 6)
+      this.synth.triggerAttackRelease("G4", "1n", this.now + 6)
+      this.synth.triggerAttackRelease("C4", "1n", this.now + 9)
+      this.synth.triggerAttackRelease("E4", "1n", this.now + 9)
+      this.synth.triggerAttackRelease("G4", "1n", this.now + 9)
       // this.synth.triggerAttackRelease("C2", "8n", this.now)
       // this.synth.triggerAttackRelease("Eb2", "8n", this.now + 0.5)
       // this.synth.triggerAttackRelease("C2", "8n", this.now + 1)
