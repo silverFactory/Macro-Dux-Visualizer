@@ -9,7 +9,7 @@ export default class TestSynth extends Component{
     this.filterGain = new Tone.Gain(1).toDestination()
     this.filter = new Tone.Filter(50, "lowpass").connect(this.filterGain)
     this.pingPongGain = new Tone.Gain(0).toDestination()
-    this.pingPong = new Tone.PingPongDelay("4n", 0.2).connect(this.pingPongGain)
+    this.pingPong = new Tone.PingPongDelay("16n", 0.5).connect(this.pingPongGain)
     //this.distortion = new Tone.Distortion(0.9).connect(this.filter)
     this.bitCrushGain = new Tone.Gain(0).toDestination()
     this.bitCrush = new Tone.BitCrusher(6).connect(this.bitCrushGain)
@@ -35,7 +35,7 @@ export default class TestSynth extends Component{
       //Tone.Transport.start()
       this.playing = true
       this.now = Tone.now()
-
+      Tone.Transport.bpm.value = 140
       this.synth.triggerAttackRelease("C2", "8n", this.now)
       this.synth.triggerAttackRelease("Eb2", "8n", this.now + 0.5)
       this.synth.triggerAttackRelease("C2", "8n", this.now + 1)
