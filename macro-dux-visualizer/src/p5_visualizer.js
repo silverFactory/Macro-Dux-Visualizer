@@ -104,8 +104,8 @@ export default class P5Visualizer extends Component {
       //BASS ORB AND PARTICLES
       p.push()
       p.translate(0, 400)
-      DrawOrb(p, this.props.audioDataTime)
-
+      // DrawOrb(p, this.props.audioDataTime)
+      DrawOrb(p, this.props.bassSynthWaveform)
       //only generate particles if song is playing
       if (this.props.playing && this.props.macros.macro8 !== 0){
         let bassDensity = Math.floor(p.map(this.props.macros.macro8, 0, 100, 20, 1))
