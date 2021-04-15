@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import * as Tone from 'tone'
 
-export default class TestSynth2 extends Component{
+export default class BassSynth extends Component{
 
   constructor(props){
     super(props)
