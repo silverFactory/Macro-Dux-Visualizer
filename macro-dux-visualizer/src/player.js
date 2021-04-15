@@ -6,6 +6,7 @@ import MacroCardContainer from './macro_card_container'
 import TestSynth from './test_synth'
 import TestSynth2 from './test_synth_2'
 import BassSynth from './bass_synth'
+import KeysSynth from './keys_synth'
 
 
 class Player extends Component {
@@ -14,7 +15,8 @@ class Player extends Component {
     playing: false,
     audioDataTime: new Uint8Array(0),
     audioDataFreq: new Uint8Array(0),
-    bassSynthWaveform: new Uint8Array(0)
+    bassSynthWaveform: new Uint8Array(0),
+    keysSynthWaveform: new Uint8Array(0)
   }
 
   componentDidMount() {
@@ -50,9 +52,9 @@ class Player extends Component {
 
   }
 
-  getWaveformArray = (array) => {
+  getWaveformArray = (voice, array) => {
     this.setState({
-      bassSynthWaveform: array
+      [voice]: array
     })
   }
 
@@ -91,6 +93,12 @@ class Player extends Component {
                 macro7={this.props.macros.macro7}
                 macro8={this.props.macros.macro8}
                 macro9={this.props.macros.macro9}
+                getWaveformArray={this.getWaveformArray}
+                />
+              <KeysSynth
+                macro4={this.props.macros.macro4}
+                macro5={this.props.macros.macro5}
+                macro6={this.props.macros.macro6}
                 getWaveformArray={this.getWaveformArray}
                 />
             <button onClick={this.handleOnClick}>Play/Pause</button>

@@ -7,8 +7,7 @@ export default class TestSynth2 extends Component{
     super(props)
     this.finalGain = new Tone.Gain(1)
     this.finalGain.toDestination()
-    // this.fft = new Tone.FFT(2048)
-    // this.finalGain.connect(this.fft)
+
     this.analyser = new Tone.Analyser("waveform", 2048)
     this.finalGain.connect(this.analyser)
 
@@ -61,21 +60,14 @@ export default class TestSynth2 extends Component{
     this.analyserTime = Tone.getContext().rawContext.createAnalyser()
     this.timeDataArray = new Uint8Array(this.analyserTime.frequencyBinCount)
     this.finalGain.connect(this.analyserTime)
-
-    //connect analyser node in player to this audio context
-
   }
 
   tick = () => {
     this.analyserTime.getByteTimeDomainData(this.timeDataArray)
-    //console.log(this.timeDataArray)
-    // this.analyserFreq.getByteFrequencyData(this.freqDataArray)
     this.setState({
        audioDataTime: this.timeDataArray
      })
-    //console.log(this.analyser.getValue())
-    //this.props.getWaveformArray(this.analyser.getValue())
-    this.props.getWaveformArray("bassSynthWaveform", this.state.audioDataTime)
+    this.props.getWaveformArray("keysSynthWaveform", this.state.audioDataTime)
     if (this.state.playing === true){
       this.rafId = requestAnimationFrame(this.tick)
     }
@@ -84,7 +76,6 @@ export default class TestSynth2 extends Component{
 
   handleOnClick = () => {
     if (!this.state.playing){
-      //console.log(this.fft)
       this.setState({
         playing: true
       })

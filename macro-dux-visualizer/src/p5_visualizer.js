@@ -118,7 +118,7 @@ export default class P5Visualizer extends Component {
 
       p.strokeWeight(0.5)
       p.stroke(p.map(this.props.macros.macro9, 0, 100, 0, 255))
-      DrawAllLightning(p, this.props.audioDataTime, this.width)
+      DrawAllLightning(p, this.props.bassSynthWaveform, this.width)
 
       let bassRed = 100
       let bassGreen = 100 - this.props.macros.macro7
