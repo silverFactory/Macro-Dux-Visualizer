@@ -94,12 +94,14 @@ class Player extends Component {
                 macro8={this.props.macros.macro8}
                 macro9={this.props.macros.macro9}
                 getWaveformArray={this.getWaveformArray}
+                scale={scale}
                 />
               <KeysSynth
                 macro4={this.props.macros.macro4}
                 macro5={this.props.macros.macro5}
                 macro6={this.props.macros.macro6}
                 getWaveformArray={this.getWaveformArray}
+                scale={scale}
                 />
             <button onClick={this.handleOnClick}>Play/Pause</button>
             <P5Visualizer
@@ -125,3 +127,9 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(Player)
+
+//MOVE TO HELPER FUNCTIONS FILE?
+  //maps a number in one range to another range
+const scale = (num, in_min, in_max, out_min, out_max) => {
+    return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
+  }

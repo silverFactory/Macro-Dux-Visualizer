@@ -103,20 +103,15 @@ export default class TestSynth2 extends Component{
 
 
   componentDidUpdate = () => {
-    this.filter.frequency.rampTo(scale(this.props.macro7, 0, 100, 50, 1000), 1)
-    this.bitCrushGain.gain.rampTo(scale(this.props.macro7, 0, 100, 0, 1), 1)
-    this.filterGain.gain.rampTo(scale(this.props.macro7, 0, 100, 1, 0), 1)
-    this.spaceEffectsGain.gain.rampTo(scale(this.props.macro8, 0, 100, 0, 1), 1)
-    this.modulationEffectsGain.gain.rampTo(scale(this.props.macro9, 0, 100, 0, 1), 1)
+    this.filter.frequency.rampTo(this.props.scale(this.props.macro4, 0, 100, 50, 1000), 1)
+    this.bitCrushGain.gain.rampTo(this.props.scale(this.props.macro4, 0, 100, 0, 1), 1)
+    this.filterGain.gain.rampTo(this.props.scale(this.props.macro4, 0, 100, 1, 0), 1)
+    this.spaceEffectsGain.gain.rampTo(this.props.scale(this.props.macro5, 0, 100, 0, 1), 1)
+    this.modulationEffectsGain.gain.rampTo(this.props.scale(this.props.macro6, 0, 100, 0, 1), 1)
   }
 
 
   render(){
-    return <button onClick={this.handleOnClick}>Synth Trigger</button>
+    return <button onClick={this.handleOnClick}>Keys Synth Trigger</button>
   }
 }
-
-  //maps a number in one range to another range
-const scale = (num, in_min, in_max, out_min, out_max) => {
-    return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
-  }
