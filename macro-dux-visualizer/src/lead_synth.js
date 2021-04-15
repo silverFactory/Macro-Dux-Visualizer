@@ -37,8 +37,8 @@ export default class TestSynth2 extends Component{
   		sustain: 1.0,
   		release: 0.8
   	}).toDestination()
-    this.osc = new Tone.FatOscillator("A3", "sawtooth", 30).connect(this.adsr)
-    //
+    this.osc = new Tone.FatOscillator("A3", "sawtooth", 30).connect(this.adsr).start()
+    //.connect(this.adsr)
     // .connect(this.pingPong)
     // .connect(this.reverb)
     // .connect(this.phaser)
@@ -77,9 +77,9 @@ export default class TestSynth2 extends Component{
         playing: true
       })
       this.rafId = requestAnimationFrame(this.tick)
-      this.now = Tone.now()
-      Tone.Transport.bpm.value = 120
-      this.synth.triggerAttackRelease("A2", "8n", this.now)
+      //this.now = Tone.now()
+      //Tone.Transport.bpm.value = 120
+      this.adsr.triggerAttackRelease("8n")
 
     } else {
       this.setState({
@@ -90,11 +90,11 @@ export default class TestSynth2 extends Component{
 
 
   componentDidUpdate = () => {
-    this.filter.frequency.rampTo(this.props.scale(this.props.macro1, 0, 100, 50, 1000), 1)
-    this.bitCrushGain.gain.rampTo(this.props.scale(this.props.macro1, 0, 100, 0, 1), 1)
-    this.filterGain.gain.rampTo(this.props.scale(this.props.macro1, 0, 100, 1, 0), 1)
-    this.spaceEffectsGain.gain.rampTo(this.props.scale(this.props.macro2, 0, 100, 0, 1), 1)
-    this.modulationEffectsGain.gain.rampTo(this.props.scale(this.props.macro3, 0, 100, 0, 1), 1)
+    // this.filter.frequency.rampTo(this.props.scale(this.props.macro1, 0, 100, 50, 1000), 1)
+    // this.bitCrushGain.gain.rampTo(this.props.scale(this.props.macro1, 0, 100, 0, 1), 1)
+    // this.filterGain.gain.rampTo(this.props.scale(this.props.macro1, 0, 100, 1, 0), 1)
+    // this.spaceEffectsGain.gain.rampTo(this.props.scale(this.props.macro2, 0, 100, 0, 1), 1)
+    // this.modulationEffectsGain.gain.rampTo(this.props.scale(this.props.macro3, 0, 100, 0, 1), 1)
   }
 
   render(){
