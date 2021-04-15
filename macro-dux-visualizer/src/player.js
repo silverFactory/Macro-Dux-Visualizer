@@ -108,6 +108,7 @@ class Player extends Component {
               audioDataTime={this.state.audioDataTime}
               audioDataFreq={this.state.audioDataFreq}
               bassSynthWaveform={this.state.bassSynthWaveform}
+              keysSynthWaveform={this.state.keysSynthWaveform}
               playing={this.state.playing}
               macros={this.props.macros}/>
           </div>

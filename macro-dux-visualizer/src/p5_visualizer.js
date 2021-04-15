@@ -76,7 +76,7 @@ export default class P5Visualizer extends Component {
       //HARMONY ORB AND PARTICLES
       p.push()
       p.translate(0, -100)
-    //  DrawOrb(p, this.props.audioDataTime)
+      DrawOrb(p, this.props.keysSynthWaveform)
 
       //only generate particles if song is playing
       if (this.props.playing && this.props.macros.macro5 !== 0){
@@ -92,7 +92,7 @@ export default class P5Visualizer extends Component {
 
       p.strokeWeight(0.5)
       p.stroke(p.map(this.props.macros.macro6, 0, 100, 0, 255))
-      DrawAllLightning(p, this.props.audioDataTime, this.width)
+      DrawAllLightning(p, this.props.keysSynthWaveform, this.width)
 
       let harmonyRed = 100
       let harmonyGreen = 100 - this.props.macros.macro4
