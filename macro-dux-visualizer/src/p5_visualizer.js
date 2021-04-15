@@ -48,7 +48,7 @@ export default class P5Visualizer extends Component {
       //   this.props.macros.macro3,
       //   this.props.playing
       // )
-      DrawOrb(p, this.props.audioDataTime)
+    //  DrawOrb(p, this.props.audioDataTime)
 
       //only generate particles if song is playing
       if (this.props.playing && this.props.macros.macro2 !== 0){
@@ -76,7 +76,7 @@ export default class P5Visualizer extends Component {
       //HARMONY ORB AND PARTICLES
       p.push()
       p.translate(0, -100)
-      DrawOrb(p, this.props.audioDataTime)
+    //  DrawOrb(p, this.props.audioDataTime)
 
       //only generate particles if song is playing
       if (this.props.playing && this.props.macros.macro5 !== 0){
@@ -106,6 +106,7 @@ export default class P5Visualizer extends Component {
       p.translate(0, 400)
       // DrawOrb(p, this.props.audioDataTime)
       DrawOrb(p, this.props.bassSynthWaveform)
+      //DrawOrbFromFloat32(p, this.props.bassSynthWaveform)
       //only generate particles if song is playing
       if (this.props.playing && this.props.macros.macro8 !== 0){
         let bassDensity = Math.floor(p.map(this.props.macros.macro8, 0, 100, 20, 1))
@@ -181,6 +182,7 @@ export default class P5Visualizer extends Component {
 }
 
 const DrawOrb = (p, audioDataTime) => {
+  console.log(audioDataTime)
   // j variable used to create circle within a circle
   for (let j = 3; j <= 9; j += 3){
     // t variable used to make a second pass and draw mirrored half of circle
@@ -192,6 +194,32 @@ const DrawOrb = (p, audioDataTime) => {
 
         //map radius of circle to waveform ->last two params affect the circle size
         let r = p.map(audioDataTime[index], 0, 255, j * 7, j * 17.5)
+
+        let x = r * p.sin(i) * t
+        let y = r * p.cos(i)
+        let z = p.sin(p.frameCount + j ) * 50
+        p.vertex(x, y, z)
+      }
+      p.endShape()
+    }
+  }
+}
+
+const DrawOrbFromFloat32 = (p, audioDataTime) => {
+  //console.log(audioDataTime)
+  // j variable used to create circle within a circle
+  for (let j = 3; j <= 9; j += 3){
+    // t variable used to make a second pass and draw mirrored half of circle
+    for (let t = -1; t <= 1; t += 2){
+      p.beginShape()
+      // the value that i is incremented by increases the drawn waveform complexity
+      for (let i = 0; i <= 180; i += 0.5){
+        let index = Math.floor(p.map(i, 0, 180, 0, audioDataTime.length - 1))
+
+        let wavePoint = p.map(audioDataTime[index], 1.2**-38, 3.4**38, 0, 255)
+        //console.log(wavePoint)
+        //map radius of circle to waveform ->last two params affect the circle size
+        let r = p.map(wavePoint, 0, 255, j * 7, j * 17.5)
 
         let x = r * p.sin(i) * t
         let y = r * p.cos(i)

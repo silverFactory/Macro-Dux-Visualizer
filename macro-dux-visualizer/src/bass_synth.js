@@ -51,25 +51,31 @@ export default class TestSynth2 extends Component{
 
   state = {
     playing: false,
-    // audioDataTime: new Uint8Array(0),
+    audioDataTime: new Uint8Array(0)
     // audioDataFreq: new Uint8Array(0)
   }
 
   componentDidMount = () => {
+    console.log(Tone.getContext().rawContext)
+    //use WebAudioAPI analyser node to fill data array
+    this.analyserTime = Tone.getContext().rawContext.createAnalyser()
+    this.timeDataArray = new Uint8Array(this.analyserTime.frequencyBinCount)
+    this.finalGain.connect(this.analyserTime)
+
+    //connect analyser node in player to this audio context
 
   }
 
-
-
   tick = () => {
-    // this.analyserTime.getByteTimeDomainData(this.timeDataArray)
+    this.analyserTime.getByteTimeDomainData(this.timeDataArray)
+    //console.log(this.timeDataArray)
     // this.analyserFreq.getByteFrequencyData(this.freqDataArray)
-    // this.setState({
-    //   audioDataTime: this.timeDataArray,
-    //   audioDataFreq: this.freqDataArray
-    // })
-    console.log(this.analyser.getValue())
-    this.props.getWaveformArray(this.analyser.getValue())
+    this.setState({
+       audioDataTime: this.timeDataArray
+     })
+    //console.log(this.analyser.getValue())
+    //this.props.getWaveformArray(this.analyser.getValue())
+    this.props.getWaveformArray(this.state.audioDataTime)
     if (this.state.playing === true){
       this.rafId = requestAnimationFrame(this.tick)
     }

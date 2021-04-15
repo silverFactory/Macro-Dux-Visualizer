@@ -14,7 +14,7 @@ class Player extends Component {
     playing: false,
     audioDataTime: new Uint8Array(0),
     audioDataFreq: new Uint8Array(0),
-    bassSynthWaveform: new Float32Array(0)
+    bassSynthWaveform: new Uint8Array(0)
   }
 
   componentDidMount() {
@@ -69,8 +69,16 @@ class Player extends Component {
   //   console.log(message)
   // }
 
+  connectAnalyserToToneAudioContext = () => {
+
+  }
+
   getWaveformArray = (array) => {
+    //break conversion into separate function
+    // let uint8 = new Uint8Array(1024)
+    // uint8 = Uint8Array.from(array)
     this.setState({
+      // bassSynthWaveform: uint8
       bassSynthWaveform: array
     })
   }
