@@ -7,6 +7,7 @@ import TestSynth from './test_synth'
 import TestSynth2 from './test_synth_2'
 import BassSynth from './bass_synth'
 import KeysSynth from './keys_synth'
+import LeadSynth from './lead_synth'
 
 
 class Player extends Component {
@@ -16,7 +17,8 @@ class Player extends Component {
     audioDataTime: new Uint8Array(0),
     audioDataFreq: new Uint8Array(0),
     bassSynthWaveform: new Uint8Array(0),
-    keysSynthWaveform: new Uint8Array(0)
+    keysSynthWaveform: new Uint8Array(0),
+    leadSynthWaveform: new Uint8Array(0)
   }
 
   componentDidMount() {
@@ -100,6 +102,13 @@ class Player extends Component {
                 macro4={this.props.macros.macro4}
                 macro5={this.props.macros.macro5}
                 macro6={this.props.macros.macro6}
+                getWaveformArray={this.getWaveformArray}
+                scale={scale}
+                />
+              <LeadSynth
+                macro1={this.props.macros.macro1}
+                macro2={this.props.macros.macro2}
+                macro3={this.props.macros.macro3}
                 getWaveformArray={this.getWaveformArray}
                 scale={scale}
                 />
