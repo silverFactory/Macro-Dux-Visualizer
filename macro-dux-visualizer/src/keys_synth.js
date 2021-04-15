@@ -22,9 +22,9 @@ export default class TestSynth2 extends Component{
     this.shift1 = new Tone.FrequencyShifter(7).connect(this.modulationEffectsGain)
     this.shift2 = new Tone.FrequencyShifter(5).connect(this.modulationEffectsGain)
     this.phaser = new Tone.Phaser({
-                  	frequency: 20,
-                  	octaves: 5,
-                  	baseFrequency: 1000
+                  	frequency: 1,
+                  	octaves: 1,
+                  	baseFrequency: 500
                   }).connect(this.modulationEffectsGain)
 
     //bitCrush gain increases as cutoff increases to accentuate changes
@@ -107,7 +107,7 @@ export default class TestSynth2 extends Component{
     this.bitCrushGain.gain.rampTo(this.props.scale(this.props.macro4, 0, 100, 0, 1), 1)
     this.filterGain.gain.rampTo(this.props.scale(this.props.macro4, 0, 100, 1, 0), 1)
     this.spaceEffectsGain.gain.rampTo(this.props.scale(this.props.macro5, 0, 100, 0, 1), 1)
-    this.modulationEffectsGain.gain.rampTo(this.props.scale(this.props.macro6, 0, 100, 0, 1), 1)
+    this.modulationEffectsGain.gain.rampTo(this.props.scale(this.props.macro6, 0, 100, 0, 0.5), 1)
   }
 
 
