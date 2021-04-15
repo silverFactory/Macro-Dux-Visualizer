@@ -27,23 +27,28 @@ export default class LeadSynth extends Component{
                   	baseFrequency: 1000
                   }).connect(this.modulationEffectsGain)
 
-    //bitCrush gain increases as cutoff increases to accentuate changes
-    //separate signal flow KEEP THAT WAY
-    // this.bitCrushGain = new Tone.Gain(0).connect(this.finalGain)
-    // this.bitCrush = new Tone.BitCrusher(6).connect(this.bitCrushGain)
-    this.adsr = new Tone.AmplitudeEnvelope({
+    this.adsrA3 = new Tone.AmplitudeEnvelope({
   		attack: 0.1,
   		decay: 0.2,
   		sustain: 1.0,
   		release: 0.8
   	}).connect(this.filter)
-    this.osc = new Tone.FatOscillator("A3", "sawtooth", 30).connect(this.adsr).start()
-    //.connect(this.adsr)
-    // .connect(this.pingPong)
-    // .connect(this.reverb)
-    // .connect(this.phaser)
-    // .connect(this.shift1)
-    // .connect(this.shift2)
+    this.oscA3 = new Tone.FatOscillator("A3", "sawtooth", 30).connect(this.adsrA3).start()
+    this.ASharp3 = new Tone.AmplitudeEnvelope({
+  		attack: 0.1,
+  		decay: 0.2,
+  		sustain: 1.0,
+  		release: 0.8
+  	}).connect(this.filter)
+    this.oscASharp3 = new Tone.FatOscillator("A#3", "sawtooth", 30).connect(this.ASharp3).start()
+    this.adsrB3 = new Tone.AmplitudeEnvelope({
+  		attack: 0.1,
+  		decay: 0.2,
+  		sustain: 1.0,
+  		release: 0.8
+  	}).connect(this.filter)
+    this.oscB3 = new Tone.FatOscillator("B3", "sawtooth", 30).connect(this.adsrB3).start()
+
   }
 
   state = {
@@ -70,6 +75,9 @@ export default class LeadSynth extends Component{
     }
   }
 
+  triggerNote = (noteName, noteLength, time) => {
+    this.[noteName].triggerAttackRelease(noteLength, time)
+  }
 
   handleOnClick = () => {
     if (!this.state.playing){
@@ -78,10 +86,11 @@ export default class LeadSynth extends Component{
       })
       this.rafId = requestAnimationFrame(this.tick)
       this.now = Tone.now()
+      this.triggerNote("ASharp3", "8n", this.now)
       //Tone.Transport.bpm.value = 120
-      this.adsr.triggerAttackRelease("8n", this.now)
-      this.osc.frequency.rampTo("C4", 0.0001, this.now + 0.99)
-      this.adsr.triggerAttackRelease("8n", this.now + 1)
+      // this.adsr.triggerAttackRelease("8n", this.now)
+      // this.osc.frequency.rampTo("C4", 0.0001, this.now + 0.99)
+      // this.adsr.triggerAttackRelease("8n", this.now + 1)
 
     } else {
       this.setState({
