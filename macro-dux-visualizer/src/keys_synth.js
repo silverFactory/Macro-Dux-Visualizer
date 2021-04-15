@@ -35,8 +35,8 @@ export default class TestSynth2 extends Component{
       envelope: {
         attack: 0.02,
         decay: 0.1,
-        sustain: 0.03,
-        release: 1
+        sustain: 0.9,
+        release: 0.1
       }
     })
     .connect(this.bitCrush)
@@ -82,18 +82,18 @@ export default class TestSynth2 extends Component{
       this.rafId = requestAnimationFrame(this.tick)
       this.now = Tone.now()
       Tone.Transport.bpm.value = 120
-      this.synth.triggerAttackRelease("A2", "8n", this.now)
-      this.synth.triggerAttackRelease("A2", "8n", this.now + 0.25)
-      this.synth.triggerAttackRelease("A2", "8n", this.now + 1)
-      this.synth.triggerAttackRelease("C3", "8n", this.now + 1.25)
-      this.synth.triggerAttackRelease("A2", "8n", this.now + 2)
-      this.synth.triggerAttackRelease("A2", "8n", this.now + 2.25)
-      this.synth.triggerAttackRelease("A2", "8n", this.now + 3)
-      this.synth.triggerAttackRelease("C3", "8n", this.now + 3.25)
-      this.synth.triggerAttackRelease("A2", "8n", this.now + 4)
-      this.synth.triggerAttackRelease("A2", "8n", this.now + 4.25)
-      this.synth.triggerAttackRelease("A2", "8n", this.now + 5)
-      this.synth.triggerAttackRelease("C3", "8n", this.now + 5.25)
+      this.synth.triggerAttackRelease("A4", "8n", this.now)
+      this.synth.triggerAttackRelease("C5", "8n", this.now)
+      this.synth.triggerAttackRelease("E5", "8n", this.now)
+      this.synth.triggerAttackRelease("A4", "8n", this.now + 0.675)
+      this.synth.triggerAttackRelease("C5", "8n", this.now + 0.675)
+      this.synth.triggerAttackRelease("E5", "8n", this.now + 0.675)
+      this.synth.triggerAttackRelease("A4", "8n", this.now + 1)
+      this.synth.triggerAttackRelease("C5", "8n", this.now + 1)
+      this.synth.triggerAttackRelease("E5", "8n", this.now + 1)
+      this.synth.triggerAttackRelease("A4", "8n", this.now + 1.675)
+      this.synth.triggerAttackRelease("C5", "8n", this.now + 1.675)
+      this.synth.triggerAttackRelease("E5", "8n", this.now + 1.675)
     } else {
       this.setState({
         playing: false
