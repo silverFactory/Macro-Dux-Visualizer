@@ -50,35 +50,8 @@ class Player extends Component {
 
   }
 
-  //callback to be based as prop that connects bass_synth to bassTrack GainNode
-  //bringing it into this audio context and "visible" to both analyser nodes
-  //DOESN'T SEEM TO WORK, I THINK BECAUSE THE AUDIO CONTEXTS ARE SEPARATE
-  //YOU CAN'T CONNECT NODES, EVEN THOUGH IT'S JUST AN AUDIO SIGNAL
-  //NEED TO ANALYSE WITHIN THE TONE CONTEXT THEN SEND DATA TO VISUALIZER
-  // connectSignalToAnalysers = (gainNode) => {
-  //   this.bassTrack = this.audioContext.createMediaElementSource(gainNode)
-  //   this.bassTrack.connect(this.audioContext.destination)
-  // }
-
-
-  fillFFTTimeDataArray = () => {
-
-  }
-
-  // connectSignalToAnalysers = (message) => {
-  //   console.log(message)
-  // }
-
-  connectAnalyserToToneAudioContext = () => {
-
-  }
-
   getWaveformArray = (array) => {
-    //break conversion into separate function
-    // let uint8 = new Uint8Array(1024)
-    // uint8 = Uint8Array.from(array)
     this.setState({
-      // bassSynthWaveform: uint8
       bassSynthWaveform: array
     })
   }
