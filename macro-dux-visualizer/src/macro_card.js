@@ -2,8 +2,6 @@ import React from 'react'
 
 export default function MacroCard(props){
 
-
-
   return(
     <div class="card mb-4">
       <div class="card-body">
