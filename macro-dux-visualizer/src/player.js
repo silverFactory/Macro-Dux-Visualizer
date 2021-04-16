@@ -5,7 +5,7 @@ import P5Visualizer from './p5_visualizer'
 import MacroCardContainer from './macro_card_container'
 import TestSynth from './test_synth'
 import TestSynth2 from './test_synth_2'
-import BassSynth from './bass_synth'
+import BassSynth2 from './bass_synth_2'
 import KeysSynth from './keys_synth'
 import LeadSynth from './lead_synth'
 
@@ -91,7 +91,7 @@ class Player extends Component {
               macro1={this.props.macros.macro1}
               macro2={this.props.macros.macro2}
               macro3={this.props.macros.macro3}/>*/}
-              <BassSynth
+              <BassSynth2
                 macro7={this.props.macros.macro7}
                 macro8={this.props.macros.macro8}
                 macro9={this.props.macros.macro9}
