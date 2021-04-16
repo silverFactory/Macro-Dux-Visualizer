@@ -8,6 +8,7 @@ import {
 import Home from './home'
 import Demo from './demo'
 import User from './user'
+import Songs from './songs'
 import NavBar from './navbar'
 
 export default function App() {
