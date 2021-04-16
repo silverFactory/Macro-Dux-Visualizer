@@ -49,9 +49,7 @@ export default class KeysSynth extends Component{
   }
 
   state = {
-    playing: false,
-    audioDataTime: new Uint8Array(0)
-    // audioDataFreq: new Uint8Array(0)
+    playing: false
   }
 
   componentDidMount = () => {
@@ -64,10 +62,7 @@ export default class KeysSynth extends Component{
 
   tick = () => {
     this.analyserTime.getByteTimeDomainData(this.timeDataArray)
-    this.setState({
-       audioDataTime: this.timeDataArray
-     })
-    this.props.getWaveformArray("keysSynthWaveform", this.state.audioDataTime)
+    this.props.getWaveformArray("keysSynthWaveform", this.timeDataArray)
     if (this.state.playing === true){
       this.rafId = requestAnimationFrame(this.tick)
     }

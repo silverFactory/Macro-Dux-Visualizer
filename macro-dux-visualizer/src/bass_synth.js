@@ -50,9 +50,7 @@ export default class BassSynth extends Component{
   }
 
   state = {
-    playing: false,
-    audioDataTime: new Uint8Array(0)
-    // audioDataFreq: new Uint8Array(0)
+    playing: false
   }
 
   componentDidMount = () => {
@@ -68,14 +66,7 @@ export default class BassSynth extends Component{
 
   tick = () => {
     this.analyserTime.getByteTimeDomainData(this.timeDataArray)
-    //console.log(this.timeDataArray)
-    // this.analyserFreq.getByteFrequencyData(this.freqDataArray)
-    this.setState({
-       audioDataTime: this.timeDataArray
-     })
-    //console.log(this.analyser.getValue())
-    //this.props.getWaveformArray(this.analyser.getValue())
-    this.props.getWaveformArray("bassSynthWaveform", this.state.audioDataTime)
+    this.props.getWaveformArray("bassSynthWaveform", this.timeDataArray)
     if (this.state.playing === true){
       this.rafId = requestAnimationFrame(this.tick)
     }

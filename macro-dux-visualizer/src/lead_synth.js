@@ -323,8 +323,7 @@ export default class LeadSynth extends Component{
   }
 
   state = {
-    playing: false,
-    audioDataTime: new Uint8Array(0)
+    playing: false
   }
 
   componentDidMount = () => {
