@@ -337,10 +337,11 @@ export default class LeadSynth extends Component{
 
   tick = () => {
     this.analyserTime.getByteTimeDomainData(this.timeDataArray)
-    this.setState({
-       audioDataTime: this.timeDataArray
-     })
-    this.props.getWaveformArray("leadSynthWaveform", this.state.audioDataTime)
+    //WHY SET STATE IF ONLY SENDING IT UP THE CHAIN???
+    // this.setState({
+    //    audioDataTime: this.timeDataArray
+    //  })
+    this.props.getWaveformArray("leadSynthWaveform", this.timeDataArray)
     if (this.state.playing === true){
       this.rafId = requestAnimationFrame(this.tick)
     }
