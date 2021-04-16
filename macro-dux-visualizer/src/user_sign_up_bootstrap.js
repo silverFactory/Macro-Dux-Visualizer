@@ -1,12 +1,12 @@
 import React from 'react'
 import { Form, Button, Card } from 'react-bootstrap'
 
-export default function UserLogInBootstrap() {
+export default function UserSignUpBootstrap() {
 
     return (
-      <Card style={{ height: '355px'}}>
+      <Card>
         <Card.Body>
-          <Card.Title>User Log In</Card.Title>
+          <Card.Title>User Sign Up</Card.Title>
           <Form>
             <Form.Group controlId="formBasicUsername">
               <Form.Label>Username</Form.Label>
@@ -16,6 +16,8 @@ export default function UserLogInBootstrap() {
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" placeholder="Password" />
+              <Form.Label>Password Confirmation</Form.Label>
+              <Form.Control type="password" placeholder="Password Confirmation" />
             </Form.Group>
             <Button variant="primary" type="submit">
               Submit
