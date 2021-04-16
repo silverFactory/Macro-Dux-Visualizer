@@ -21,6 +21,9 @@ export default function App() {
           <Route path="/user">
             <User />
           </Route>
+          <Route path="/songs">
+            <Songs />
+          </Route>
           <Route path="/">
             <Home />
           </Route>

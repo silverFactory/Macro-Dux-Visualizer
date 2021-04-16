@@ -22,6 +22,9 @@ export default function NavBar(){
         <LinkContainer to="/user">
           <Nav.Link>User</Nav.Link>
         </LinkContainer>
+        <LinkContainer to="/songs">
+          <Nav.Link>Songs</Nav.Link>
+        </LinkContainer>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
