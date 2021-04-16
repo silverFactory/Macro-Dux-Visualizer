@@ -14,11 +14,11 @@ export default class LeadSynth extends Component{
     this.filterGain = new Tone.Gain(1).connect(this.finalGain)
     this.filter = new Tone.Filter(50, "lowpass").connect(this.filterGain)
 
-    this.spaceEffectsGain = new Tone.Gain(0).connect(this.finalGain)
+    this.spaceEffectsGain = new Tone.Gain(0).connect(this.filter)
     this.pingPong = new Tone.PingPongDelay("16n", 0.5).connect(this.spaceEffectsGain)
     this.reverb = new Tone.Reverb(4).connect(this.spaceEffectsGain)
 
-    this.modulationEffectsGain = new Tone.Gain(0).connect(this.finalGain)
+    this.modulationEffectsGain = new Tone.Gain(0).connect(this.filter)
     this.shift1 = new Tone.FrequencyShifter(7).connect(this.modulationEffectsGain)
     this.shift2 = new Tone.FrequencyShifter(5).connect(this.modulationEffectsGain)
     this.phaser = new Tone.Phaser({
@@ -34,7 +34,7 @@ export default class LeadSynth extends Component{
   		decay: 0.2,
   		sustain: 1.0,
   		release: 0.8
-  	}).connect(this.filter)
+  	}).connect(this.pingPong).connect(this.reverb).connect(this.phaser).connect(this.filter)
     this.oscC3 = new Tone.FatOscillator("C3", "sawtooth", 30).connect(this.c3).start()
 
     this.cSharp3 = new Tone.AmplitudeEnvelope({
@@ -42,7 +42,7 @@ export default class LeadSynth extends Component{
   		decay: 0.2,
   		sustain: 1.0,
   		release: 0.8
-  	}).connect(this.filter)
+  	}).connect(this.pingPong).connect(this.reverb).connect(this.phaser).connect(this.filter)
     this.oscCSharp3 = new Tone.FatOscillator("C#3", "sawtooth", 30).connect(this.cSharp3).start()
 
     this.d3 = new Tone.AmplitudeEnvelope({
@@ -50,7 +50,7 @@ export default class LeadSynth extends Component{
   		decay: 0.2,
   		sustain: 1.0,
   		release: 0.8
-  	}).connect(this.filter)
+  	}).connect(this.pingPong).connect(this.reverb).connect(this.phaser).connect(this.filter)
     this.oscD3 = new Tone.FatOscillator("D3", "sawtooth", 30).connect(this.d3).start()
 
     this.dSharp3 = new Tone.AmplitudeEnvelope({
@@ -58,7 +58,7 @@ export default class LeadSynth extends Component{
   		decay: 0.2,
   		sustain: 1.0,
   		release: 0.8
-  	}).connect(this.filter)
+  	}).connect(this.pingPong).connect(this.reverb).connect(this.phaser).connect(this.filter)
     this.oscDSharp3 = new Tone.FatOscillator("D#3", "sawtooth", 30).connect(this.dSharp3).start()
 
     this.e3 = new Tone.AmplitudeEnvelope({
@@ -66,7 +66,7 @@ export default class LeadSynth extends Component{
   		decay: 0.2,
   		sustain: 1.0,
   		release: 0.8
-  	}).connect(this.filter)
+  	}).connect(this.pingPong).connect(this.reverb).connect(this.phaser).connect(this.filter)
     this.oscE3 = new Tone.FatOscillator("E3", "sawtooth", 30).connect(this.e3).start()
 
     this.f3 = new Tone.AmplitudeEnvelope({
@@ -74,7 +74,7 @@ export default class LeadSynth extends Component{
   		decay: 0.2,
   		sustain: 1.0,
   		release: 0.8
-  	}).connect(this.filter)
+  	}).connect(this.pingPong).connect(this.reverb).connect(this.phaser).connect(this.filter)
     this.oscF3 = new Tone.FatOscillator("F3", "sawtooth", 30).connect(this.f3).start()
 
     this.fSharp3 = new Tone.AmplitudeEnvelope({
@@ -82,7 +82,7 @@ export default class LeadSynth extends Component{
   		decay: 0.2,
   		sustain: 1.0,
   		release: 0.8
-  	}).connect(this.filter)
+  	}).connect(this.pingPong).connect(this.reverb).connect(this.phaser).connect(this.filter)
     this.oscFSharp3 = new Tone.FatOscillator("F#3", "sawtooth", 30).connect(this.fSharp3).start()
 
     this.g3 = new Tone.AmplitudeEnvelope({
@@ -90,7 +90,7 @@ export default class LeadSynth extends Component{
   		decay: 0.2,
   		sustain: 1.0,
   		release: 0.8
-  	}).connect(this.filter)
+  	}).connect(this.pingPong).connect(this.reverb).connect(this.phaser).connect(this.filter)
     this.oscG3 = new Tone.FatOscillator("G3", "sawtooth", 30).connect(this.g3).start()
 
     this.gSharp3 = new Tone.AmplitudeEnvelope({
@@ -98,7 +98,7 @@ export default class LeadSynth extends Component{
   		decay: 0.2,
   		sustain: 1.0,
   		release: 0.8
-  	}).connect(this.filter)
+  	}).connect(this.pingPong).connect(this.reverb).connect(this.phaser).connect(this.filter)
     this.oscGSharp3 = new Tone.FatOscillator("G#3", "sawtooth", 30).connect(this.gSharp3).start()
 
     this.a3 = new Tone.AmplitudeEnvelope({
@@ -106,7 +106,7 @@ export default class LeadSynth extends Component{
   		decay: 0.2,
   		sustain: 1.0,
   		release: 0.8
-  	}).connect(this.filter)
+  	}).connect(this.pingPong).connect(this.reverb).connect(this.phaser).connect(this.filter)
     this.oscA3 = new Tone.FatOscillator("A3", "sawtooth", 30).connect(this.a3).start()
 
     this.aSharp3 = new Tone.AmplitudeEnvelope({
@@ -114,7 +114,7 @@ export default class LeadSynth extends Component{
   		decay: 0.2,
   		sustain: 1.0,
   		release: 0.8
-  	}).connect(this.filter)
+  	}).connect(this.pingPong).connect(this.reverb).connect(this.phaser).connect(this.filter)
     this.oscASharp3 = new Tone.FatOscillator("A#3", "sawtooth", 30).connect(this.aSharp3).start()
 
     this.b3 = new Tone.AmplitudeEnvelope({
@@ -122,7 +122,7 @@ export default class LeadSynth extends Component{
   		decay: 0.2,
   		sustain: 1.0,
   		release: 0.8
-  	}).connect(this.filter)
+  	}).connect(this.pingPong).connect(this.reverb).connect(this.phaser).connect(this.filter)
     this.oscB3 = new Tone.FatOscillator("B3", "sawtooth", 30).connect(this.b3).start()
 
     // this.c4 = new Tone.AmplitudeEnvelope({
@@ -386,8 +386,8 @@ export default class LeadSynth extends Component{
      this.filter.frequency.rampTo(this.props.scale(this.props.macro1, 0, 100, 50, 1000), 1)
     // this.bitCrushGain.gain.rampTo(this.props.scale(this.props.macro1, 0, 100, 0, 1), 1)
     // this.filterGain.gain.rampTo(this.props.scale(this.props.macro1, 0, 100, 1, 0), 1)
-    // this.spaceEffectsGain.gain.rampTo(this.props.scale(this.props.macro2, 0, 100, 0, 1), 1)
-    // this.modulationEffectsGain.gain.rampTo(this.props.scale(this.props.macro3, 0, 100, 0, 1), 1)
+     this.spaceEffectsGain.gain.rampTo(this.props.scale(this.props.macro2, 0, 100, 0, 1), 1)
+     this.modulationEffectsGain.gain.rampTo(this.props.scale(this.props.macro3, 0, 100, 0, 1), 1)
   }
 
   render(){
