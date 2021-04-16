@@ -77,6 +77,14 @@ export default class LeadSynth extends Component{
   	}).connect(this.filter)
     this.oscF3 = new Tone.FatOscillator("F3", "sawtooth", 30).connect(this.f3).start()
 
+    this.fSharp3 = new Tone.AmplitudeEnvelope({
+  		attack: 0.1,
+  		decay: 0.2,
+  		sustain: 1.0,
+  		release: 0.8
+  	}).connect(this.filter)
+    this.oscFSharp3 = new Tone.FatOscillator("F#3", "sawtooth", 30).connect(this.fSharp3).start()
+
     this.g3 = new Tone.AmplitudeEnvelope({
   		attack: 0.1,
   		decay: 0.2,
@@ -117,181 +125,197 @@ export default class LeadSynth extends Component{
   	}).connect(this.filter)
     this.oscB3 = new Tone.FatOscillator("B3", "sawtooth", 30).connect(this.b3).start()
 
-    this.c4 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscC4 = new Tone.FatOscillator("C4", "sawtooth", 30).connect(this.c4).start()
-
-    this.cSharp4 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscCSharp4 = new Tone.FatOscillator("C#4", "sawtooth", 30).connect(this.cSharp4).start()
-
-    this.d4 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscD4 = new Tone.FatOscillator("D4", "sawtooth", 30).connect(this.d4).start()
-
-    this.dSharp4 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscDSharp4 = new Tone.FatOscillator("D#4", "sawtooth", 30).connect(this.dSharp4).start()
-
-    this.e4 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscE4 = new Tone.FatOscillator("E4", "sawtooth", 30).connect(this.e4).start()
-
-    this.f4 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscF4 = new Tone.FatOscillator("F4", "sawtooth", 30).connect(this.f4).start()
-
-    this.g4 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscG4 = new Tone.FatOscillator("G4", "sawtooth", 30).connect(this.g4).start()
-
-    this.gSharp4 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscGSharp4 = new Tone.FatOscillator("G#4", "sawtooth", 30).connect(this.gSharp4).start()
-
-    this.a4 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscA4 = new Tone.FatOscillator("A4", "sawtooth", 30).connect(this.a4).start()
-
-    this.aSharp4 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscASharp4 = new Tone.FatOscillator("A#4", "sawtooth", 30).connect(this.aSharp4).start()
-
-    this.b4 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscB4 = new Tone.FatOscillator("B4", "sawtooth", 30).connect(this.b4).start()
-
-    this.c5 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscC5 = new Tone.FatOscillator("C5", "sawtooth", 30).connect(this.c5).start()
-
-    this.cSharp5 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscCSharp5 = new Tone.FatOscillator("C#5", "sawtooth", 30).connect(this.cSharp5).start()
-
-    this.d5 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscD5 = new Tone.FatOscillator("D5", "sawtooth", 30).connect(this.d5).start()
-
-    this.dSharp5 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscDSharp5 = new Tone.FatOscillator("D#5", "sawtooth", 30).connect(this.dSharp5).start()
-
-    this.e5 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscE5 = new Tone.FatOscillator("E5", "sawtooth", 30).connect(this.e5).start()
-
-    this.f5 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscF5 = new Tone.FatOscillator("F5", "sawtooth", 30).connect(this.f5).start()
-
-    this.g5 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscG5 = new Tone.FatOscillator("G5", "sawtooth", 30).connect(this.g5).start()
-
-    this.gSharp5 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscGSharp5 = new Tone.FatOscillator("G#5", "sawtooth", 30).connect(this.gSharp5).start()
-
-    this.a5 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscA5 = new Tone.FatOscillator("A5", "sawtooth", 30).connect(this.a5).start()
-
-    this.aSharp5 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscASharp5 = new Tone.FatOscillator("A#5", "sawtooth", 30).connect(this.aSharp5).start()
-
-    this.b5 = new Tone.AmplitudeEnvelope({
-  		attack: 0.1,
-  		decay: 0.2,
-  		sustain: 1.0,
-  		release: 0.8
-  	}).connect(this.filter)
-    this.oscB5 = new Tone.FatOscillator("B5", "sawtooth", 30).connect(this.b5).start()
+    // this.c4 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscC4 = new Tone.FatOscillator("C4", "sawtooth", 30).connect(this.c4).start()
+    //
+    // this.cSharp4 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscCSharp4 = new Tone.FatOscillator("C#4", "sawtooth", 30).connect(this.cSharp4).start()
+    //
+    // this.d4 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscD4 = new Tone.FatOscillator("D4", "sawtooth", 30).connect(this.d4).start()
+    //
+    // this.dSharp4 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscDSharp4 = new Tone.FatOscillator("D#4", "sawtooth", 30).connect(this.dSharp4).start()
+    //
+    // this.e4 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscE4 = new Tone.FatOscillator("E4", "sawtooth", 30).connect(this.e4).start()
+    //
+    // this.f4 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscF4 = new Tone.FatOscillator("F4", "sawtooth", 30).connect(this.f4).start()
+    //
+    // this.fSharp4 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscFSharp4 = new Tone.FatOscillator("F#4", "sawtooth", 30).connect(this.fSharp4).start()
+    //
+    // this.g4 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscG4 = new Tone.FatOscillator("G4", "sawtooth", 30).connect(this.g4).start()
+    //
+    // this.gSharp4 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscGSharp4 = new Tone.FatOscillator("G#4", "sawtooth", 30).connect(this.gSharp4).start()
+    //
+    // this.a4 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscA4 = new Tone.FatOscillator("A4", "sawtooth", 30).connect(this.a4).start()
+    //
+    // this.aSharp4 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscASharp4 = new Tone.FatOscillator("A#4", "sawtooth", 30).connect(this.aSharp4).start()
+    //
+    // this.b4 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscB4 = new Tone.FatOscillator("B4", "sawtooth", 30).connect(this.b4).start()
+    //
+    // this.c5 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscC5 = new Tone.FatOscillator("C5", "sawtooth", 30).connect(this.c5).start()
+    //
+    // this.cSharp5 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscCSharp5 = new Tone.FatOscillator("C#5", "sawtooth", 30).connect(this.cSharp5).start()
+    //
+    // this.d5 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscD5 = new Tone.FatOscillator("D5", "sawtooth", 30).connect(this.d5).start()
+    //
+    // this.dSharp5 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscDSharp5 = new Tone.FatOscillator("D#5", "sawtooth", 30).connect(this.dSharp5).start()
+    //
+    // this.e5 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscE5 = new Tone.FatOscillator("E5", "sawtooth", 30).connect(this.e5).start()
+    //
+    // this.f5 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscF5 = new Tone.FatOscillator("F5", "sawtooth", 30).connect(this.f5).start()
+    //
+    // this.fSharp5 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscFSharp5 = new Tone.FatOscillator("F#5", "sawtooth", 30).connect(this.fSharp5).start()
+    //
+    // this.g5 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscG5 = new Tone.FatOscillator("G5", "sawtooth", 30).connect(this.g5).start()
+    //
+    // this.gSharp5 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscGSharp5 = new Tone.FatOscillator("G#5", "sawtooth", 30).connect(this.gSharp5).start()
+    //
+    // this.a5 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscA5 = new Tone.FatOscillator("A5", "sawtooth", 30).connect(this.a5).start()
+    //
+    // this.aSharp5 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscASharp5 = new Tone.FatOscillator("A#5", "sawtooth", 30).connect(this.aSharp5).start()
+    //
+    // this.b5 = new Tone.AmplitudeEnvelope({
+  	// 	attack: 0.1,
+  	// 	decay: 0.2,
+  	// 	sustain: 1.0,
+  	// 	release: 0.8
+  	// }).connect(this.filter)
+    // this.oscB5 = new Tone.FatOscillator("B5", "sawtooth", 30).connect(this.b5).start()
 
 
 
@@ -333,7 +357,18 @@ export default class LeadSynth extends Component{
       })
       this.rafId = requestAnimationFrame(this.tick)
       this.now = Tone.now()
-      this.triggerNote("ASharp3", "8n", this.now)
+      this.triggerNote("c3", "8n", this.now)
+      this.triggerNote("cSharp3", "8n", this.now + 0.5)
+      this.triggerNote("d3", "8n", this.now + 1)
+      this.triggerNote("dSharp3", "8n", this.now + 1.5)
+      this.triggerNote("e3", "8n", this.now + 2)
+      this.triggerNote("f3", "8n", this.now + 2.5)
+      this.triggerNote("fSharp3", "8n", this.now + 3)
+      this.triggerNote("g3", "8n", this.now + 3.5)
+      this.triggerNote("gSharp3", "8n", this.now + 4)
+      this.triggerNote("a3", "8n", this.now + 4.5)
+      this.triggerNote("aSharp3", "8n", this.now + 5)
+      this.triggerNote("b3", "8n", this.now + 5.5)
       //Tone.Transport.bpm.value = 120
       // this.adsr.triggerAttackRelease("8n", this.now)
       // this.osc.frequency.rampTo("C4", 0.0001, this.now + 0.99)
