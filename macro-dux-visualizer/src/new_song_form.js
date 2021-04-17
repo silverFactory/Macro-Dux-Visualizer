@@ -6,9 +6,9 @@ import { Form, Button, Card } from 'react-bootstrap'
 export default class NewSongForm extends Component {
 
     state = {
-      melodyNotes: [],
-      harmonyNotes: [],
-      bassNotes: []
+      melody: [],
+      harmony: [],
+      bass: []
     }
 
     collectNotes = (voice, notes) => {
@@ -19,9 +19,8 @@ export default class NewSongForm extends Component {
 
     handleOnClick = (event) => {
       event.preventDefault()
-      //grab notes from ParseMidi components and store them in state
-
-      //fetch to db
+      //fetch send state to db
+      console.log(this.state)
     }
 
     render(){
@@ -35,7 +34,9 @@ export default class NewSongForm extends Component {
                 <Form.Control type="text" placeholder="Enter song title" />
               </Form.Group>
               <div>[insert melody drag and drop parse component here]</div>
-              <ParseMidi collectNotes={this.collectNotes}/>
+              <ParseMidi
+                collectNotes={this.collectNotes}
+                voiceName={"melody"}/>
               <div>[insert harmony drag and drop parse component here]</div>
               <div>[insert bass drag and drop parse component here]</div>
 
