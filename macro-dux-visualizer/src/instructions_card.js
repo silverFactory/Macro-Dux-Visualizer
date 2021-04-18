@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Button, Card} from 'react-bootstrap'
 import Image from 'react-bootstrap/Image'
-import instructions from './ToneJs_Instructions.png'
+import instructions from './ToneJs_Instructions_Small.png'
 
 export default class InstructionsCard extends Component {
 
@@ -10,7 +10,9 @@ export default class InstructionsCard extends Component {
         <Card>
           <Card.Body>
             <Card.Title>Midi Formatting Instructions</Card.Title>
-            <p>In your DAW, export a midi file for the three voices of your song</p>
+            <p>In your DAW, export a midi file for each of the three voices of your song.</p>
+            <p>Then follow <a href="https://tonejs.github.io/Midi/">this</a> link to the Tone.js website to parse it into a browser-friendly format.</p>
+            <p></p>
             <Image src={instructions} rounded />
           </Card.Body>
         </Card>

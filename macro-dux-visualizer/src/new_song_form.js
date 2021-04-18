@@ -37,6 +37,18 @@ export default class NewSongForm extends Component {
                 <Form.Label>Song Title</Form.Label>
                 <Form.Control type="text" placeholder="Enter song title" />
               </Form.Group>
+              <Form.Group controlId="melodyJSON">
+                <Form.Label>Melody JSON</Form.Label>
+                <Form.Control as="textarea" rows={3} placeholder="Paste Melody Here" />
+              </Form.Group>
+              <Form.Group controlId="harmonyJSON">
+                <Form.Label>Harmony JSON</Form.Label>
+                <Form.Control as="textarea" rows={3} placeholder="Paste Harmony Here" />
+              </Form.Group>
+              <Form.Group controlId="bassJSON">
+                <Form.Label>Bass JSON</Form.Label>
+                <Form.Control as="textarea" rows={3} placeholder="Paste Bass Here" />
+              </Form.Group>
               <Button variant="primary" type="submit" onClick={event => this.handleOnClick(event)}>
                 Save Song
               </Button>
