@@ -7,9 +7,9 @@ export default class ParseMidiContainer extends Component {
   render(){
     return(
       <div>
-        <ParseMidi voiceName={"melody"}/>
-        <ParseMidi voiceName={"harmony"}/>
-        <ParseMidi voiceName={"bass"}/>
+        <ParseMidi parseFile={this.props.parseFile} voiceName={"melody"}/>
+        <ParseMidi parseFile={this.props.parseFile} voiceName={"harmony"}/>
+        <ParseMidi parseFile={this.props.parseFile} voiceName={"bass"}/>
       </div>
     )
   }

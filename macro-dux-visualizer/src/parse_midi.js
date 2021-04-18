@@ -15,7 +15,8 @@ export default class ParseMidi extends Component {
 
   handleOnClick = (event) => {
     event.preventDefault()
-    this.props.collectNotes(this.props.voiceName, this.getParsedMidi())
+    console.log(this.iframeRef.current.contentWindow)
+    //this.props.collectNotes(this.props.voiceName, this.getParsedMidi())
   }
 
   render(){
