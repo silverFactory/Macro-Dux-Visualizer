@@ -115,6 +115,14 @@ export default class LeadSynth extends Component{
   	}),
     oscB3: new Tone.FatOscillator("B3", "sawtooth", 30),
 
+    c4: new Tone.AmplitudeEnvelope({
+  		attack: 0.1,
+  		decay: 0.2,
+  		sustain: 1.0,
+  		release: 0.8
+  	}),
+    oscC4: new Tone.FatOscillator("C4", "sawtooth", 30)
+
 
   }
 
@@ -172,6 +180,9 @@ export default class LeadSynth extends Component{
     this.state.b3.connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
     this.state.oscB3.connect(this.state.b3).start()
 
+    this.state.c4.connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
+    this.state.oscC4.connect(this.state.c4).start()
+
   }
 
   tick = () => {
@@ -227,7 +238,7 @@ export default class LeadSynth extends Component{
       this.rafId = requestAnimationFrame(this.tick)
       this.now = Tone.now()
       this.props.notes.forEach(note => {
-        this.state.synth.triggerAttackRelease(note.name, note.duration, this.now + note.time)
+        this.triggerNote(note.name, note.duration, this.now + note.time)
       })
     }
      this.state.filter.frequency.rampTo(this.props.scale(this.props.macro1, 0, 100, 50, 1000), 1)
