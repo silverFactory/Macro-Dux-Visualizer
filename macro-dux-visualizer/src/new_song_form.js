@@ -35,7 +35,7 @@ export default class NewSongForm extends Component {
         console.log(object)
         //will need to add thunk so that the resp, the song obj returned from RAILS can be added to store
       })
-      //console.log(JSON.parse(this.state.bass).tracks[0].notes)
+      console.log(JSON.parse(this.state.bass).tracks[0].notes)
       //console.log(this.fullSong)
     }
 

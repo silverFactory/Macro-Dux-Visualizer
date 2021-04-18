@@ -3,11 +3,7 @@ import { connect } from 'react-redux'
 import Remember from './Remember.mp3'
 import P5Visualizer from './p5_visualizer'
 import MacroCardContainer from './macro_card_container'
-import TestSynth from './test_synth'
-import TestSynth2 from './test_synth_2'
-import BassSynth2 from './bass_synth_2'
-import KeysSynth from './keys_synth'
-import LeadSynth from './lead_synth'
+import SynthsContainer from './synths_container'
 
 
 class Player extends Component {
@@ -18,7 +14,7 @@ class Player extends Component {
     audioDataFreq: new Uint8Array(0),
     bassSynthWaveform: new Uint8Array(0),
     keysSynthWaveform: new Uint8Array(0),
-    leadSynthWaveform: new Uint8Array(0)
+    leadSynthWaveform: new Uint8Array(0),
   }
 
   componentDidMount() {
@@ -86,32 +82,18 @@ class Player extends Component {
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg">
-            {/*}<TestSynth />*/}
-            {/*}<TestSynth2
+            <SynthsContainer
               macro1={this.props.macros.macro1}
               macro2={this.props.macros.macro2}
-              macro3={this.props.macros.macro3}/>*/}
-              <BassSynth2
-                macro7={this.props.macros.macro7}
-                macro8={this.props.macros.macro8}
-                macro9={this.props.macros.macro9}
-                getWaveformArray={this.getWaveformArray}
-                scale={scale}
-                />
-              <KeysSynth
-                macro4={this.props.macros.macro4}
-                macro5={this.props.macros.macro5}
-                macro6={this.props.macros.macro6}
-                getWaveformArray={this.getWaveformArray}
-                scale={scale}
-                />
-              <LeadSynth
-                macro1={this.props.macros.macro1}
-                macro2={this.props.macros.macro2}
-                macro3={this.props.macros.macro3}
-                getWaveformArray={this.getWaveformArray}
-                scale={scale}
-                />
+              macro3={this.props.macros.macro3}
+              macro4={this.props.macros.macro4}
+              macro5={this.props.macros.macro5}
+              macro6={this.props.macros.macro6}
+              macro7={this.props.macros.macro7}
+              macro8={this.props.macros.macro8}
+              macro9={this.props.macros.macro9}
+              getWaveformArray={this.getWaveformArray}
+              scale={scale}/>
             <button onClick={this.handleOnClick}>Play/Pause</button>
             <P5Visualizer
               audioDataTime={this.state.audioDataTime}
