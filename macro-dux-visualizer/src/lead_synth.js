@@ -5,6 +5,7 @@ export default class LeadSynth extends Component{
 
   state = {
     playing: false,
+    started: false,
     finalGain: new Tone.Gain(1),
     filterGain: new Tone.Gain(1),
     filter: new Tone.Filter(50, "lowpass"),
@@ -19,7 +20,7 @@ export default class LeadSynth extends Component{
                   	octaves: 5,
                   	baseFrequency: 1000
                   }),
-    c3: new Tone.AmplitudeEnvelope({
+    "C3": new Tone.AmplitudeEnvelope({
   		attack: 0.1,
   		decay: 0.2,
   		sustain: 1.0,
@@ -27,7 +28,7 @@ export default class LeadSynth extends Component{
   	}),
     oscC3: new Tone.FatOscillator("C3", "sawtooth", 30),
 
-    cSharp3: new Tone.AmplitudeEnvelope({
+    "C#3": new Tone.AmplitudeEnvelope({
   		attack: 0.1,
   		decay: 0.2,
   		sustain: 1.0,
@@ -35,7 +36,7 @@ export default class LeadSynth extends Component{
   	}),
     oscCSharp3: new Tone.FatOscillator("C#3", "sawtooth", 30),
 
-    d3: new Tone.AmplitudeEnvelope({
+    "D3": new Tone.AmplitudeEnvelope({
   		attack: 0.1,
   		decay: 0.2,
   		sustain: 1.0,
@@ -43,7 +44,7 @@ export default class LeadSynth extends Component{
   	}),
     oscD3: new Tone.FatOscillator("D3", "sawtooth", 30),
 
-    dSharp3: new Tone.AmplitudeEnvelope({
+    "D#3": new Tone.AmplitudeEnvelope({
   		attack: 0.1,
   		decay: 0.2,
   		sustain: 1.0,
@@ -51,7 +52,7 @@ export default class LeadSynth extends Component{
   	}),
     oscDSharp3: new Tone.FatOscillator("D#3", "sawtooth", 30),
 
-    e3: new Tone.AmplitudeEnvelope({
+    "E3": new Tone.AmplitudeEnvelope({
   		attack: 0.1,
   		decay: 0.2,
   		sustain: 1.0,
@@ -59,7 +60,7 @@ export default class LeadSynth extends Component{
   	}),
     oscE3: new Tone.FatOscillator("E3", "sawtooth", 30),
 
-    f3: new Tone.AmplitudeEnvelope({
+    "F3": new Tone.AmplitudeEnvelope({
   		attack: 0.1,
   		decay: 0.2,
   		sustain: 1.0,
@@ -67,7 +68,7 @@ export default class LeadSynth extends Component{
   	}),
     oscF3: new Tone.FatOscillator("F3", "sawtooth", 30),
 
-    fSharp3: new Tone.AmplitudeEnvelope({
+    "F#3": new Tone.AmplitudeEnvelope({
   		attack: 0.1,
   		decay: 0.2,
   		sustain: 1.0,
@@ -75,7 +76,7 @@ export default class LeadSynth extends Component{
   	}),
     oscFSharp3: new Tone.FatOscillator("F#3", "sawtooth", 30),
 
-    g3: new Tone.AmplitudeEnvelope({
+    "G3": new Tone.AmplitudeEnvelope({
   		attack: 0.1,
   		decay: 0.2,
   		sustain: 1.0,
@@ -83,7 +84,7 @@ export default class LeadSynth extends Component{
   	}),
     oscG3: new Tone.FatOscillator("G3", "sawtooth", 30),
 
-    gSharp3: new Tone.AmplitudeEnvelope({
+    "G#3": new Tone.AmplitudeEnvelope({
   		attack: 0.1,
   		decay: 0.2,
   		sustain: 1.0,
@@ -91,7 +92,7 @@ export default class LeadSynth extends Component{
   	}),
     oscGSharp3: new Tone.FatOscillator("G#3", "sawtooth", 30),
 
-    a3: new Tone.AmplitudeEnvelope({
+    "A3": new Tone.AmplitudeEnvelope({
   		attack: 0.1,
   		decay: 0.2,
   		sustain: 1.0,
@@ -99,7 +100,7 @@ export default class LeadSynth extends Component{
   	}),
     oscA3: new Tone.FatOscillator("A3", "sawtooth", 30),
 
-    aSharp3: new Tone.AmplitudeEnvelope({
+    "A#3": new Tone.AmplitudeEnvelope({
   		attack: 0.1,
   		decay: 0.2,
   		sustain: 1.0,
@@ -107,7 +108,7 @@ export default class LeadSynth extends Component{
   	}),
     oscASharp3: new Tone.FatOscillator("A#3", "sawtooth", 30),
 
-    b3: new Tone.AmplitudeEnvelope({
+    "B3": new Tone.AmplitudeEnvelope({
   		attack: 0.1,
   		decay: 0.2,
   		sustain: 1.0,
@@ -115,7 +116,7 @@ export default class LeadSynth extends Component{
   	}),
     oscB3: new Tone.FatOscillator("B3", "sawtooth", 30),
 
-    c4: new Tone.AmplitudeEnvelope({
+    "C4": new Tone.AmplitudeEnvelope({
   		attack: 0.1,
   		decay: 0.2,
   		sustain: 1.0,
@@ -144,44 +145,44 @@ export default class LeadSynth extends Component{
     this.state.shift2.connect(this.state.modulationEffectsGain)
     this.state.phaser.connect(this.state.modulationEffectsGain)
 
-    this.state.c3.connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
-    this.state.oscC3.connect(this.state.c3).start()
+    this.state["C3"].connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
+    this.state.oscC3.connect(this.state["C3"]).start()
 
-    this.state.cSharp3.connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
-    this.state.oscCSharp3.connect(this.state.cSharp3).start()
+    this.state["C#3"].connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
+    this.state.oscCSharp3.connect(this.state["C#3"]).start()
 
-    this.state.d3.connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
-    this.state.oscD3.connect(this.state.d3).start()
+    this.state["D3"].connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
+    this.state.oscD3.connect(this.state["D3"]).start()
 
-    this.state.dSharp3.connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
-    this.state.oscDSharp3.connect(this.state.dSharp3).start()
+    this.state["D#3"].connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
+    this.state.oscDSharp3.connect(this.state["D#3"]).start()
 
-    this.state.e3.connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
-    this.state.oscE3.connect(this.state.e3).start()
+    this.state["E3"].connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
+    this.state.oscE3.connect(this.state["E3"]).start()
 
-    this.state.f3.connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
-    this.state.oscF3.connect(this.state.f3).start()
+    this.state["F3"].connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
+    this.state.oscF3.connect(this.state["F3"]).start()
 
-    this.state.fSharp3.connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
-    this.state.oscFSharp3.connect(this.state.fSharp3).start()
+    this.state["F#3"].connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
+    this.state.oscFSharp3.connect(this.state["F#3"]).start()
 
-    this.state.g3.connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
-    this.state.oscG3.connect(this.state.g3).start()
+    this.state["G3"].connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
+    this.state.oscG3.connect(this.state["G3"]).start()
 
-    this.state.gSharp3.connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
-    this.state.oscGSharp3.connect(this.state.gSharp3).start()
+    this.state["G#3"].connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
+    this.state.oscGSharp3.connect(this.state["G#3"]).start()
 
-    this.state.a3.connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
-    this.state.oscA3.connect(this.state.a3).start()
+    this.state["A3"].connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
+    this.state.oscA3.connect(this.state["A3"]).start()
 
-    this.state.aSharp3.connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
-    this.state.oscASharp3.connect(this.state.aSharp3).start()
+    this.state["A#3"].connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
+    this.state.oscASharp3.connect(this.state["A#3"]).start()
 
-    this.state.b3.connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
-    this.state.oscB3.connect(this.state.b3).start()
+    this.state["B3"].connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
+    this.state.oscB3.connect(this.state["B3"]).start()
 
-    this.state.c4.connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
-    this.state.oscC4.connect(this.state.c4).start()
+    this.state["C4"].connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)
+    this.state.oscC4.connect(this.state["C4"]).start()
 
   }
 
@@ -197,7 +198,9 @@ export default class LeadSynth extends Component{
     }
   }
 
+
   triggerNote = (noteName, noteLength, time) => {
+
     this.state.[noteName].triggerAttackRelease(noteLength, time)
   }
 
@@ -234,7 +237,10 @@ export default class LeadSynth extends Component{
 
 
   componentDidUpdate = () => {
-    if (this.props.playing === true){
+    if (this.props.playing === true && this.state.started === false){
+      this.setState({
+        started: true
+      })
       this.rafId = requestAnimationFrame(this.tick)
       this.now = Tone.now()
       this.props.notes.forEach(note => {

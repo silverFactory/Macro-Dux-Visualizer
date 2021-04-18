@@ -12,7 +12,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.24895833333333428,
         "durationTicks": 239,
         "midi": 84,
-        "name": "C6",
+        "name": "C4",
         "ticks": 61440,
         "time": 64,
         "velocity": 0.7322834645669292
@@ -21,7 +21,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.203125,
         "durationTicks": 195,
         "midi": 72,
-        "name": "C5",
+        "name": "C3",
         "ticks": 61680,
         "time": 64.25,
         "velocity": 0.7322834645669292
@@ -30,7 +30,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.22499999999999432,
         "durationTicks": 216,
         "midi": 79,
-        "name": "G5",
+        "name": "G3",
         "ticks": 61920,
         "time": 64.5,
         "velocity": 0.7322834645669292
@@ -39,7 +39,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.2697916666666629,
         "durationTicks": 259,
         "midi": 79,
-        "name": "G5",
+        "name": "G3",
         "ticks": 62400,
         "time": 65,
         "velocity": 0.7322834645669292
@@ -48,7 +48,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.29375000000000284,
         "durationTicks": 282,
         "midi": 79,
-        "name": "G5",
+        "name": "G3",
         "ticks": 62880,
         "time": 65.5,
         "velocity": 0.7322834645669292
@@ -57,7 +57,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.24791666666666856,
         "durationTicks": 238,
         "midi": 79,
-        "name": "G5",
+        "name": "G3",
         "ticks": 63360,
         "time": 66,
         "velocity": 0.7322834645669292
@@ -66,7 +66,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.2718749999999943,
         "durationTicks": 261,
         "midi": 72,
-        "name": "C5",
+        "name": "C3",
         "ticks": 63600,
         "time": 66.25,
         "velocity": 0.7322834645669292
@@ -75,7 +75,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.24791666666666856,
         "durationTicks": 238,
         "midi": 79,
-        "name": "G5",
+        "name": "G3",
         "ticks": 63840,
         "time": 66.5,
         "velocity": 0.7322834645669292
@@ -84,7 +84,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.22499999999999432,
         "durationTicks": 216,
         "midi": 74,
-        "name": "D5",
+        "name": "D3",
         "ticks": 64080,
         "time": 66.75,
         "velocity": 0.7322834645669292
@@ -93,7 +93,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.25,
         "durationTicks": 240,
         "midi": 79,
-        "name": "G5",
+        "name": "G3",
         "ticks": 64320,
         "time": 67,
         "velocity": 0.7322834645669292
@@ -102,7 +102,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.24791666666666856,
         "durationTicks": 238,
         "midi": 75,
-        "name": "D#5",
+        "name": "D#3",
         "ticks": 64560,
         "time": 67.25,
         "velocity": 0.7322834645669292
@@ -111,7 +111,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.2697916666666629,
         "durationTicks": 259,
         "midi": 79,
-        "name": "G5",
+        "name": "G3",
         "ticks": 64800,
         "time": 67.5,
         "velocity": 0.7322834645669292
@@ -120,7 +120,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.26874999999999716,
         "durationTicks": 258,
         "midi": 74,
-        "name": "D5",
+        "name": "D3",
         "ticks": 65040,
         "time": 67.75,
         "velocity": 0.7322834645669292
@@ -129,7 +129,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.24791666666666856,
         "durationTicks": 238,
         "midi": 84,
-        "name": "C6",
+        "name": "C4",
         "ticks": 65280,
         "time": 68,
         "velocity": 0.7322834645669292
@@ -138,7 +138,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.2697916666666629,
         "durationTicks": 259,
         "midi": 72,
-        "name": "C5",
+        "name": "C3",
         "ticks": 65520,
         "time": 68.25,
         "velocity": 0.7322834645669292
@@ -147,7 +147,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.22499999999999432,
         "durationTicks": 216,
         "midi": 75,
-        "name": "D#5",
+        "name": "D#3",
         "ticks": 65760,
         "time": 68.5,
         "velocity": 0.7322834645669292
@@ -156,7 +156,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.24791666666666856,
         "durationTicks": 238,
         "midi": 75,
-        "name": "D#5",
+        "name": "D#3",
         "ticks": 66240,
         "time": 69,
         "velocity": 0.7322834645669292
@@ -165,7 +165,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.2697916666666629,
         "durationTicks": 259,
         "midi": 75,
-        "name": "D#5",
+        "name": "D#3",
         "ticks": 66720,
         "time": 69.5,
         "velocity": 0.7322834645669292
@@ -174,7 +174,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.1354166666666714,
         "durationTicks": 130,
         "midi": 74,
-        "name": "D5",
+        "name": "D3",
         "ticks": 66960,
         "time": 69.75,
         "velocity": 0.7322834645669292
@@ -183,7 +183,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.24791666666666856,
         "durationTicks": 238,
         "midi": 75,
-        "name": "D#5",
+        "name": "D#3",
         "ticks": 67200,
         "time": 70,
         "velocity": 0.7322834645669292
@@ -192,7 +192,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.2697916666666629,
         "durationTicks": 259,
         "midi": 75,
-        "name": "D#5",
+        "name": "D#3",
         "ticks": 67680,
         "time": 70.5,
         "velocity": 0.7322834645669292
@@ -201,7 +201,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.2927083333333371,
         "durationTicks": 281,
         "midi": 82,
-        "name": "A#5",
+        "name": "A#3",
         "ticks": 68160,
         "time": 71,
         "velocity": 0.7322834645669292
@@ -210,7 +210,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.24895833333333428,
         "durationTicks": 239,
         "midi": 82,
-        "name": "A#5",
+        "name": "A#3",
         "ticks": 68640,
         "time": 71.5,
         "velocity": 0.7322834645669292
@@ -219,7 +219,7 @@ export default class SynthsContainer extends Component {
         "duration": 0.15833333333333144,
         "durationTicks": 152,
         "midi": 84,
-        "name": "C6",
+        "name": "C4",
         "ticks": 68880,
         "time": 71.75,
         "velocity": 0.7322834645669292

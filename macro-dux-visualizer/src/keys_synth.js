@@ -5,6 +5,7 @@ export default class KeysSynth extends Component{
 
   state = {
     playing: false,
+    started: false,
     finalGain: new Tone.Gain(1),
     filterGain: new Tone.Gain(1),
     filter: new Tone.Filter(50, "lowpass"),
@@ -103,7 +104,10 @@ export default class KeysSynth extends Component{
 
 
   componentDidUpdate = () => {
-    if (this.props.playing === true){
+    if (this.props.playing === true && this.state.started === false){
+      this.setState({
+        started: true
+      })
       this.rafId = requestAnimationFrame(this.tick)
       this.now = Tone.now()
       this.props.notes.forEach(note => {
