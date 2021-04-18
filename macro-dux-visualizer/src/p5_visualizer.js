@@ -180,7 +180,7 @@ export default class P5Visualizer extends Component {
 }
 
 const DrawOrb = (p, audioDataTime) => {
-  console.log(audioDataTime)
+  //console.log(audioDataTime)
   // j variable used to create circle within a circle
   for (let j = 3; j <= 9; j += 3){
     // t variable used to make a second pass and draw mirrored half of circle

@@ -101,6 +101,18 @@ export default class BassSynth2 extends Component{
     }
   }
 
+  //schedule time adjusted becuase test midi was bounced from middle of track
+  scheduleNotes = () => {
+    this.setState({
+      playing: true
+    })
+    this.rafId = requestAnimationFrame(this.tick)
+    this.now = Tone.now()
+    this.props.notes.forEach(note => {
+      this.state.synth.triggerAttackRelease(note.name, note.duration, this.now + (note.time - 80))
+    })
+  }
+
 
   componentDidUpdate = () => {
     this.state.filter.frequency.rampTo(this.props.scale(this.props.macro7, 0, 100, 50, 1000), 1)
@@ -111,6 +123,12 @@ export default class BassSynth2 extends Component{
   }
 
   render(){
-    return <button onClick={this.handleOnClick}>Synth Trigger</button>
+    return (
+      <div>
+        <button onClick={this.scheduleNotes}>Play Bassline</button>
+        <button onClick={this.handleOnClick}>Synth Trigger</button>
+      </div>
+
+    )
   }
 }

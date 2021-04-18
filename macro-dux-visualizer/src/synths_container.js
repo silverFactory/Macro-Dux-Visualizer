@@ -183,6 +183,11 @@ export default class SynthsContainer extends Component {
     ]
   }
 
+  // handleOnClick = (e) => {
+  //   e.preventDefault()
+  //
+  // }
+
   render(){
     return(
       <div>
@@ -190,6 +195,7 @@ export default class SynthsContainer extends Component {
           macro7={this.props.macro7}
           macro8={this.props.macro8}
           macro9={this.props.macro9}
+          notes={this.state.bassNotes}
           getWaveformArray={this.props.getWaveformArray}
           scale={this.props.scale}
           />
