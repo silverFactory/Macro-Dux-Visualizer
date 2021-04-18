@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore, combineReducers } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import App from './App';
@@ -14,8 +15,9 @@ import macroReducer from './reducers/macro_reducer'
 //   harmony: harmonyReducer,
 //   bass: bassReducer
 // })
-const store = createStore(macroReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+// const store = createStore(macroReducer,
+//   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+ const store = createStore(macroReducer, applyMiddleware(thunk))
 
 ReactDOM.render(
   <Provider store={store}>

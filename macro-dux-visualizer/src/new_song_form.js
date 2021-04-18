@@ -11,9 +11,9 @@ export default class NewSongForm extends Component {
       super(props)
       this.state = {
         title: "",
-        melody: [],
-        harmony: [],
-        bass: []
+        melody: "",
+        harmony: "",
+        bass: ""
       }
 
     }
@@ -21,7 +21,22 @@ export default class NewSongForm extends Component {
     handleOnClick = (event) => {
       event.preventDefault()
       //fetch send state to db
-      console.log(this.state)
+      this.configObj = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: this.state
+      }
+      fetch("http://localhost:3000/songs", this.configObj)
+      .then(resp=>resp.json())
+      .then(function(object){
+        console.log(object)
+        //will need to add thunk so that the resp, the song obj returned from RAILS can be added to store
+      })
+      //console.log(JSON.parse(this.state.bass).tracks[0].notes)
+      //console.log(this.fullSong)
     }
 
     render(){

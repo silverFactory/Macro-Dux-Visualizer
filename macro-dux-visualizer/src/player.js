@@ -98,20 +98,20 @@ class Player extends Component {
                 getWaveformArray={this.getWaveformArray}
                 scale={scale}
                 />
-              {/*<KeysSynth
+              <KeysSynth
                 macro4={this.props.macros.macro4}
                 macro5={this.props.macros.macro5}
                 macro6={this.props.macros.macro6}
                 getWaveformArray={this.getWaveformArray}
                 scale={scale}
-                />*/}
-              {/*<LeadSynth
+                />
+              <LeadSynth
                 macro1={this.props.macros.macro1}
                 macro2={this.props.macros.macro2}
                 macro3={this.props.macros.macro3}
                 getWaveformArray={this.getWaveformArray}
                 scale={scale}
-                />*/}
+                />
             <button onClick={this.handleOnClick}>Play/Pause</button>
             <P5Visualizer
               audioDataTime={this.state.audioDataTime}
