@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ParseMidi from './parse_midi'
+import ParseMidiContainer from './parse_midi_container'
 
 import { Form, Button, Card } from 'react-bootstrap'
 
@@ -33,13 +33,7 @@ export default class NewSongForm extends Component {
                 <Form.Label>Song Title</Form.Label>
                 <Form.Control type="text" placeholder="Enter song title" />
               </Form.Group>
-              <div>[insert melody drag and drop parse component here]</div>
-              <ParseMidi
-                collectNotes={this.collectNotes}
-                voiceName={"melody"}/>
-              <div>[insert harmony drag and drop parse component here]</div>
-              <div>[insert bass drag and drop parse component here]</div>
-
+              <ParseMidiContainer />
               <Button variant="primary" type="submit" onClick={event => this.handleOnClick(event)}>
                 Save Song
               </Button>
