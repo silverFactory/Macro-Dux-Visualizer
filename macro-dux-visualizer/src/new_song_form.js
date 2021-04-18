@@ -7,18 +7,16 @@ import InstructionsCard from './instructions_card'
 
 export default class NewSongForm extends Component {
 
-    state = {
-      melody: [],
-      harmony: [],
-      bass: []
-    }
+    constructor(props){
+      super(props)
+      this.state = {
+        title: "",
+        melody: [],
+        harmony: [],
+        bass: []
+      }
 
-    collectNotes = (voice, notes) => {
-      this.setState({
-        [voice]: notes
-      })
     }
-
 
     handleOnClick = (event) => {
       event.preventDefault()
@@ -35,19 +33,34 @@ export default class NewSongForm extends Component {
             <Form>
               <Form.Group controlId="songTitle">
                 <Form.Label>Song Title</Form.Label>
-                <Form.Control type="text" placeholder="Enter song title" />
+                <Form.Control type="text"
+                  placeholder="Enter song title"
+                  value={this.state.title}
+                  onChange={e => this.setState({title: e.target.value})}/>
               </Form.Group>
               <Form.Group controlId="melodyJSON">
                 <Form.Label>Melody JSON</Form.Label>
-                <Form.Control as="textarea" rows={3} placeholder="Paste Melody Here" />
+                <Form.Control as="textarea"
+                  rows={3}
+                  placeholder="Paste Melody Here"
+                  value={this.state.melody}
+                  onChange={e => this.setState({melody: e.target.value})}/>
               </Form.Group>
               <Form.Group controlId="harmonyJSON">
                 <Form.Label>Harmony JSON</Form.Label>
-                <Form.Control as="textarea" rows={3} placeholder="Paste Harmony Here" />
+                <Form.Control as="textarea"
+                  rows={3}
+                  placeholder="Paste Harmony Here"
+                  value={this.state.harmony}
+                  onChange={e => this.setState({harmony: e.target.value})}/>
               </Form.Group>
               <Form.Group controlId="bassJSON">
                 <Form.Label>Bass JSON</Form.Label>
-                <Form.Control as="textarea" rows={3} placeholder="Paste Bass Here" />
+                <Form.Control as="textarea"
+                  rows={3}
+                  placeholder="Paste Bass Here"
+                  value={this.state.bass}
+                  onChange={e => this.setState({bass: e.target.value})}/>
               </Form.Group>
               <Button variant="primary" type="submit" onClick={event => this.handleOnClick(event)}>
                 Save Song
