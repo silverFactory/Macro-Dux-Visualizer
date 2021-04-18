@@ -103,6 +103,13 @@ export default class KeysSynth extends Component{
 
 
   componentDidUpdate = () => {
+    if (this.props.playing === true){
+      this.rafId = requestAnimationFrame(this.tick)
+      this.now = Tone.now()
+      this.props.notes.forEach(note => {
+        this.state.synth.triggerAttackRelease(note.name, note.duration, this.now + note.time)
+      })
+    }
     this.state.filter.frequency.rampTo(this.props.scale(this.props.macro4, 0, 100, 50, 1000), 1)
     this.state.bitCrushGain.gain.rampTo(this.props.scale(this.props.macro4, 0, 100, 0, 1), 1)
     this.state.filterGain.gain.rampTo(this.props.scale(this.props.macro4, 0, 100, 1, 0), 1)

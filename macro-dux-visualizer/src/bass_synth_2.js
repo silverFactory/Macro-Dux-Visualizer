@@ -101,20 +101,29 @@ export default class BassSynth2 extends Component{
     }
   }
 
-  //schedule time adjusted becuase test midi was bounced from middle of track
-  scheduleNotes = () => {
-    this.setState({
-      playing: true
-    })
-    this.rafId = requestAnimationFrame(this.tick)
-    this.now = Tone.now()
-    this.props.notes.forEach(note => {
-      this.state.synth.triggerAttackRelease(note.name, note.duration, this.now + (note.time - 80))
-    })
-  }
+
+  // scheduleNotes = () => {
+  //   this.setState({
+  //     playing: true
+  //   })
+  //   this.rafId = requestAnimationFrame(this.tick)
+  //   this.now = Tone.now()
+  //   this.props.notes.forEach(note => {
+  //     this.state.synth.triggerAttackRelease(note.name, note.duration, this.now + note.time)
+  //   })
+  // }
 
 
   componentDidUpdate = () => {
+    console.log('update')
+    console.log(this.props.playing)
+    if (this.props.playing === true){
+      this.rafId = requestAnimationFrame(this.tick)
+      this.now = Tone.now()
+      this.props.notes.forEach(note => {
+        this.state.synth.triggerAttackRelease(note.name, note.duration, this.now + note.time)
+      })
+    }
     this.state.filter.frequency.rampTo(this.props.scale(this.props.macro7, 0, 100, 50, 1000), 1)
     this.state.bitCrushGain.gain.rampTo(this.props.scale(this.props.macro7, 0, 100, 0, 1), 1)
     this.state.filterGain.gain.rampTo(this.props.scale(this.props.macro7, 0, 100, 1, 0), 1)
