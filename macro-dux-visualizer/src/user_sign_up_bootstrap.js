@@ -15,7 +15,7 @@ class UserSignUpForm extends Component {
   handleOnClick = (event) => {
     event.preventDefault()
     if (this.state.password === this.state.passwordConfirmation){
-      this.props.logIn(this.state)
+      this.props.signUp(this.state)
     } else {
       this.setState({
         showModal: true
