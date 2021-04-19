@@ -14,15 +14,11 @@ export default class KeysSynth extends Component{
     pingPong: new Tone.PingPongDelay("16n", 0.5),
     reverb: new Tone.Reverb(4),
     modulationEffectsGain: new Tone.Gain(0),
-    shift1: new Tone.FrequencyShifter(7),
-    shift2: new Tone.FrequencyShifter(5),
     phaser: new Tone.Phaser({
                   	frequency: 1,
                   	octaves: 1,
                   	baseFrequency: 500
                   }),
-    bitCrushGain: new Tone.Gain(0),
-    bitCrush: new Tone.BitCrusher(6),
     synth: new Tone.PolySynth(Tone.Synth, {
       envelope: {
         attack: 0.02,
@@ -46,25 +42,20 @@ export default class KeysSynth extends Component{
     this.state.filterGain.connect(this.state.finalGain)
     this.state.filter.connect(this.state.filterGain)
 
-    //this.state.spaceEffectsGain.connect(this.state.finalGain)
+    this.state.spaceEffectsGain.connect(this.state.finalGain)
     this.state.pingPong.connect(this.state.spaceEffectsGain)
     this.state.reverb.connect(this.state.spaceEffectsGain)
 
-    //this.state.modulationEffectsGain.connect(this.state.finalGain)
-    this.state.shift1.connect(this.state.modulationEffectsGain)
-    this.state.shift2.connect(this.state.modulationEffectsGain)
+    this.state.modulationEffectsGain.connect(this.state.finalGain)
     this.state.phaser.connect(this.state.modulationEffectsGain)
 
-    // this.state.bitCrushGain.connect(this.state.finalGain)
-    // this.state.bitCrush.connect(this.state.bitCrushGain)
 
     this.state.synth.connect(this.state.bitCrush)
                     .connect(this.state.filter)
                     .connect(this.state.pingPong)
                     .connect(this.state.reverb)
                     .connect(this.state.phaser)
-                    .connect(this.state.shift1)
-                    .connect(this.state.shift2)
+
 
   }
 
