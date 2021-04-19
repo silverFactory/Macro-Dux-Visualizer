@@ -16,6 +16,11 @@ class UserSignUpForm extends Component {
     event.preventDefault()
     if (this.state.password === this.state.passwordConfirmation){
       this.props.signUp(this.state)
+      this.setState({
+        username: "",
+        password: "",
+        passwordConfirmation: "",
+      })
     } else {
       this.setState({
         showModal: true

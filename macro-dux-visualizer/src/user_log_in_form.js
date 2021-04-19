@@ -14,6 +14,11 @@ class UserLogInForm extends Component {
     event.preventDefault()
     //console.log(this.state)
     this.props.logIn(this.state)
+    this.setState({
+      username: "",
+      password: "",
+      passwordConfirmation: "",
+    })
   }
 
   render(){
