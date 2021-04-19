@@ -6,8 +6,9 @@ export default class KeysSynth extends Component{
   state = {
     playing: false,
     started: false,
-    finalGain: new Tone.Gain(1),
-    filterGain: new Tone.Gain(1),
+    finalGain: new Tone.Gain(0.5),
+    limiter: new Tone.Limiter(-10),
+    filterGain: new Tone.Gain(0.8),
     filter: new Tone.Filter(50, "lowpass"),
     spaceEffectsGain: new Tone.Gain(0),
     pingPong: new Tone.PingPongDelay("16n", 0.5),
@@ -40,18 +41,23 @@ export default class KeysSynth extends Component{
     this.timeDataArray = new Uint8Array(this.analyserTime.frequencyBinCount)
     this.state.finalGain.connect(this.analyserTime)
 
-    this.state.finalGain.toDestination()
+    this.state.finalGain.connect(this.state.limiter)
+    this.state.limiter.toDestination()
     this.state.filterGain.connect(this.state.finalGain)
     this.state.filter.connect(this.state.filterGain)
-    this.state.spaceEffectsGain.connect(this.state.finalGain)
+
+    //this.state.spaceEffectsGain.connect(this.state.finalGain)
     this.state.pingPong.connect(this.state.spaceEffectsGain)
     this.state.reverb.connect(this.state.spaceEffectsGain)
-    this.state.modulationEffectsGain.connect(this.state.finalGain)
+
+    //this.state.modulationEffectsGain.connect(this.state.finalGain)
     this.state.shift1.connect(this.state.modulationEffectsGain)
     this.state.shift2.connect(this.state.modulationEffectsGain)
     this.state.phaser.connect(this.state.modulationEffectsGain)
-    this.state.bitCrushGain.connect(this.state.finalGain)
-    this.state.bitCrush.connect(this.state.bitCrushGain)
+
+    // this.state.bitCrushGain.connect(this.state.finalGain)
+    // this.state.bitCrush.connect(this.state.bitCrushGain)
+
     this.state.synth.connect(this.state.bitCrush)
                     .connect(this.state.filter)
                     .connect(this.state.pingPong)
@@ -112,9 +118,9 @@ export default class KeysSynth extends Component{
       })
     }
     this.state.filter.frequency.rampTo(this.props.scale(this.props.macro4, 0, 100, 50, 1000), 1)
-    this.state.bitCrushGain.gain.rampTo(this.props.scale(this.props.macro4, 0, 100, 0, 1), 1)
-    this.state.filterGain.gain.rampTo(this.props.scale(this.props.macro4, 0, 100, 1, 0), 1)
-    this.state.spaceEffectsGain.gain.rampTo(this.props.scale(this.props.macro5, 0, 100, 0, 1), 1)
+    this.state.bitCrushGain.gain.rampTo(this.props.scale(this.props.macro4, 0, 100, 0, 0.5), 1)
+    this.state.filterGain.gain.rampTo(this.props.scale(this.props.macro4, 0, 100, 0.8, 0), 1)
+    this.state.spaceEffectsGain.gain.rampTo(this.props.scale(this.props.macro5, 0, 100, 0, 0.5), 1)
     this.state.modulationEffectsGain.gain.rampTo(this.props.scale(this.props.macro6, 0, 100, 0, 0.5), 1)
   }
 

@@ -6,7 +6,8 @@ export default class BassSynth2 extends Component{
   state = {
     playing: false,
     started: false,
-    finalGain: new Tone.Gain(1),
+    finalGain: new Tone.Gain(0.5),
+    limiter: new Tone.Limiter(-10),
     filterGain: new Tone.Gain(1),
     filter: new Tone.Filter(50, "lowpass"),
     spaceEffectsGain: new Tone.Gain(0),
@@ -42,7 +43,9 @@ export default class BassSynth2 extends Component{
     this.timeDataArray = new Uint8Array(this.analyserTime.frequencyBinCount)
     this.state.finalGain.connect(this.analyserTime)
 
-    this.state.finalGain.toDestination()
+    this.state.finalGain.connect(this.state.limiter)
+    this.state.limiter.toDestination()
+
     this.state.filterGain.connect(this.state.finalGain)
     this.state.filter.connect(this.state.filterGain)
     this.state.spaceEffectsGain.connect(this.state.finalGain)
