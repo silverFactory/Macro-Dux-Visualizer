@@ -1,33 +1,45 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import {logIn} from './actions/logIn'
+import { Form, Button, Card} from 'react-bootstrap'
 
-export default class UserLogInForm extends Component {
+class UserLogInForm extends Component {
 
   state = {
     username: "",
     password: ""
   }
 
-  onChange = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
-
-  onSubmit = (event) => {
+  handleOnClick = (event) => {
     event.preventDefault()
-    console.log(this.state)
+    //console.log(this.state)
+    this.props.logIn(this.state)
   }
 
   render(){
-    return (
-      <form onSubmit={event => this.handleOnSubmit(event)}>
-        <input type="text" name="username"
-          value={this.state.username}
-          onChange={event => this.handleOnChange(event)}/>
-        <input type="password" name="password"
-          value={this.state.password}
-          onChange={event => this.handleOnChange(event)}/>
-      </form>
+    return(
+      <Form>
+        <Form.Group controlId="username">
+          <Form.Label>Username</Form.Label>
+          <Form.Control value={this.state.username}
+            onChange={e => this.setState({username: e.target.value})}/>
+        </Form.Group>
+        <Form.Group controlId="password">
+          <Form.Label>Password</Form.Label>
+          <Form.Control value={this.state.password}
+            onChange={e => this.setState({password: e.target.value})}/>
+        </Form.Group>
+        <Button variant="primary" type="submit" onClick={event => this.handleOnClick(event)}>
+          Log In
+        </Button>
+      </Form>
     )
   }
 }
+const mapDispatchToProps = dispatch => {
+  return {
+    logIn: (user) => dispatch(logIn(user))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(UserLogInForm)
