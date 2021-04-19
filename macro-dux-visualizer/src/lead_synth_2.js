@@ -62,7 +62,7 @@ export default class LeadSynth2 extends Component{
     //    audioDataTime: this.timeDataArray
     //  })
     this.props.getWaveformArray("leadSynthWaveform", this.timeDataArray)
-    if (this.state.playing === true){
+    if (this.props.playing === true){
       this.rafId = requestAnimationFrame(this.tick)
     }
   }
@@ -214,13 +214,13 @@ export default class LeadSynth2 extends Component{
       this.triggerNote("D3", "8n", this.now + 1)
       this.triggerNote("D#3", "8n", this.now + 1.5)
       this.triggerNote("E3", "8n", this.now + 2)
-      // this.triggerNote("F3", "8n", this.now + 2.5)
-      // this.triggerNote("F#3", "8n", this.now + 3)
-      // this.triggerNote("G3", "8n", this.now + 3.5)
-      // this.triggerNote("G#3", "8n", this.now + 4)
-      // this.triggerNote("A3", "8n", this.now + 4.5)
-      // this.triggerNote("A#3", "8n", this.now + 5)
-      // this.triggerNote("B3", "8n", this.now + 5.5)
+      this.triggerNote("F3", "8n", this.now + 2.5)
+      this.triggerNote("F#3", "8n", this.now + 3)
+      this.triggerNote("G3", "8n", this.now + 3.5)
+      this.triggerNote("G#3", "8n", this.now + 4)
+      this.triggerNote("A3", "8n", this.now + 4.5)
+      this.triggerNote("A#3", "8n", this.now + 5)
+      this.triggerNote("B3", "8n", this.now + 5.5)
 
     } else {
       this.setState({

@@ -31,13 +31,17 @@ export default class BassSynth2 extends Component{
         sustain: 0.03,
         release: 1
       }
-    }),
-    analyserTime: Tone.getContext().rawContext.createAnalyser(),
-    timeDataArray: new Uint8Array(0)
+    })
+    // analyserTime: Tone.getContext().rawContext.createAnalyser(),
+    // timeDataArray: new Uint8Array(0)
 
   }
 
   componentDidMount = () => {
+    this.analyserTime = Tone.getContext().rawContext.createAnalyser()
+    this.timeDataArray = new Uint8Array(this.analyserTime.frequencyBinCount)
+    this.state.finalGain.connect(this.analyserTime)
+
     this.state.finalGain.toDestination()
     this.state.filterGain.connect(this.state.finalGain)
     this.state.filter.connect(this.state.filterGain)
@@ -59,16 +63,16 @@ export default class BassSynth2 extends Component{
     .connect(this.state.shift2)
     //console.log(Tone.getContext().rawContext)
     //use WebAudioAPI analyser node to fill data array
-    this.setState({
-      timeDataArray: new Uint8Array(this.state.analyserTime.frequencyBinCount)
-    })
-    this.state.finalGain.connect(this.state.analyserTime)
+    // this.setState({
+    //   timeDataArray: new Uint8Array(this.state.analyserTime.frequencyBinCount)
+    // })
+    //this.state.finalGain.connect(this.state.analyserTime)
   }
 
   tick = () => {
-    this.state.analyserTime.getByteTimeDomainData(this.state.timeDataArray)
-    this.props.getWaveformArray("bassSynthWaveform", this.state.timeDataArray)
-    if (this.state.playing === true){
+    this.analyserTime.getByteTimeDomainData(this.timeDataArray)
+    this.props.getWaveformArray("bassSynthWaveform", this.timeDataArray)
+    if (this.props.playing === true){
       this.rafId = requestAnimationFrame(this.tick)
     }
   }

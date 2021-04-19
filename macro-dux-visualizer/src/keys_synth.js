@@ -63,13 +63,10 @@ export default class KeysSynth extends Component{
   }
 
 
-
-
-
   tick = () => {
     this.analyserTime.getByteTimeDomainData(this.timeDataArray)
     this.props.getWaveformArray("keysSynthWaveform", this.timeDataArray)
-    if (this.state.playing === true){
+    if (this.props.playing === true){
       this.rafId = requestAnimationFrame(this.tick)
     }
   }
