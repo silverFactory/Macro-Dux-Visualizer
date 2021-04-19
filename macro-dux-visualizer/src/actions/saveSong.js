@@ -9,7 +9,7 @@ export function saveSong(song) {
         },
         body: JSON.stringify(song)
       }).then(response => response.json())
-      .then(resp => console.log(resp))
-      // .then(newSong => dispatch({ type: 'ADD_SONG', newSong }))
+      //.then(resp => console.log(resp))
+      .then(newSong => dispatch({ type: 'ADD_SONG', newSong }))
   };
 }

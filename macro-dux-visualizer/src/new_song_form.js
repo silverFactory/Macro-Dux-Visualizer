@@ -17,29 +17,14 @@ class NewSongForm extends Component {
         harmony: "",
         bass: ""
       }
-
     }
 
     handleOnClick = (event) => {
       event.preventDefault()
-      this.props.saveSong(this.state)
-      //fetch send state to db
-      // this.configObj = {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     "Accept": "application/json"
-      //   },
-      //   body: this.state
-      // }
-      // fetch("http://localhost:3000/songs", this.configObj)
-      // .then(resp=>resp.json())
-      // .then(function(object){
-      //   console.log(object)
-      //   //will need to add thunk so that the resp, the song obj returned from RAILS can be added to store
-      // })
-      // console.log(JSON.parse(this.state.bass).tracks[0].notes)
-      //console.log(this.fullSong)
+      this.props.saveSong({
+        fullSong: this.state,
+        username: this.props.currentUser
+      })
     }
 
     render(){
@@ -90,10 +75,16 @@ class NewSongForm extends Component {
     }
 }
 
+const mapStateToProps = state => {
+  return {
+    currentUser: state.currentUser
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     saveSong: (song) => dispatch(saveSong(song))
   }
 }
 
-export default connect(null, mapDispatchToProps)(NewSongForm)
+export default connect(mapStateToProps, mapDispatchToProps)(NewSongForm)
