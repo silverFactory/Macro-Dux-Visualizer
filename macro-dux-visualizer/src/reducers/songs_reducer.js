@@ -10,14 +10,12 @@
          songs: [...state.songs],
          requesting: true
        }
-       break
      case "ADD_SONG":
       return {
         ...state,
         songs: [...state.songs, action.newSong],
         requesting: false
       }
-      break
      default:
        return state
    }
