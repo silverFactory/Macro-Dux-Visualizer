@@ -9,7 +9,7 @@ export function signUp(user) {
         },
         body: JSON.stringify(user)
       }).then(response => response.json())
-      .then(resp => console.log(resp))
-      // .then(newSong => dispatch({ type: 'ADD_SONG', newSong }))
+      //.then(resp => console.log(resp))
+       .then(newUser => dispatch({ type: 'LOG_IN', username: newUser.username }))
   };
 }
