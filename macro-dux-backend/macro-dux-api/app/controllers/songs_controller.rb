@@ -11,6 +11,22 @@ class SongsController < ApplicationController
         time: note[:time]
       )
     end
+    params[:harmony].each do |note|
+      @song.notes.build(
+        name: note[:name],
+        voice: note[:voice],
+        duration: note[:duration],
+        time: note[:time]
+      )
+    end
+    params[:bass].each do |note|
+      @song.notes.build(
+        name: note[:name],
+        voice: note[:voice],
+        duration: note[:duration],
+        time: note[:time]
+      )
+    end
     @song.save
     render json: {
       title: @song.title,
