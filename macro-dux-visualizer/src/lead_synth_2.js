@@ -13,8 +13,6 @@ export default class LeadSynth2 extends Component{
     pingPong: new Tone.PingPongDelay("16n", 0.5),
     reverb: new Tone.Reverb(4),
     modulationEffectsGain: new Tone.Gain(0),
-    shift1: new Tone.FrequencyShifter(7),
-    shift2: new Tone.FrequencyShifter(5),
     phaser: new Tone.Phaser({
                   	frequency: 20,
                   	octaves: 5,
@@ -46,8 +44,7 @@ export default class LeadSynth2 extends Component{
     this.state.pingPong.connect(this.state.spaceEffectsGain)
     this.state.reverb.connect(this.state.spaceEffectsGain)
     this.state.modulationEffectsGain.connect(this.state.filter)
-    this.state.shift1.connect(this.state.modulationEffectsGain)
-    this.state.shift2.connect(this.state.modulationEffectsGain)
+
     this.state.phaser.connect(this.state.modulationEffectsGain)
 
     this.state.envelope.connect(this.state.pingPong).connect(this.state.reverb).connect(this.state.phaser).connect(this.state.filter)

@@ -50,8 +50,7 @@ export default class KeysSynth extends Component{
     this.state.phaser.connect(this.state.modulationEffectsGain)
 
 
-    this.state.synth.connect(this.state.bitCrush)
-                    .connect(this.state.filter)
+    this.state.synth.connect(this.state.filter)
                     .connect(this.state.pingPong)
                     .connect(this.state.reverb)
                     .connect(this.state.phaser)
@@ -109,7 +108,6 @@ export default class KeysSynth extends Component{
       })
     }
     this.state.filter.frequency.rampTo(this.props.scale(this.props.macro4, 0, 100, 50, 1000), 1)
-    this.state.bitCrushGain.gain.rampTo(this.props.scale(this.props.macro4, 0, 100, 0, 0.5), 1)
     this.state.filterGain.gain.rampTo(this.props.scale(this.props.macro4, 0, 100, 0.8, 0), 1)
     this.state.spaceEffectsGain.gain.rampTo(this.props.scale(this.props.macro5, 0, 100, 0, 0.5), 1)
     this.state.modulationEffectsGain.gain.rampTo(this.props.scale(this.props.macro6, 0, 100, 0, 0.5), 1)
