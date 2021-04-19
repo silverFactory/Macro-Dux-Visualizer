@@ -211,18 +211,18 @@ export default class LeadSynth extends Component{
       })
       this.rafId = requestAnimationFrame(this.tick)
       this.now = Tone.now()
-      this.triggerNote("c3", "8n", this.now)
-      this.triggerNote("cSharp3", "8n", this.now + 0.5)
-      this.triggerNote("d3", "8n", this.now + 1)
-      this.triggerNote("dSharp3", "8n", this.now + 1.5)
-      this.triggerNote("e3", "8n", this.now + 2)
-      this.triggerNote("f3", "8n", this.now + 2.5)
-      this.triggerNote("fSharp3", "8n", this.now + 3)
-      this.triggerNote("g3", "8n", this.now + 3.5)
-      this.triggerNote("gSharp3", "8n", this.now + 4)
-      this.triggerNote("a3", "8n", this.now + 4.5)
-      this.triggerNote("aSharp3", "8n", this.now + 5)
-      this.triggerNote("b3", "8n", this.now + 5.5)
+      this.triggerNote("C3", "8n", this.now)
+      this.triggerNote("CSharp3", "8n", this.now + 0.5)
+      this.triggerNote("D3", "8n", this.now + 1)
+      this.triggerNote("DSharp3", "8n", this.now + 1.5)
+      this.triggerNote("E3", "8n", this.now + 2)
+      this.triggerNote("F3", "8n", this.now + 2.5)
+      this.triggerNote("FSharp3", "8n", this.now + 3)
+      this.triggerNote("G3", "8n", this.now + 3.5)
+      this.triggerNote("GSharp3", "8n", this.now + 4)
+      this.triggerNote("A3", "8n", this.now + 4.5)
+      this.triggerNote("ASharp3", "8n", this.now + 5)
+      this.triggerNote("B3", "8n", this.now + 5.5)
       //Tone.Transport.bpm.value = 120
       // this.adsr.triggerAttackRelease("8n", this.now)
       // this.osc.frequency.rampTo("C4", 0.0001, this.now + 0.99)
@@ -237,7 +237,8 @@ export default class LeadSynth extends Component{
 
 
   componentDidUpdate = () => {
-    if (this.props.playing === true && this.state.started === false){
+    if (this.props.playing === true && this.state.
+      started === false){
       this.setState({
         started: true
       })

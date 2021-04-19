@@ -1,7 +1,7 @@
 import React, { Component} from 'react'
 import BassSynth from './bass_synth_2'
 import KeysSynth from './keys_synth'
-import LeadSynth from './lead_synth'
+import LeadSynth from './lead_synth_2'
 
 export default class SynthsContainer extends Component {
 

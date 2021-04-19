@@ -116,9 +116,9 @@ export default class BassSynth2 extends Component{
 
 
   componentDidUpdate = () => {
-    console.log('update')
-    console.log(this.props.playing)
-    console.log(this.props.started)
+    // console.log('update')
+    // console.log(this.props.playing)
+    // console.log(this.props.started)
     if (this.props.playing === true && this.state.started === false){
       this.setState({
         started: true
@@ -126,7 +126,7 @@ export default class BassSynth2 extends Component{
       this.rafId = requestAnimationFrame(this.tick)
       this.now = Tone.now()
       this.props.notes.forEach(note => {
-        console.log('triggering')
+        //console.log('triggering')
         this.state.synth.triggerAttackRelease(note.name, note.duration, this.now + note.time)
       })
     }
