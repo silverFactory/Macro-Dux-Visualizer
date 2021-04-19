@@ -9,9 +9,9 @@ export default function LogInSignUpContainer(){
         <div class="col-md">
           <UserLogIn />
         </div>
-        {/*}<div class="col-md">
+        <div class="col-md">
           <UserSignUp />
-        </div>*/}
+        </div>
       </div>
     </div>
   )
