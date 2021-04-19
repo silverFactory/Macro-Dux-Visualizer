@@ -18,7 +18,7 @@ class Songs extends Component{
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.currentUser
+    currentUser: state.users.currentUser
   }
 }
 

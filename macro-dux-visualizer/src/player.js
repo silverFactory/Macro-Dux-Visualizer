@@ -83,7 +83,10 @@ class Player extends Component {
         playing: false
       })
     }
+  }
 
+  stateClick = () => {
+    console.log(this.props.macros)
   }
 
   render(){
@@ -91,6 +94,7 @@ class Player extends Component {
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg">
+            <button onClick={this.stateClick}>Print State</button>
             <SynthsContainer
               macro1={this.props.macros.macro1}
               macro2={this.props.macros.macro2}
