@@ -1,4 +1,4 @@
-export default function macroReducer(
+export default function macrosReducer(
   state = {
     macro1: 0,
     macro2: 0,

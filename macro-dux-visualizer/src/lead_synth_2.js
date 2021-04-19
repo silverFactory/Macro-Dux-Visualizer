@@ -7,6 +7,7 @@ export default class LeadSynth2 extends Component{
     playing: false,
     started: false,
     finalGain: new Tone.Gain(0.5),
+    limiter: new Tone.Limiter(-10),
     filterGain: new Tone.Gain(1),
     filter: new Tone.Filter(50, "lowpass"),
     spaceEffectsGain: new Tone.Gain(0),
@@ -37,7 +38,10 @@ export default class LeadSynth2 extends Component{
     this.timeDataArray = new Uint8Array(this.analyserTime.frequencyBinCount)
     this.state.finalGain.connect(this.analyserTime)
 
-    this.state.finalGain.toDestination()
+    this.state.finalGain.connect(this.state.limiter)
+    this.state.limiter.toDestination()
+
+
     this.state.filterGain.connect(this.state.finalGain)
     this.state.filter.connect(this.state.filterGain)
     this.state.spaceEffectsGain.connect(this.state.filter)
@@ -238,8 +242,8 @@ export default class LeadSynth2 extends Component{
      this.state.filter.frequency.rampTo(this.props.scale(this.props.macro1, 0, 100, 50, 1000), 1)
     // this.bitCrushGain.gain.rampTo(this.props.scale(this.props.macro1, 0, 100, 0, 1), 1)
     // this.filterGain.gain.rampTo(this.props.scale(this.props.macro1, 0, 100, 1, 0), 1)
-     this.state.spaceEffectsGain.gain.rampTo(this.props.scale(this.props.macro2, 0, 100, 0, 1), 1)
-     this.state.modulationEffectsGain.gain.rampTo(this.props.scale(this.props.macro3, 0, 100, 0, 1), 1)
+     this.state.spaceEffectsGain.gain.rampTo(this.props.scale(this.props.macro2, 0, 100, 0, 0.5), 1)
+     this.state.modulationEffectsGain.gain.rampTo(this.props.scale(this.props.macro3, 0, 100, 0, 0.5), 1)
   }
 
   render(){

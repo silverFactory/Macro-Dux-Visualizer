@@ -39,6 +39,7 @@ export default class KeysSynth extends Component{
 
     this.state.finalGain.connect(this.state.limiter)
     this.state.limiter.toDestination()
+
     this.state.filterGain.connect(this.state.finalGain)
     this.state.filter.connect(this.state.filterGain)
 

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import Remember from './Remember.mp3'
+import Drums from './Macro_dux_drums.mp3'
 import P5Visualizer from './p5_visualizer'
 import MacroCardContainer from './macro_card_container'
 import SynthsContainer from './synths_container'
@@ -23,6 +24,10 @@ class Player extends Component {
     this.audioElement = new Audio(Remember)
     this.track = this.audioContext.createMediaElementSource(this.audioElement)
     this.track.connect(this.audioContext.destination)
+
+    this.demoDrums = new Audio(Drums)
+    this.drumTrack = this.audioContext.createMediaElementSource(this.demoDrums)
+    this.drumTrack.connect(this.audioContext.destination)
 
     this.bassTrackGain = new GainNode(this.audioContext)
 
@@ -64,12 +69,16 @@ class Player extends Component {
     }
     if (this.state.playing === false){
       this.audioElement.play()
-      this.rafId = requestAnimationFrame(this.tick)
+      //this.rafId = requestAnimationFrame(this.tick)
+
       this.setState({
         playing: true
       })
+      //adjust start time to line up with the synths
+      //setTimeout(this.demoDrums.play(), 600)
     } else {
       this.audioElement.pause()
+      //this.demoDrums.pause()
       this.setState({
         playing: false
       })
@@ -92,6 +101,7 @@ class Player extends Component {
               macro7={this.props.macros.macro7}
               macro8={this.props.macros.macro8}
               macro9={this.props.macros.macro9}
+              playing={this.state.playing}
               getWaveformArray={this.getWaveformArray}
               scale={scale}/>
             <button onClick={this.handleOnClick}>Play/Pause</button>

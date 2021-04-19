@@ -138,10 +138,10 @@ export default class BassSynth2 extends Component{
       })
     }
     this.state.filter.frequency.rampTo(this.props.scale(this.props.macro7, 0, 100, 50, 1000), 1)
-    this.state.bitCrushGain.gain.rampTo(this.props.scale(this.props.macro7, 0, 100, 0, 1), 1)
+    this.state.bitCrushGain.gain.rampTo(this.props.scale(this.props.macro7, 0, 100, 0, 0.5), 1)
     this.state.filterGain.gain.rampTo(this.props.scale(this.props.macro7, 0, 100, 1, 0), 1)
-    this.state.spaceEffectsGain.gain.rampTo(this.props.scale(this.props.macro8, 0, 100, 0, 1), 1)
-    this.state.modulationEffectsGain.gain.rampTo(this.props.scale(this.props.macro9, 0, 100, 0, 1), 1)
+    this.state.spaceEffectsGain.gain.rampTo(this.props.scale(this.props.macro8, 0, 100, 0, 0.5), 1)
+    this.state.modulationEffectsGain.gain.rampTo(this.props.scale(this.props.macro9, 0, 100, 0, 0.5), 1)
   }
 
   render(){
