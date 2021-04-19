@@ -11,13 +11,15 @@ import App from './App';
 // import bassReducer from './reducers/bass_reducer'
 import macrosReducer from './reducers/macros_reducer'
 import songsReducer from './reducers/songs_reducer'
+import usersReducer from './reducers/users_reducer'
 
 const rootReducer = combineReducers({
   macros: macrosReducer,
-  songs: songsReducer
+  songs: songsReducer,
+  users: usersReducer
 })
 
-const store = createStore(rootReducer, applyMiddleware(thunk)) 
+const store = createStore(rootReducer, applyMiddleware(thunk))
 // const store = createStore(macroReducer,
 //   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
  //const store = createStore(macroReducer, applyMiddleware(thunk))
