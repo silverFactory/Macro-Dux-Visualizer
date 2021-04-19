@@ -21,8 +21,14 @@ class NewSongForm extends Component {
 
     handleOnClick = (event) => {
       event.preventDefault()
+      //console.log(JSON.parse(this.state.melody).tracks[0].notes)
       this.props.saveSong({
-        fullSong: this.state,
+        fullSong: {
+          title: this.state.title,
+          melody: JSON.parse(this.state.melody).tracks[0].notes,
+          harmony: JSON.parse(this.state.harmony).tracks[0].notes,
+          bass: JSON.parse(this.state.bass).tracks[0].notes,
+        },
         username: this.props.currentUser
       })
     }
