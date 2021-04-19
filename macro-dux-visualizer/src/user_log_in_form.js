@@ -29,7 +29,9 @@ class UserLogInForm extends Component {
               </Form.Group>
               <Form.Group controlId="password">
                 <Form.Label>Password</Form.Label>
-                <Form.Control value={this.state.password}
+                <Form.Control
+                  type="password"
+                  value={this.state.password}
                   onChange={e => this.setState({password: e.target.value})}/>
               </Form.Group>
               <Button variant="primary" type="submit" onClick={event => this.handleOnClick(event)}>

@@ -39,7 +39,7 @@ class UserSignUpForm extends Component {
         </Modal>
         <Card style={{ height: '355px'}}>
           <Card.Body>
-            <Card.Title>User Log In</Card.Title>
+            <Card.Title>User Sign Up</Card.Title>
               <Form>
                 <Form.Group controlId="username">
                   <Form.Label>Username</Form.Label>
@@ -48,12 +48,16 @@ class UserSignUpForm extends Component {
                 </Form.Group>
                 <Form.Group controlId="password">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control value={this.state.password}
+                  <Form.Control
+                    type="password"
+                    value={this.state.password}
                     onChange={e => this.setState({password: e.target.value})}/>
                 </Form.Group>
                 <Form.Group controlId="passwordConfirmation">
                   <Form.Label>Password Confirmation</Form.Label>
-                  <Form.Control value={this.state.passwordConfirmation}
+                  <Form.Control
+                    type="password"
+                    value={this.state.passwordConfirmation}
                     onChange={e => this.setState({passwordConfirmation: e.target.value})}/>
                 </Form.Group>
                 <Button variant="primary" type="submit" onClick={event => this.handleOnClick(event)}>
