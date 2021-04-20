@@ -12,6 +12,7 @@ import Songs from './songs'
 import NavBar from './navbar'
 
 export default function App() {
+
   return (
     <Router>
         <NavBar />

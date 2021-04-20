@@ -6,18 +6,6 @@ import './navbar.css'
 
 class NavBar extends Component{
 
-  constructor(props){
-    super(props)
-    this.songsRef = React.createRef()
-  }
-
-  // componentDidUpdate = () => {
-  //   if (this.props.currentUser !== null){
-  //     this.songsRef.current.className = ""
-  //     //console.log(this.songsRef)
-  //   }
-  // }
-
   render(){
 
     let lastLink
@@ -42,12 +30,6 @@ class NavBar extends Component{
             <Nav.Link>Demo</Nav.Link>
           </LinkContainer>
           {lastLink}
-          {/*}<LinkContainer to="/user">
-            <Nav.Link>User</Nav.Link>
-          </LinkContainer>
-            <LinkContainer to="/songs">
-              <Nav.Link className="d-none" ref={this.songsRef}>Songs</Nav.Link>
-            </LinkContainer>*/}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

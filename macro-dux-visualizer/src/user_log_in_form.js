@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import {logIn} from './actions/logIn'
 import { Form, Button, Card} from 'react-bootstrap'
+
+
 
 class UserLogInForm extends Component {
 
@@ -19,10 +22,13 @@ class UserLogInForm extends Component {
       password: "",
       passwordConfirmation: "",
     })
+    //history.push("/")
   }
 
   render(){
-    return(
+    return this.props.currentUser ? (
+      <Redirect to="/songs"/>
+    ) : (
       <Card style={{ height: '355px'}}>
         <Card.Body>
           <Card.Title>User Log In</Card.Title>
@@ -48,10 +54,17 @@ class UserLogInForm extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  return{
+    currentUser: state.users.currentUser
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
     logIn: (user) => dispatch(logIn(user))
   }
 }
 
-export default connect(null, mapDispatchToProps)(UserLogInForm)
+export default connect(mapStateToProps, mapDispatchToProps)(UserLogInForm)
