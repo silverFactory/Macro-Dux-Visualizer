@@ -1,33 +1,64 @@
-import React from 'react'
-import {Navbar, Nav} from 'react-bootstrap'
-import {LinkContainer} from 'react-router-bootstrap'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Navbar, Nav } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 import './navbar.css'
 
-export default function NavBar(){
+class NavBar extends Component{
 
-  return (
-    <Navbar bg="light" expand="lg">
-      <LinkContainer to="/">
-        <Navbar.Brand>Macro-Dux</Navbar.Brand>
-      </LinkContainer>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="mr-auto">
+  constructor(props){
+    super(props)
+    this.songsRef = React.createRef()
+  }
+
+  // componentDidUpdate = () => {
+  //   if (this.props.currentUser !== null){
+  //     this.songsRef.current.className = ""
+  //     //console.log(this.songsRef)
+  //   }
+  // }
+
+  render(){
+
+    let lastLink
+    if (this.props.currentUser !== null){
+      lastLink = <LinkContainer to="/songs"><Nav.Link >Songs</Nav.Link></LinkContainer>
+    } else {
+      lastLink = <LinkContainer to="/user"><Nav.Link>User</Nav.Link></LinkContainer>
+    }
+
+    return (
+      <Navbar bg="light" expand="lg">
         <LinkContainer to="/">
-          <Nav.Link>Home</Nav.Link>
+          <Navbar.Brand>Macro-Dux</Navbar.Brand>
         </LinkContainer>
-        <LinkContainer to="/demo">
-          <Nav.Link>Demo</Nav.Link>
-        </LinkContainer>
-        <LinkContainer to="/user">
-          <Nav.Link>User</Nav.Link>
-        </LinkContainer>
-        <LinkContainer to="/songs">
-          <Nav.Link>Songs</Nav.Link>
-        </LinkContainer>
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
-
-  )
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+          <LinkContainer to="/">
+            <Nav.Link>Home</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/demo">
+            <Nav.Link>Demo</Nav.Link>
+          </LinkContainer>
+          {lastLink}
+          {/*}<LinkContainer to="/user">
+            <Nav.Link>User</Nav.Link>
+          </LinkContainer>
+            <LinkContainer to="/songs">
+              <Nav.Link className="d-none" ref={this.songsRef}>Songs</Nav.Link>
+            </LinkContainer>*/}
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+    )
+  }
 }
+
+const mapStateToProps = state => {
+  return {
+    currentUser: state.users.currentUser
+  }
+}
+
+export default connect(mapStateToProps)(NavBar)
