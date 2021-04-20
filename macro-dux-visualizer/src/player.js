@@ -129,7 +129,7 @@ class Player extends Component {
 
 const mapStateToProps = state => {
   return {
-    macros: state
+    macros: state.macros
   }
 }
 

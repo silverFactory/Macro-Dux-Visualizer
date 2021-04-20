@@ -32,19 +32,19 @@ class MacroCardContainer extends Component {
 const mapStateToProps = state => {
   return {
     melody: {
-      macro1: state.macro1,
-      macro2: state.macro2,
-      macro3: state.macro3
+      macro1: state.macros.macro1,
+      macro2: state.macros.macro2,
+      macro3: state.macros.macro3
     },
     harmony: {
-      macro4: state.macro4,
-      macro5: state.macro5,
-      macro6: state.macro6
+      macro4: state.macros.macro4,
+      macro5: state.macros.macro5,
+      macro6: state.macros.macro6
     },
     bass: {
-      macro7: state.macro7,
-      macro8: state.macro8,
-      macro9: state.macro9
+      macro7: state.macros.macro7,
+      macro8: state.macros.macro8,
+      macro9: state.macros.macro9
     }
   }
 }
