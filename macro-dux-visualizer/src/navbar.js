@@ -27,7 +27,7 @@ class NavBar extends Component{
             <Nav.Link>Home</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/demo">
-            <Nav.Link>Demo</Nav.Link>
+            <Nav.Link>Demo/Player</Nav.Link>
           </LinkContainer>
           {lastLink}
         </Nav>

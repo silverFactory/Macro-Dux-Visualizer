@@ -17,7 +17,7 @@ export default class SongsContainer extends Component{
 
   render(){
     return this.state.redirect ? (
-      <Redirect to="/player" />
+      <Redirect to="/demo" />
     ) : (
       <Card>
         <Card.Title>{`${this.props.currentUser}'s`} Song Library</Card.Title>

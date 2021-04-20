@@ -9,9 +9,10 @@ class Songs extends Component{
    render(){
      return(
        <div>
-         <SongsContainer songs={this.props.songs}/>
+         <SongsContainer
+           songs={this.props.songs}
+           currentUser={this.props.currentUser}/>
          <NewSongForm
-           currentUser={this.props.currentUser}
            saveSong={this.props.saveSong}
            />
        </div>
