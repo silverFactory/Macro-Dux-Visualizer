@@ -1,12 +1,12 @@
 class SongsController < ApplicationController
   def create
-    byebug
+
     @user = User.find_by(username: params[:username])
     @song = @user.songs.build(title: params[:title])
     params[:melody].each do |note|
       @song.notes.build(
         name: note[:name],
-        voice: note[:voice],
+        voice: "melody",
         duration: note[:duration],
         time: note[:time]
       )
@@ -14,7 +14,7 @@ class SongsController < ApplicationController
     params[:harmony].each do |note|
       @song.notes.build(
         name: note[:name],
-        voice: note[:voice],
+        voice: "harmony",
         duration: note[:duration],
         time: note[:time]
       )
@@ -22,7 +22,7 @@ class SongsController < ApplicationController
     params[:bass].each do |note|
       @song.notes.build(
         name: note[:name],
-        voice: note[:voice],
+        voice: "bass",
         duration: note[:duration],
         time: note[:time]
       )
