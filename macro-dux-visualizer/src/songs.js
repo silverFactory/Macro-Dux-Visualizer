@@ -9,7 +9,6 @@ class Songs extends Component{
    render(){
      return(
        <div>
-         <h1>{`${this.props.currentUser}'s`} Song Library</h1>
          <SongsContainer songs={this.props.songs}/>
          <NewSongForm
            currentUser={this.props.currentUser}
