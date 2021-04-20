@@ -10,6 +10,7 @@ export function logIn(user){
         body: JSON.stringify(user)
       }).then(response => response.json())
       //.then(currentUser => console.log(currentUser.username))
-      .then(currentUser => dispatch({ type: 'LOG_IN', username: currentUser.username }))
+      //.then(currentUser => dispatch({ type: 'LOG_IN', username: currentUser.username }))
+      .then(userAndSongs => dispatch({ type: 'LOG_IN', userAndSongs }))
   };
 }

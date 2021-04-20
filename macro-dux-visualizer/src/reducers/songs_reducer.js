@@ -16,6 +16,11 @@
         songs: [...state.songs, action.newSong],
         requesting: false
       }
+      case "LOG_IN":
+      return {
+        ...state,
+        songs: [...state.songs, ...action.userAndSongs.songs]
+      }
      default:
        return state
    }

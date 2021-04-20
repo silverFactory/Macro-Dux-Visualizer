@@ -12,7 +12,7 @@
      case "LOG_IN":
       return {
         ...state,
-        currentUser: action.username,
+        currentUser: action.userAndSongs.user.username, 
         requesting: false
       }
      default:
