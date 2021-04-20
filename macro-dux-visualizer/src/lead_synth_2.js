@@ -4,7 +4,6 @@ import * as Tone from 'tone'
 export default class LeadSynth2 extends Component{
 
   state = {
-    playing: false,
     started: false,
     finalGain: new Tone.Gain(0.5),
     limiter: new Tone.Limiter(-10),
@@ -67,43 +66,33 @@ export default class LeadSynth2 extends Component{
 
   triggerNote = (noteName, noteLength, time) => {
     this.changeFrequency(noteName, time)
-    //console.log(this.state.osc.frequency)
     this.state.envelope.triggerAttackRelease(noteLength, time)
   }
 
   changeFrequency = (noteName, time) => {
-    //console.log("before switch")
     switch (noteName) {
       case "C3":
-      console.log("shifting C3")
         this.state.osc.frequency.rampTo("C3", 0, time)
         break;
       case "C#3":
-      console.log("shifting C#3")
         this.state.osc.frequency.rampTo("C#3", 0.1, time)
         break;
       case "D3":
-      console.log("shifting D3")
         this.state.osc.frequency.rampTo("D3", 0.1, time)
         break;
       case "D#3":
-      console.log("shifting D#3")
         this.state.osc.frequency.rampTo("D#3", 0.1, time)
         break;
       case "E3":
-      console.log("shifting E3")
         this.state.osc.frequency.rampTo("E3", 0.1, time)
         break;
       case "F3":
-      console.log("shifting F3")
         this.state.osc.frequency.rampTo("F3", 0.1, time)
         break;
       case "F#3":
-      console.log("shifting F#3")
         this.state.osc.frequency.rampTo("F#3", 0.1, time)
         break;
       case "G3":
-      console.log("shifting G3")
         this.state.osc.frequency.rampTo("G3", 0.1, time)
         break;
       case "G#3":
@@ -197,37 +186,8 @@ export default class LeadSynth2 extends Component{
     }
   }
 
-  handleOnClick = () => {
-    if (!this.state.playing){
-      this.setState({
-        playing: true
-      })
-      this.rafId = requestAnimationFrame(this.tick)
-      this.now = Tone.now()
-      // this.triggerNote("C3", "8n", this.now)
-      // this.triggerNote("D3", "8n", this.now + 1)
-      this.triggerNote("C3", "8n", this.now)
-      this.triggerNote("C#3", "8n", this.now + 0.5)
-      this.triggerNote("D3", "8n", this.now + 1)
-      this.triggerNote("D#3", "8n", this.now + 1.5)
-      this.triggerNote("E3", "8n", this.now + 2)
-      this.triggerNote("F3", "8n", this.now + 2.5)
-      this.triggerNote("F#3", "8n", this.now + 3)
-      this.triggerNote("G3", "8n", this.now + 3.5)
-      this.triggerNote("G#3", "8n", this.now + 4)
-      this.triggerNote("A3", "8n", this.now + 4.5)
-      this.triggerNote("A#3", "8n", this.now + 5)
-      this.triggerNote("B3", "8n", this.now + 5.5)
-
-    } else {
-      this.setState({
-        playing: false
-      })
-    }
-  }
-
-
   componentDidUpdate = () => {
+    //conditional keeps notes from scheduling every update
     if (this.props.playing === true && this.state.
       started === false){
       this.setState({
@@ -247,6 +207,6 @@ export default class LeadSynth2 extends Component{
   }
 
   render(){
-    return <button onClick={this.handleOnClick}>Lead Synth Trigger</button>
+    return <div></div>
   }
 }

@@ -4,7 +4,6 @@ import * as Tone from 'tone'
 export default class KeysSynth extends Component{
 
   state = {
-    playing: false,
     started: false,
     finalGain: new Tone.Gain(0.5),
     limiter: new Tone.Limiter(-10),
@@ -55,8 +54,6 @@ export default class KeysSynth extends Component{
                     .connect(this.state.pingPong)
                     .connect(this.state.reverb)
                     .connect(this.state.phaser)
-
-
   }
 
 
@@ -68,36 +65,8 @@ export default class KeysSynth extends Component{
     }
   }
 
-
-  handleOnClick = () => {
-    if (!this.state.playing){
-      this.setState({
-        playing: true
-      })
-      this.rafId = requestAnimationFrame(this.tick)
-      this.now = Tone.now()
-      Tone.Transport.bpm.value = 120
-      this.state.synth.triggerAttackRelease("A4", "8n", this.now)
-      this.state.synth.triggerAttackRelease("C5", "8n", this.now)
-      this.state.synth.triggerAttackRelease("E5", "8n", this.now)
-      this.state.synth.triggerAttackRelease("A4", "8n", this.now + 0.675)
-      this.state.synth.triggerAttackRelease("C5", "8n", this.now + 0.675)
-      this.state.synth.triggerAttackRelease("E5", "8n", this.now + 0.675)
-      this.state.synth.triggerAttackRelease("A4", "8n", this.now + 1)
-      this.state.synth.triggerAttackRelease("C5", "8n", this.now + 1)
-      this.state.synth.triggerAttackRelease("E5", "8n", this.now + 1)
-      this.state.synth.triggerAttackRelease("A4", "8n", this.now + 1.675)
-      this.state.synth.triggerAttackRelease("C5", "8n", this.now + 1.675)
-      this.state.synth.triggerAttackRelease("E5", "8n", this.now + 1.675)
-    } else {
-      this.setState({
-        playing: false
-      })
-    }
-  }
-
-
   componentDidUpdate = () => {
+    //conditional keeps notes from scheduling every update
     if (this.props.playing === true && this.state.started === false){
       this.setState({
         started: true
@@ -116,6 +85,6 @@ export default class KeysSynth extends Component{
 
 
   render(){
-    return <button onClick={this.handleOnClick}>Keys Synth Trigger</button>
+    return <div></div>
   }
 }
