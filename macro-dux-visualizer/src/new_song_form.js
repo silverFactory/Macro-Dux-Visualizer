@@ -1,13 +1,8 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-//import ParseMidiContainer from './parse_midi_container'
-import ParseMidi from './parse_midi'
-import { saveSong } from './actions/saveSong'
-//import * as Tone from 'tone'
 import { Form, Button, Card} from 'react-bootstrap'
 import InstructionsCard from './instructions_card'
 
-class NewSongForm extends Component {
+export default class NewSongForm extends Component {
 
     constructor(props){
       super(props)
@@ -78,17 +73,3 @@ class NewSongForm extends Component {
       )
     }
 }
-
-const mapStateToProps = state => {
-  return {
-    currentUser: state.users.currentUser
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    saveSong: (song) => dispatch(saveSong(song))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NewSongForm)

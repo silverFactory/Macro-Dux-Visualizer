@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import NewSongForm from './new_song_form'
 import SongsContainer from './songs_container'
 import { connect } from 'react-redux'
+import { saveSong } from './actions/saveSong'
 
 class Songs extends Component{
 
@@ -10,7 +11,10 @@ class Songs extends Component{
        <div>
          <h1>{`${this.props.currentUser}'s`} Song Library</h1>
          <SongsContainer songs={this.props.songs}/>
-         <NewSongForm />
+         <NewSongForm
+           currentUser={this.props.currentUser}
+           saveSong={this.props.saveSong}
+           />
        </div>
      )
    }
@@ -23,4 +27,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(Songs)
+const mapDispatchToProps = dispatch => {
+  return {
+    saveSong: (song) => dispatch(saveSong(song))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Songs)
