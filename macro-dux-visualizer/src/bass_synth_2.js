@@ -76,10 +76,14 @@ export default class BassSynth2 extends Component{
       this.setState({
         started: true
       })
+      console.log('triggering')
       this.rafId = requestAnimationFrame(this.tick)
       this.now = Tone.now()
+      console.log(this.props.notes)
       this.props.notes.forEach(note => {
-        this.state.synth.triggerAttackRelease(note.name, note.duration, this.now + note.time)
+        this.state.synth.triggerAttackRelease(note.name,
+          parseFloat(note.duration, 10),
+          this.now + parseFloat(note.time, 10))
       })
     }
     this.state.filter.frequency.rampTo(this.props.scale(this.props.macro7, 0, 100, 50, 1000), 1)

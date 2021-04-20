@@ -9,8 +9,8 @@ class Songs extends Component{
      return(
        <div>
          <h1>{`${this.props.currentUser}'s`} Song Library</h1>
+         <SongsContainer songs={this.props.songs}/>
          <NewSongForm />
-         <SongsContainer />
        </div>
      )
    }
@@ -18,7 +18,8 @@ class Songs extends Component{
 
 const mapStateToProps = state => {
   return {
-    currentUser: state.users.currentUser
+    currentUser: state.users.currentUser,
+    songs: state.songs.songs
   }
 }
 

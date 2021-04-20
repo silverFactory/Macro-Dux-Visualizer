@@ -195,8 +195,11 @@ export default class LeadSynth2 extends Component{
       })
       this.rafId = requestAnimationFrame(this.tick)
       this.now = Tone.now()
+      //console.log(this.props.notes)
       this.props.notes.forEach(note => {
-        this.triggerNote(note.name, note.duration, this.now + note.time)
+        this.triggerNote(note.name,
+          parseFloat(note.duration, 10),
+          this.now + parseFloat(note.time, 10))
       })
     }
      this.state.filter.frequency.rampTo(this.props.scale(this.props.macro1, 0, 100, 50, 1000), 1)

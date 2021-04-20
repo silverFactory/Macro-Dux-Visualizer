@@ -16,6 +16,9 @@ class Player extends Component {
     bassSynthWaveform: new Uint8Array(0),
     keysSynthWaveform: new Uint8Array(0),
     leadSynthWaveform: new Uint8Array(0),
+    melodyNotes: [],
+    harmonyNotes: [],
+    bassNotes: []
   }
 
   componentDidMount() {
@@ -86,7 +89,18 @@ class Player extends Component {
   }
 
   stateClick = () => {
-    console.log(this.props.macros)
+    console.log(this.props.songs)
+  }
+
+  startSong = (e) => {
+    this.currentSong = this.props.songs.find(song => song.title === e.target.id)
+    this.setState({
+      melodyNotes: this.currentSong.melody,
+      harmonyNotes: this.currentSong.harmony,
+      bassNotes: this.currentSong.bass,
+    })
+     setTimeout(this.setState({playing: true}), 1000)
+    //setTimeout(console.log(this.state), 1000)
   }
 
   render(){
@@ -95,6 +109,12 @@ class Player extends Component {
         <div class="row align-items-center">
           <div class="col-lg">
             <button onClick={this.stateClick}>Print State</button>
+            {this.props.songs.map(song => {
+               return <button
+                          id={song.title}
+                          onClick={e => this.startSong(e)}>
+                          Play {song.title}</button>
+            })}
             <SynthsContainer
               macro1={this.props.macros.macro1}
               macro2={this.props.macros.macro2}
@@ -105,10 +125,12 @@ class Player extends Component {
               macro7={this.props.macros.macro7}
               macro8={this.props.macros.macro8}
               macro9={this.props.macros.macro9}
+              melodyNotes={this.state.melodyNotes}
+              harmonyNotes={this.state.harmonyNotes}
+              bassNotes={this.state.bassNotes}
               playing={this.state.playing}
               getWaveformArray={this.getWaveformArray}
               scale={scale}/>
-            <button onClick={this.handleOnClick}>Play/Pause</button>
             <P5Visualizer
               audioDataTime={this.state.audioDataTime}
               audioDataFreq={this.state.audioDataFreq}
@@ -129,7 +151,9 @@ class Player extends Component {
 
 const mapStateToProps = state => {
   return {
-    macros: state.macros
+    macros: state.macros,
+    songs: state.songs.songs,
+    state: state
   }
 }
 

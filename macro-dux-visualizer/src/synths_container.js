@@ -4263,8 +4263,8 @@ export default class SynthsContainer extends Component {
           macro7={this.props.macro7}
           macro8={this.props.macro8}
           macro9={this.props.macro9}
-          notes={this.state.bassNotes}
-          playing={this.state.playing}
+          notes={this.props.bassNotes}
+          playing={this.props.playing}
           getWaveformArray={this.props.getWaveformArray}
           scale={this.props.scale}
           />
@@ -4272,8 +4272,8 @@ export default class SynthsContainer extends Component {
           macro4={this.props.macro4}
           macro5={this.props.macro5}
           macro6={this.props.macro6}
-          notes={this.state.harmonyNotes}
-          playing={this.state.playing}
+          notes={this.props.harmonyNotes}
+          playing={this.props.playing}
           getWaveformArray={this.props.getWaveformArray}
           scale={this.props.scale}
           />
@@ -4281,8 +4281,8 @@ export default class SynthsContainer extends Component {
           macro1={this.props.macro1}
           macro2={this.props.macro2}
           macro3={this.props.macro3}
-          notes={this.state.melodyNotes}
-          playing={this.state.playing}
+          notes={this.props.melodyNotes}
+          playing={this.props.playing}
           getWaveformArray={this.props.getWaveformArray}
           scale={this.props.scale}
           />
