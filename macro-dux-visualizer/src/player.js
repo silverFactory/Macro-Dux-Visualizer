@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import Remember from './Remember.mp3'
-import Drums from './Macro_dux_drums.mp3'
 import P5Visualizer from './p5_visualizer'
 import MacroCardContainer from './macro_card_container'
 import SynthsContainer from './synths_container'
@@ -11,6 +10,7 @@ class Player extends Component {
 
   state = {
     playing: false,
+    audioDemo: false,
     audioDataTime: new Uint8Array(0),
     audioDataFreq: new Uint8Array(0),
     bassSynthWaveform: new Uint8Array(0),
@@ -27,12 +27,6 @@ class Player extends Component {
     this.audioElement = new Audio(Remember)
     this.track = this.audioContext.createMediaElementSource(this.audioElement)
     this.track.connect(this.audioContext.destination)
-
-    this.demoDrums = new Audio(Drums)
-    this.drumTrack = this.audioContext.createMediaElementSource(this.demoDrums)
-    this.drumTrack.connect(this.audioContext.destination)
-
-    this.bassTrackGain = new GainNode(this.audioContext)
 
     this.analyserTime = this.audioContext.createAnalyser()
     this.analyserFreq = this.audioContext.createAnalyser()
@@ -66,22 +60,20 @@ class Player extends Component {
 
   handleOnClick = event => {
     event.preventDefault()
-    //console.log(this.audioContext.state)
     if (this.audioContext.state === 'suspended'){
       this.audioContext.resume()
     }
     if (this.state.playing === false){
       this.audioElement.play()
-      //this.rafId = requestAnimationFrame(this.tick)
+      this.rafId = requestAnimationFrame(this.tick)
 
       this.setState({
-        playing: true
+        playing: true,
+        audioDemo: true
       })
-      //adjust start time to line up with the synths
-      //setTimeout(this.demoDrums.play(), 600)
+
     } else {
       this.audioElement.pause()
-      //this.demoDrums.pause()
       this.setState({
         playing: false
       })
@@ -104,11 +96,32 @@ class Player extends Component {
   }
 
   render(){
+
+    let visualizer
+    if (this.state.audioDemo === true) {
+      visualizer = <P5Visualizer
+        audioDataFreq={this.state.audioDataFreq}
+        bassSynthWaveform={this.state.audioDataTime}
+        keysSynthWaveform={this.state.audioDataTime}
+        leadSynthWaveform={this.state.audioDataTime}
+        playing={this.state.playing}
+        macros={this.props.macros}/>
+    } else {
+      visualizer = <P5Visualizer
+        audioDataFreq={this.state.audioDataFreq}
+        bassSynthWaveform={this.state.bassSynthWaveform}
+        keysSynthWaveform={this.state.keysSynthWaveform}
+        leadSynthWaveform={this.state.leadSynthWaveform}
+        playing={this.state.playing}
+        macros={this.props.macros}/>
+    }
+
     return (
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg">
             <button onClick={this.stateClick}>Print State</button>
+            <button onClick={this.handleOnClick}>Start Visualizer</button>
             {this.props.songs.map(song => {
                return <button
                           id={song.title}
@@ -131,14 +144,7 @@ class Player extends Component {
               playing={this.state.playing}
               getWaveformArray={this.getWaveformArray}
               scale={scale}/>
-            <P5Visualizer
-              audioDataTime={this.state.audioDataTime}
-              audioDataFreq={this.state.audioDataFreq}
-              bassSynthWaveform={this.state.bassSynthWaveform}
-              keysSynthWaveform={this.state.keysSynthWaveform}
-              leadSynthWaveform={this.state.leadSynthWaveform}
-              playing={this.state.playing}
-              macros={this.props.macros}/>
+            {visualizer}
           </div>
           <div class="col-md">
             <MacroCardContainer />
