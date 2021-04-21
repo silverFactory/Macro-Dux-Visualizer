@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+
 import { Redirect } from 'react-router-dom'
-import {signUp} from './actions/signUp'
+
 import { Form, Button, Card, Modal} from 'react-bootstrap'
 
-class UserSignUpForm extends Component {
+export default class UserSignUpForm extends Component {
 
   state = {
     username: "",
@@ -79,17 +79,3 @@ class UserSignUpForm extends Component {
     )
   }
 }
-
-const mapStateToProps = state => {
-  return{
-    currentUser: state.users.currentUser
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    signUp: (user) => dispatch(signUp(user))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserSignUpForm)

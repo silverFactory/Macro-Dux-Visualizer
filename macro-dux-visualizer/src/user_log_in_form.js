@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+
 import { Redirect } from 'react-router-dom'
-import {logIn} from './actions/logIn'
+
 import { Form, Button, Card} from 'react-bootstrap'
 
 
-
-class UserLogInForm extends Component {
+export default class UserLogInForm extends Component {
 
   state = {
     username: "",
@@ -22,7 +21,6 @@ class UserLogInForm extends Component {
       password: "",
       passwordConfirmation: "",
     })
-    //history.push("/")
   }
 
   render(){
@@ -54,17 +52,3 @@ class UserLogInForm extends Component {
     )
   }
 }
-
-const mapStateToProps = state => {
-  return{
-    currentUser: state.users.currentUser
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    logIn: (user) => dispatch(logIn(user))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserLogInForm)
