@@ -24,6 +24,12 @@ export default class NewSongForm extends Component {
           harmony: JSON.parse(this.state.harmony).tracks[0].notes,
           bass: JSON.parse(this.state.bass).tracks[0].notes,
       })
+      this.setState({
+        title: "",
+        melody: "",
+        harmony: "",
+        bass: ""
+      })
     }
 
     render(){

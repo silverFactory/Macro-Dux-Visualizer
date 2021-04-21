@@ -10,6 +10,6 @@ export function signUp(user) {
         body: JSON.stringify(user)
       }).then(response => response.json())
       //.then(resp => console.log(resp))
-       .then(newUser => dispatch({ type: 'LOG_IN', username: newUser.username }))
+       .then(newUser => dispatch({ type: 'FIRST_LOG_IN', username: newUser.username }))
   };
 }

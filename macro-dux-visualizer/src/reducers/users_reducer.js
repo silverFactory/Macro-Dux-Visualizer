@@ -12,8 +12,13 @@
      case "LOG_IN":
       return {
         ...state,
-        currentUser: action.userAndSongs.user.username, 
+        currentUser: action.userAndSongs.user.username,
         requesting: false
+      }
+     case "FIRST_LOG_IN":
+      return {
+        ...state,
+        currentUser: action.username 
       }
      default:
        return state
