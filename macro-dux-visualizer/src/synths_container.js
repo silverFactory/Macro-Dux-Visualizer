@@ -4245,10 +4245,6 @@ export default class SynthsContainer extends Component {
 ]
   }
 
-  // handleOnClick = (e) => {
-  //   e.preventDefault()
-  //
-  // }
   startSong = () => {
     this.setState({
       playing: true
@@ -4258,7 +4254,7 @@ export default class SynthsContainer extends Component {
   render(){
     return(
       <div>
-        <button onClick={this.startSong}>Start Demo Song</button>
+        <button onClick={this.startSong}>Start Synth Demo </button>
         <BassSynth
           macro7={this.props.macro7}
           macro8={this.props.macro8}
