@@ -3,49 +3,37 @@ import BassSynth from './bass_synth_2'
 import KeysSynth from './keys_synth'
 import LeadSynth from './lead_synth_2'
 
-export default class SynthsContainer extends Component {
+export default function SynthsContainer(props) {
 
-  state = {
-    playing: false
-  }
-
-  startSong = () => {
-    this.setState({
-      playing: true
-    })
-  }
-
-  render(){
     return(
       <div>
         <BassSynth
-          macro7={this.props.macro7}
-          macro8={this.props.macro8}
-          macro9={this.props.macro9}
-          notes={this.props.bassNotes}
-          playing={this.props.playing}
-          getWaveformArray={this.props.getWaveformArray}
-          scale={this.props.scale}
+          macro7={props.macro7}
+          macro8={props.macro8}
+          macro9={props.macro9}
+          notes={props.bassNotes}
+          playing={props.playing}
+          getWaveformArray={props.getWaveformArray}
+          scale={props.scale}
           />
         <KeysSynth
-          macro4={this.props.macro4}
-          macro5={this.props.macro5}
-          macro6={this.props.macro6}
-          notes={this.props.harmonyNotes}
-          playing={this.props.playing}
-          getWaveformArray={this.props.getWaveformArray}
-          scale={this.props.scale}
+          macro4={props.macro4}
+          macro5={props.macro5}
+          macro6={props.macro6}
+          notes={props.harmonyNotes}
+          playing={props.playing}
+          getWaveformArray={props.getWaveformArray}
+          scale={props.scale}
           />
         <LeadSynth
-          macro1={this.props.macro1}
-          macro2={this.props.macro2}
-          macro3={this.props.macro3}
-          notes={this.props.melodyNotes}
-          playing={this.props.playing}
-          getWaveformArray={this.props.getWaveformArray}
-          scale={this.props.scale}
+          macro1={props.macro1}
+          macro2={props.macro2}
+          macro3={props.macro3}
+          notes={props.melodyNotes}
+          playing={props.playing}
+          getWaveformArray={props.getWaveformArray}
+          scale={props.scale}
           />
       </div>
     )
-  }
 }
