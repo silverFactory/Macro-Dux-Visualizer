@@ -66,9 +66,29 @@ export default class P5Visualizer extends Component {
       p.stroke(p.map(this.props.macros.macro3, 0, 100, 0, 255))
       DrawAllLightning(p, this.props.leadSynthWaveform, this.width)
 
-      let melodyRed = 100
-      let melodyGreen = 100 - this.props.macros.macro1
-      let melodyBlue = 100 - this.props.macros.macro1
+
+      let melodyRed
+      let melodyGreen
+      let melodyBlue
+
+      if (this.props.macros.macro1 < 10){
+        melodyRed = 100
+        melodyGreen = 100
+        melodyBlue = 100
+      } else if (this.props.macros.macro1 < 30) {
+        melodyRed = 100
+        melodyGreen = 100
+        melodyBlue = 0
+      } else if (this.props.macros.macro1 < 50) {
+        melodyRed = 20
+        melodyGreen = 100
+        melodyBlue = 20
+      } else if (this.props.macros.macro1 >= 50) {
+        melodyRed = 100
+        melodyGreen = 20
+        melodyBlue = 20
+      }
+
       p.fill(`rgb(${melodyRed}%, ${melodyGreen}%, ${melodyBlue}%)`)
       DrawParticles(this.melodyParticles)
       p.pop()
@@ -94,9 +114,28 @@ export default class P5Visualizer extends Component {
       p.stroke(p.map(this.props.macros.macro6, 0, 100, 0, 255))
       DrawAllLightning(p, this.props.keysSynthWaveform, this.width)
 
-      let harmonyRed = 100
-      let harmonyGreen = 100 - this.props.macros.macro4
-      let harmonyBlue = 100 - this.props.macros.macro4
+      let harmonyRed
+      let harmonyGreen
+      let harmonyBlue
+
+      if (this.props.macros.macro4 < 10){
+        harmonyRed = 100
+        harmonyGreen = 100
+        harmonyBlue = 100
+      } else if (this.props.macros.macro4 < 30) {
+        harmonyRed = 100
+        harmonyGreen = 100
+        harmonyBlue = 0
+      } else if (this.props.macros.macro4 < 50) {
+        harmonyRed = 20
+        harmonyGreen = 100
+        harmonyBlue = 20
+      } else if (this.props.macros.macro4 >= 50) {
+        harmonyRed = 100
+        harmonyGreen = 20
+        harmonyBlue = 20
+      }
+
       p.fill(`rgb(${harmonyRed}%, ${harmonyGreen}%, ${harmonyBlue}%)`)
       DrawParticles(this.harmonyParticles)
       p.pop()
@@ -120,9 +159,28 @@ export default class P5Visualizer extends Component {
       p.stroke(p.map(this.props.macros.macro9, 0, 100, 0, 255))
       DrawAllLightning(p, this.props.bassSynthWaveform, this.width)
 
-      let bassRed = 100
-      let bassGreen = 100 - this.props.macros.macro7
-      let bassBlue = 100 - this.props.macros.macro7
+      let bassRed
+      let bassGreen
+      let bassBlue
+
+      if (this.props.macros.macro7 < 10){
+        bassRed = 100
+        bassGreen = 100
+        bassBlue = 100
+      } else if (this.props.macros.macro7 < 30) {
+        bassRed = 100
+        bassGreen = 100
+        bassBlue = 0
+      } else if (this.props.macros.macro7 < 50) {
+        bassRed = 20
+        bassGreen = 100
+        bassBlue = 20
+      } else if (this.props.macros.macro7 >= 50) {
+        bassRed = 100
+        bassGreen = 20
+        bassBlue = 20
+      }
+
       p.fill(`rgb(${bassRed}%, ${bassGreen}%, ${bassBlue}%)`)
       DrawParticles(this.bassParticles)
       p.pop()
